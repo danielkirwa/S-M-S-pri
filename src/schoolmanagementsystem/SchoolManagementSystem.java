@@ -32,7 +32,7 @@ public class SchoolManagementSystem {
         System.out.println("##### Have a library module / book assets                          #");
         System.out.println("##### Schedule time table                                          #");
         System.out.println("##### Produce reports                                              #");
-        System.out.println("############     8/31/2020  daniel        ##########################");
+        System.out.println("############     8/31/2020  sms           ##########################");
         System.out.println("********************************************************************");
         }
     }
