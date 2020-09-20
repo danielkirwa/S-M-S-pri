@@ -5,6 +5,8 @@
  */
 package schoolmanagementsystem;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author owner
@@ -49,6 +51,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jpresults = new javax.swing.JPanel();
@@ -89,7 +92,6 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(11, 21, 70, 14);
 
-        jTextField1.setColumns(4);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -126,6 +128,15 @@ public class ExamDepartment extends javax.swing.JFrame {
         });
         jPanel2.add(jComboBox3);
         jComboBox3.setBounds(370, 60, 130, 20);
+
+        jButton1.setText("Add New Marks");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(570, 53, 280, 30);
 
         jpnewmarks.add(jPanel2);
         jPanel2.setBounds(6, 16, 1100, 100);
@@ -416,6 +427,17 @@ public class ExamDepartment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        if(jTextField1.getText().toString().length() > 4){
+            JOptionPane.showMessageDialog(null,"year erro more digits");
+        }else if(jTextField1.getText().toString().length() < 4){
+        JOptionPane.showMessageDialog(null,"year erro less digits");
+    }else{
+            JOptionPane.showMessageDialog(null,"correct");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -452,6 +474,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
