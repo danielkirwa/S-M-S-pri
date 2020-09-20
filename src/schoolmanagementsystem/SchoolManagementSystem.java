@@ -15,7 +15,8 @@ public class SchoolManagementSystem {
    
     public static void main(String[] args) {
         // TODO code application logic here
-        Readme Readme = new Readme();
+       // Readme Readme = new Readme();
+        new LoginAccounts().setVisible(true);
 
     }
 
@@ -25,13 +26,8 @@ public class SchoolManagementSystem {
             
         System.out.println("*******************************************************************");
         System.out.println("############ School Management System ##############################");
-        System.out.println("##### Requires database prefered one is xampp(Sql)                 #");
-        System.out.println("##### Should be able to create teachers accounts for authorization #");
-        System.out.println("##### Take in new student details/archive alumina                  #");
-        System.out.println("##### Acount for students exams and analysis                       #");
-        System.out.println("##### Have a library module / book assets                          #");
-        System.out.println("##### Schedule time table                                          #");
-        System.out.println("##### Produce reports                                              #");
+        System.out.println("##### All ready connected to online sql database xampp             #");
+        System.out.println("##### User login and registration interface all ready done         #");
         System.out.println("############     8/31/2020  sms           ##########################");
         System.out.println("********************************************************************");
         }
