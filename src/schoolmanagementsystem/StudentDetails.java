@@ -51,8 +51,6 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtclass = new javax.swing.JTextField();
-        txtage = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txtmname = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -61,9 +59,52 @@ public class StudentDetails extends javax.swing.JFrame {
         txtlname = new javax.swing.JTextField();
         txtfname = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtlname1 = new javax.swing.JTextField();
+        txtmname1 = new javax.swing.JTextField();
+        txtfname1 = new javax.swing.JTextField();
+        txtlname2 = new javax.swing.JTextField();
+        txtmname2 = new javax.swing.JTextField();
+        txtfname2 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jLabel17 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("School Management Systems");
@@ -73,38 +114,32 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
         jPanel2.setLayout(null);
 
-        jLabel1.setText("Class  :");
+        jLabel1.setText("Class :");
         jPanel2.add(jLabel1);
-        jLabel1.setBounds(20, 90, 80, 14);
-        jPanel2.add(txtclass);
-        txtclass.setBounds(140, 90, 170, 20);
-        jPanel2.add(txtage);
-        txtage.setBounds(140, 60, 170, 20);
+        jLabel1.setBounds(50, 380, 50, 14);
 
         jLabel2.setText("Age :");
         jPanel2.add(jLabel2);
-        jLabel2.setBounds(20, 60, 80, 14);
+        jLabel2.setBounds(40, 120, 50, 14);
         jPanel2.add(txtmname);
-        txtmname.setBounds(320, 30, 170, 20);
+        txtmname.setBounds(320, 90, 170, 20);
 
         jLabel3.setText("Full Name :");
         jPanel2.add(jLabel3);
-        jLabel3.setBounds(21, 32, 80, 14);
+        jLabel3.setBounds(20, 90, 80, 14);
         jPanel2.add(txtadmin);
-        txtadmin.setBounds(140, 120, 170, 20);
+        txtadmin.setBounds(120, 340, 170, 20);
 
-        jLabel4.setText("Admin");
+        jLabel4.setText("Admin/NEMIS : ");
         jPanel2.add(jLabel4);
-        jLabel4.setBounds(20, 120, 80, 14);
+        jLabel4.setBounds(10, 340, 100, 14);
         jPanel2.add(txtlname);
-        txtlname.setBounds(510, 30, 170, 20);
+        txtlname.setBounds(510, 90, 170, 20);
         jPanel2.add(txtfname);
-        txtfname.setBounds(140, 30, 170, 20);
-
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(10, 50, 1140, 470);
+        txtfname.setBounds(140, 90, 170, 20);
 
         jButton1.setText("Add Student");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -113,18 +148,229 @@ public class StudentDetails extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(50, 530, 150, 40);
+        jPanel2.add(jButton1);
+        jButton1.setBounds(30, 450, 200, 40);
 
-        jLabel5.setText("Search");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(50, 20, 60, 14);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(120, 20, 190, 20);
+        jButton2.setText("Update Student");
+        jPanel2.add(jButton2);
+        jButton2.setBounds(250, 453, 200, 40);
 
-        jButton2.setText("jButton2");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(330, 10, 60, 30);
+        jButton3.setText("Delete Student");
+        jPanel2.add(jButton3);
+        jButton3.setBounds(470, 453, 250, 40);
+
+        jLabel5.setText("Enter Student NEMIS to search  :");
+        jPanel2.add(jLabel5);
+        jLabel5.setBounds(20, 30, 200, 14);
+        jPanel2.add(jTextField1);
+        jTextField1.setBounds(230, 30, 180, 20);
+
+        jButton4.setText("Search");
+        jPanel2.add(jButton4);
+        jButton4.setBounds(450, 20, 150, 30);
+
+        jLabel6.setText("__________________________________________________________________________________________________________________________________________________________________________");
+        jPanel2.add(jLabel6);
+        jLabel6.setBounds(10, 60, 1100, 14);
+
+        jLabel7.setText("Gender :");
+        jPanel2.add(jLabel7);
+        jLabel7.setBounds(390, 130, 60, 14);
+
+        jLabel8.setText("Location/County  :");
+        jPanel2.add(jLabel8);
+        jLabel8.setBounds(10, 170, 100, 14);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo", "Other" }));
+        jPanel2.add(jComboBox1);
+        jComboBox1.setBounds(140, 170, 160, 20);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo Central", "Baringo South", "Baringo North", "Eldama Ravine", "Mogotio", "Tiaty", "Other" }));
+        jPanel2.add(jComboBox2);
+        jComboBox2.setBounds(470, 170, 180, 20);
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kapropita", "Koibatek", "Emining", "Mogotio", "Lembus Kwen", "Maji Mazuri/Mumberes", "Ravine", "Kabartonjo", "Kisanana", "Ilchamus", "Mukutani", "Marigat", "Mochongoi", "Bartabwa", "Barwesa", "Kabartonjo", "Saimo/Kipsaraman", "Saimo Soi", "Ewalel/ChapChap", "Lembus Perkera", "Kabarnet", "Tenges", "Lembus", "Churo/Amaya", "Kolowa/Loiwat", "Loyamorok", "Ribkwo", "Tirioko", "Tangulbei/Korossi", "Silale" }));
+        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox3ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jComboBox3);
+        jComboBox3.setBounds(820, 170, 170, 20);
+
+        jLabel9.setText("Location/Sub-County  :");
+        jPanel2.add(jLabel9);
+        jLabel9.setBounds(320, 170, 130, 14);
+
+        jLabel10.setText("Location/Ward  :");
+        jPanel2.add(jLabel10);
+        jLabel10.setBounds(700, 170, 110, 14);
+
+        jLabel11.setText("____________________________________________________________________________________________________________________________________________________________________________");
+        jPanel2.add(jLabel11);
+        jLabel11.setBounds(10, 210, 1090, 14);
+
+        jLabel12.setText("Parent/Gaudian Name :  ");
+        jPanel2.add(jLabel12);
+        jLabel12.setBounds(20, 240, 130, 14);
+        jPanel2.add(txtlname1);
+        txtlname1.setBounds(530, 240, 170, 20);
+        jPanel2.add(txtmname1);
+        txtmname1.setBounds(340, 240, 170, 20);
+        jPanel2.add(txtfname1);
+        txtfname1.setBounds(160, 240, 170, 20);
+        jPanel2.add(txtlname2);
+        txtlname2.setBounds(530, 270, 170, 20);
+        jPanel2.add(txtmname2);
+        txtmname2.setBounds(340, 270, 170, 20);
+        jPanel2.add(txtfname2);
+        txtfname2.setBounds(160, 270, 170, 20);
+
+        jLabel13.setText("Contacts :");
+        jPanel2.add(jLabel13);
+        jLabel13.setBounds(730, 240, 60, 14);
+        jPanel2.add(jTextField3);
+        jTextField3.setBounds(810, 240, 160, 20);
+
+        jLabel14.setText("Contacts :");
+        jPanel2.add(jLabel14);
+        jLabel14.setBounds(730, 270, 60, 14);
+        jPanel2.add(jTextField4);
+        jTextField4.setBounds(810, 270, 160, 20);
+
+        jLabel15.setText("______________________________________________________________________________________________________________________________________________________________________________    ");
+        jPanel2.add(jLabel15);
+        jLabel15.setBounds(20, 300, 1080, 14);
+
+        jLabel16.setText("Stream :");
+        jPanel2.add(jLabel16);
+        jLabel16.setBounds(390, 340, 60, 14);
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "East", "West", "South", "North" }));
+        jPanel2.add(jComboBox4);
+        jComboBox4.setBounds(480, 340, 200, 20);
+
+        jLabel17.setText("Adminssion   Date :");
+        jPanel2.add(jLabel17);
+        jLabel17.setBounds(340, 380, 110, 14);
+
+        jDateChooser1.setDateFormatString("dd-MM-yyyy");
+        jPanel2.add(jDateChooser1);
+        jDateChooser1.setBounds(480, 380, 200, 20);
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+        jPanel2.add(jComboBox5);
+        jComboBox5.setBounds(470, 130, 180, 20);
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel2.add(jComboBox6);
+        jComboBox6.setBounds(120, 380, 170, 20);
+        jPanel2.add(jYearChooser1);
+        jYearChooser1.setBounds(140, 120, 170, 20);
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(20, 30, 1130, 510);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fees", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14)))); // NOI18N
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 78, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(810, 60, 100, 100);
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Staff Account Report", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 78, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel4);
+        jPanel4.setBounds(870, 190, 100, 100);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Staff Accounts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14)))); // NOI18N
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 77, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5);
+        jPanel5.setBounds(950, 60, 100, 100);
+
+        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fee Structure", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 88, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 78, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel6);
+        jPanel6.setBounds(970, 310, 100, 100);
+
+        jMenu1.setText("Students");
+
+        jMenuItem1.setText("Student Management");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Fees");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem5.setText("Fees Structure");
+        jMenu1.add(jMenuItem5);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Accounts");
+
+        jMenuItem3.setText("Add Account");
+        jMenu2.add(jMenuItem3);
+
+        jMenuItem4.setText("Accounts Report");
+        jMenu2.add(jMenuItem4);
+
+        jMenuItem6.setText("Logout");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem6);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -134,7 +380,7 @@ public class StudentDetails extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 559, Short.MAX_VALUE)
         );
 
         pack();
@@ -159,6 +405,16 @@ public class StudentDetails extends javax.swing.JFrame {
 
        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        new LoginAccounts().setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,19 +454,60 @@ public class StudentDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private com.toedter.calendar.JYearChooser jYearChooser1;
     private javax.swing.JTextField txtadmin;
-    private javax.swing.JTextField txtage;
-    private javax.swing.JTextField txtclass;
     private javax.swing.JTextField txtfname;
+    private javax.swing.JTextField txtfname1;
+    private javax.swing.JTextField txtfname2;
     private javax.swing.JTextField txtlname;
+    private javax.swing.JTextField txtlname1;
+    private javax.swing.JTextField txtlname2;
     private javax.swing.JTextField txtmname;
+    private javax.swing.JTextField txtmname1;
+    private javax.swing.JTextField txtmname2;
     // End of variables declaration//GEN-END:variables
 }

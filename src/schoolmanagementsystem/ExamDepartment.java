@@ -6,6 +6,7 @@
 package schoolmanagementsystem;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +21,8 @@ public class ExamDepartment extends javax.swing.JFrame {
         initComponents();
         
         hidepanels();
+        loadexamentrytable();
+        loadresultstable();
     }
     
     final public void hidepanels(){
@@ -29,6 +32,37 @@ public class ExamDepartment extends javax.swing.JFrame {
         jpclassanalysis.setVisible(false);
         jpsubjectanalysis.setVisible(false);
     }
+    final public void loadexamentrytable(){
+    DefaultTableModel stm = new DefaultTableModel();
+    stm.addColumn("FirstName");
+    stm.addColumn("NEMIS");
+    stm.addColumn("MATHS");
+    stm.addColumn("ENGLISH");
+    stm.addColumn("KISWAHILi");
+    stm.addColumn("SCIENCE");
+    stm.addColumn("SOCIAL");
+    tblmarksentry.setModel(stm);
+    }
+    
+    final public void loadresultstable(){
+        DefaultTableModel stm = new DefaultTableModel();
+    stm.addColumn("FirstNane");
+    stm.addColumn("MiddleName");
+    stm.addColumn("LastName");
+    stm.addColumn("Class");
+    stm.addColumn("Stream");
+    stm.addColumn("NEMIS");
+    stm.addColumn("MATHS");
+    stm.addColumn("ENGLISH");
+    stm.addColumn("KISWAHILi");
+    stm.addColumn("SCIENCE");
+    stm.addColumn("SOCIAL");
+    stm.addColumn("Position");
+    stm.addColumn("Avarage");
+    stm.addColumn("TotalMarks");
+    tblresults.setModel(stm); 
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,9 +86,23 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblmarksentry = new javax.swing.JTable();
         jpresults = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jComboBox5 = new javax.swing.JComboBox<>();
+        jComboBox6 = new javax.swing.JComboBox<>();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblresults = new javax.swing.JTable();
         jpstudentmarks = new javax.swing.JPanel();
         jpclassanalysis = new javax.swing.JPanel();
         jpsubjectanalysis = new javax.swing.JPanel();
@@ -129,19 +177,23 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel2.add(jComboBox3);
         jComboBox3.setBounds(370, 60, 130, 20);
 
-        jButton1.setText("Add New Marks");
+        jButton1.setText("Create new Marks Entry");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(570, 53, 280, 30);
+        jButton1.setBounds(530, 40, 280, 40);
+
+        jButton2.setText("Upload New Marks");
+        jPanel2.add(jButton2);
+        jButton2.setBounds(830, 40, 250, 40);
 
         jpnewmarks.add(jPanel2);
         jPanel2.setBounds(6, 16, 1100, 100);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblmarksentry.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -152,7 +204,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblmarksentry);
 
         jpnewmarks.add(jScrollPane1);
         jScrollPane1.setBounds(12, 140, 1090, 410);
@@ -162,20 +214,74 @@ public class ExamDepartment extends javax.swing.JFrame {
 
         jpresults.setBackground(new java.awt.Color(255, 255, 255));
         jpresults.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Results", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpresults.setMinimumSize(new java.awt.Dimension(1130, 570));
+        jpresults.setLayout(null);
 
-        javax.swing.GroupLayout jpresultsLayout = new javax.swing.GroupLayout(jpresults);
-        jpresults.setLayout(jpresultsLayout);
-        jpresultsLayout.setHorizontalGroup(
-            jpresultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 768, Short.MAX_VALUE)
-        );
-        jpresultsLayout.setVerticalGroup(
-            jpresultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
-        );
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
+
+        jLabel5.setText("Year :");
+        jPanel3.add(jLabel5);
+        jLabel5.setBounds(20, 20, 60, 14);
+
+        jLabel6.setText("Class  :");
+        jPanel3.add(jLabel6);
+        jLabel6.setBounds(20, 60, 60, 14);
+
+        jLabel7.setText("Term :");
+        jPanel3.add(jLabel7);
+        jLabel7.setBounds(350, 20, 60, 14);
+
+        jLabel8.setText("Series  :");
+        jPanel3.add(jLabel8);
+        jLabel8.setBounds(350, 60, 70, 14);
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2017", "2018", "2019", "2020", "2021", "2022", "2023" }));
+        jPanel3.add(jComboBox4);
+        jComboBox4.setBounds(100, 20, 170, 20);
+
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jPanel3.add(jComboBox5);
+        jComboBox5.setBounds(100, 50, 170, 20);
+
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        jPanel3.add(jComboBox6);
+        jComboBox6.setBounds(420, 20, 180, 20);
+
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
+        jPanel3.add(jComboBox7);
+        jComboBox7.setBounds(420, 50, 180, 20);
+
+        jButton3.setText("Print All ");
+        jPanel3.add(jButton3);
+        jButton3.setBounds(850, 40, 240, 40);
+
+        jButton4.setText("View Results");
+        jPanel3.add(jButton4);
+        jButton4.setBounds(630, 40, 200, 40);
+
+        jpresults.add(jPanel3);
+        jPanel3.setBounds(10, 20, 1100, 100);
+
+        tblresults.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(tblresults);
+
+        jpresults.add(jScrollPane2);
+        jScrollPane2.setBounds(10, 130, 1100, 402);
 
         jPanel1.add(jpresults);
-        jpresults.setBounds(10, 20, 780, 210);
+        jpresults.setBounds(10, 20, 1130, 570);
 
         jpstudentmarks.setBackground(new java.awt.Color(255, 255, 255));
         jpstudentmarks.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Student Marks", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
@@ -429,9 +535,9 @@ public class ExamDepartment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1.getText().toString().length() > 4){
+        if(jTextField1.getText().length() > 4){
             JOptionPane.showMessageDialog(null,"year erro more digits");
-        }else if(jTextField1.getText().toString().length() < 4){
+        }else if(jTextField1.getText().length() < 4){
         JOptionPane.showMessageDialog(null,"year erro less digits");
     }else{
             JOptionPane.showMessageDialog(null,"correct");
@@ -475,21 +581,33 @@ public class ExamDepartment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox5;
+    private javax.swing.JComboBox<String> jComboBox6;
+    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem jmclassanalysis;
     private javax.swing.JMenuItem jmlogout;
@@ -502,5 +620,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpresults;
     private javax.swing.JPanel jpstudentmarks;
     private javax.swing.JPanel jpsubjectanalysis;
+    private javax.swing.JTable tblmarksentry;
+    private javax.swing.JTable tblresults;
     // End of variables declaration//GEN-END:variables
 }
