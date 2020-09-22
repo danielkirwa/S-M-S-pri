@@ -11,8 +11,10 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -37,6 +39,30 @@ public class StudentDetails extends javax.swing.JFrame {
     
     public StudentDetails() {
         initComponents();
+        loadstudentsfeetable();
+        hidepanels();
+    }
+    
+    final public void loadstudentsfeetable(){
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("NEMIS");
+        dtm.addColumn("FirstName");
+        dtm.addColumn("MiddleName");
+        dtm.addColumn("LastNme");
+        dtm.addColumn("Class");
+        dtm.addColumn("AmountPaid");
+        dtm.addColumn("CurrentBalance");
+        dtm.addColumn("TotalAmount");
+        
+       tblfees.setModel(dtm);
+        
+    }
+    final public void hidepanels(){
+        jpaddstudent.setVisible(false);
+        jpstaffaccount.setVisible(false);
+        jpstaffreport.setVisible(false);
+        jpfeestructure.setVisible(false);
+        jpfeespayment.setVisible(false);
     }
 
     /**
@@ -49,7 +75,7 @@ public class StudentDetails extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jpaddstudent = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         txtmname = new javax.swing.JTextField();
@@ -62,49 +88,68 @@ public class StudentDetails extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtsearchstudent = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbcounty = new javax.swing.JComboBox<>();
+        cmbsubcounty = new javax.swing.JComboBox<>();
+        cmbward = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtlname1 = new javax.swing.JTextField();
-        txtmname1 = new javax.swing.JTextField();
-        txtfname1 = new javax.swing.JTextField();
-        txtlname2 = new javax.swing.JTextField();
-        txtmname2 = new javax.swing.JTextField();
-        txtfname2 = new javax.swing.JTextField();
+        txtpglname1 = new javax.swing.JTextField();
+        txtpgmname1 = new javax.swing.JTextField();
+        txtpgfname1 = new javax.swing.JTextField();
+        txtpglname2 = new javax.swing.JTextField();
+        txtpgmname2 = new javax.swing.JTextField();
+        txtpgfname2 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        txtpgcontacts1 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtpgcontacts2 = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cmbstream = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jcdate = new com.toedter.calendar.JDateChooser();
+        cmbgender = new javax.swing.JComboBox<>();
+        cmbclass = new javax.swing.JComboBox<>();
+        jcyear = new com.toedter.calendar.JYearChooser();
+        jpfeespayment = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel18 = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jButton5 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
+        jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jLabel24 = new javax.swing.JLabel();
+        jComboBox8 = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblfees = new javax.swing.JTable();
+        jpstaffreport = new javax.swing.JPanel();
+        jpstaffaccount = new javax.swing.JPanel();
+        jpfeestructure = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jmstudentmanagement = new javax.swing.JMenuItem();
+        jmfee = new javax.swing.JMenuItem();
+        jmfeestructure = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        jmaddaccount = new javax.swing.JMenuItem();
+        jmaccountreport = new javax.swing.JMenuItem();
+        jmlogout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("School Management Systems");
@@ -113,32 +158,38 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(970, 446));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
-        jPanel2.setLayout(null);
+        jpaddstudent.setBackground(new java.awt.Color(255, 255, 255));
+        jpaddstudent.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpaddstudent.setLayout(null);
 
         jLabel1.setText("Class :");
-        jPanel2.add(jLabel1);
+        jpaddstudent.add(jLabel1);
         jLabel1.setBounds(50, 380, 50, 14);
 
         jLabel2.setText("Age :");
-        jPanel2.add(jLabel2);
+        jpaddstudent.add(jLabel2);
         jLabel2.setBounds(40, 120, 50, 14);
-        jPanel2.add(txtmname);
+        jpaddstudent.add(txtmname);
         txtmname.setBounds(320, 90, 170, 20);
 
         jLabel3.setText("Full Name :");
-        jPanel2.add(jLabel3);
+        jpaddstudent.add(jLabel3);
         jLabel3.setBounds(20, 90, 80, 14);
-        jPanel2.add(txtadmin);
+        jpaddstudent.add(txtadmin);
         txtadmin.setBounds(120, 340, 170, 20);
 
         jLabel4.setText("Admin/NEMIS : ");
-        jPanel2.add(jLabel4);
+        jpaddstudent.add(jLabel4);
         jLabel4.setBounds(10, 340, 100, 14);
-        jPanel2.add(txtlname);
+        jpaddstudent.add(txtlname);
         txtlname.setBounds(510, 90, 170, 20);
-        jPanel2.add(txtfname);
+
+        txtfname.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtfnameActionPerformed(evt);
+            }
+        });
+        jpaddstudent.add(txtfname);
         txtfname.setBounds(140, 90, 170, 20);
 
         jButton1.setText("Add Student");
@@ -148,225 +199,336 @@ public class StudentDetails extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
+        jpaddstudent.add(jButton1);
         jButton1.setBounds(30, 450, 200, 40);
 
         jButton2.setText("Update Student");
-        jPanel2.add(jButton2);
-        jButton2.setBounds(250, 453, 200, 40);
+        jpaddstudent.add(jButton2);
+        jButton2.setBounds(400, 450, 200, 40);
 
         jButton3.setText("Delete Student");
-        jPanel2.add(jButton3);
-        jButton3.setBounds(470, 453, 250, 40);
+        jpaddstudent.add(jButton3);
+        jButton3.setBounds(730, 450, 250, 40);
 
         jLabel5.setText("Enter Student NEMIS to search  :");
-        jPanel2.add(jLabel5);
+        jpaddstudent.add(jLabel5);
         jLabel5.setBounds(20, 30, 200, 14);
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(230, 30, 180, 20);
+        jpaddstudent.add(txtsearchstudent);
+        txtsearchstudent.setBounds(230, 30, 180, 20);
 
         jButton4.setText("Search");
-        jPanel2.add(jButton4);
+        jpaddstudent.add(jButton4);
         jButton4.setBounds(450, 20, 150, 30);
 
         jLabel6.setText("__________________________________________________________________________________________________________________________________________________________________________");
-        jPanel2.add(jLabel6);
+        jpaddstudent.add(jLabel6);
         jLabel6.setBounds(10, 60, 1100, 14);
 
         jLabel7.setText("Gender :");
-        jPanel2.add(jLabel7);
+        jpaddstudent.add(jLabel7);
         jLabel7.setBounds(390, 130, 60, 14);
 
         jLabel8.setText("Location/County  :");
-        jPanel2.add(jLabel8);
+        jpaddstudent.add(jLabel8);
         jLabel8.setBounds(10, 170, 100, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo", "Other" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(140, 170, 160, 20);
+        cmbcounty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo", "Other" }));
+        jpaddstudent.add(cmbcounty);
+        cmbcounty.setBounds(140, 170, 160, 20);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo Central", "Baringo South", "Baringo North", "Eldama Ravine", "Mogotio", "Tiaty", "Other" }));
-        jPanel2.add(jComboBox2);
-        jComboBox2.setBounds(470, 170, 180, 20);
+        cmbsubcounty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo Central", "Baringo South", "Baringo North", "Eldama Ravine", "Mogotio", "Tiaty", "Other" }));
+        jpaddstudent.add(cmbsubcounty);
+        cmbsubcounty.setBounds(470, 170, 180, 20);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kapropita", "Koibatek", "Emining", "Mogotio", "Lembus Kwen", "Maji Mazuri/Mumberes", "Ravine", "Kabartonjo", "Kisanana", "Ilchamus", "Mukutani", "Marigat", "Mochongoi", "Bartabwa", "Barwesa", "Kabartonjo", "Saimo/Kipsaraman", "Saimo Soi", "Ewalel/ChapChap", "Lembus Perkera", "Kabarnet", "Tenges", "Lembus", "Churo/Amaya", "Kolowa/Loiwat", "Loyamorok", "Ribkwo", "Tirioko", "Tangulbei/Korossi", "Silale" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        cmbward.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kapropita", "Koibatek", "Emining", "Mogotio", "Lembus Kwen", "Maji Mazuri/Mumberes", "Ravine", "Kabartonjo", "Kisanana", "Ilchamus", "Mukutani", "Marigat", "Mochongoi", "Bartabwa", "Barwesa", "Kabartonjo", "Saimo/Kipsaraman", "Saimo Soi", "Ewalel/ChapChap", "Lembus Perkera", "Kabarnet", "Tenges", "Lembus", "Churo/Amaya", "Kolowa/Loiwat", "Loyamorok", "Ribkwo", "Tirioko", "Tangulbei/Korossi", "Silale", "Other" }));
+        cmbward.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                cmbwardActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox3);
-        jComboBox3.setBounds(820, 170, 170, 20);
+        jpaddstudent.add(cmbward);
+        cmbward.setBounds(820, 170, 170, 20);
 
         jLabel9.setText("Location/Sub-County  :");
-        jPanel2.add(jLabel9);
+        jpaddstudent.add(jLabel9);
         jLabel9.setBounds(320, 170, 130, 14);
 
         jLabel10.setText("Location/Ward  :");
-        jPanel2.add(jLabel10);
+        jpaddstudent.add(jLabel10);
         jLabel10.setBounds(700, 170, 110, 14);
 
         jLabel11.setText("____________________________________________________________________________________________________________________________________________________________________________");
-        jPanel2.add(jLabel11);
+        jpaddstudent.add(jLabel11);
         jLabel11.setBounds(10, 210, 1090, 14);
 
         jLabel12.setText("Parent/Gaudian Name :  ");
-        jPanel2.add(jLabel12);
-        jLabel12.setBounds(20, 240, 130, 14);
-        jPanel2.add(txtlname1);
-        txtlname1.setBounds(530, 240, 170, 20);
-        jPanel2.add(txtmname1);
-        txtmname1.setBounds(340, 240, 170, 20);
-        jPanel2.add(txtfname1);
-        txtfname1.setBounds(160, 240, 170, 20);
-        jPanel2.add(txtlname2);
-        txtlname2.setBounds(530, 270, 170, 20);
-        jPanel2.add(txtmname2);
-        txtmname2.setBounds(340, 270, 170, 20);
-        jPanel2.add(txtfname2);
-        txtfname2.setBounds(160, 270, 170, 20);
+        jpaddstudent.add(jLabel12);
+        jLabel12.setBounds(10, 240, 140, 14);
+        jpaddstudent.add(txtpglname1);
+        txtpglname1.setBounds(530, 240, 170, 20);
+        jpaddstudent.add(txtpgmname1);
+        txtpgmname1.setBounds(340, 240, 170, 20);
+        jpaddstudent.add(txtpgfname1);
+        txtpgfname1.setBounds(160, 240, 170, 20);
+        jpaddstudent.add(txtpglname2);
+        txtpglname2.setBounds(530, 270, 170, 20);
+        jpaddstudent.add(txtpgmname2);
+        txtpgmname2.setBounds(340, 270, 170, 20);
+        jpaddstudent.add(txtpgfname2);
+        txtpgfname2.setBounds(160, 270, 170, 20);
 
         jLabel13.setText("Contacts :");
-        jPanel2.add(jLabel13);
+        jpaddstudent.add(jLabel13);
         jLabel13.setBounds(730, 240, 60, 14);
-        jPanel2.add(jTextField3);
-        jTextField3.setBounds(810, 240, 160, 20);
+        jpaddstudent.add(txtpgcontacts1);
+        txtpgcontacts1.setBounds(810, 240, 160, 20);
 
         jLabel14.setText("Contacts :");
-        jPanel2.add(jLabel14);
+        jpaddstudent.add(jLabel14);
         jLabel14.setBounds(730, 270, 60, 14);
-        jPanel2.add(jTextField4);
-        jTextField4.setBounds(810, 270, 160, 20);
+        jpaddstudent.add(txtpgcontacts2);
+        txtpgcontacts2.setBounds(810, 270, 160, 20);
 
         jLabel15.setText("______________________________________________________________________________________________________________________________________________________________________________    ");
-        jPanel2.add(jLabel15);
+        jpaddstudent.add(jLabel15);
         jLabel15.setBounds(20, 300, 1080, 14);
 
         jLabel16.setText("Stream :");
-        jPanel2.add(jLabel16);
+        jpaddstudent.add(jLabel16);
         jLabel16.setBounds(390, 340, 60, 14);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "East", "West", "South", "North" }));
-        jPanel2.add(jComboBox4);
-        jComboBox4.setBounds(480, 340, 200, 20);
+        cmbstream.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "East", "West", "South", "North" }));
+        jpaddstudent.add(cmbstream);
+        cmbstream.setBounds(480, 340, 200, 20);
 
         jLabel17.setText("Adminssion   Date :");
-        jPanel2.add(jLabel17);
+        jpaddstudent.add(jLabel17);
         jLabel17.setBounds(340, 380, 110, 14);
 
-        jDateChooser1.setDateFormatString("dd-MM-yyyy");
-        jPanel2.add(jDateChooser1);
-        jDateChooser1.setBounds(480, 380, 200, 20);
+        jcdate.setDateFormatString("dd-MM-yyyy");
+        jpaddstudent.add(jcdate);
+        jcdate.setBounds(480, 380, 200, 20);
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
-        jPanel2.add(jComboBox5);
-        jComboBox5.setBounds(470, 130, 180, 20);
+        cmbgender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
+        jpaddstudent.add(cmbgender);
+        cmbgender.setBounds(470, 130, 180, 20);
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jComboBox6);
-        jComboBox6.setBounds(120, 380, 170, 20);
-        jPanel2.add(jYearChooser1);
-        jYearChooser1.setBounds(140, 120, 170, 20);
+        cmbclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jpaddstudent.add(cmbclass);
+        cmbclass.setBounds(120, 380, 170, 20);
+        jpaddstudent.add(jcyear);
+        jcyear.setBounds(140, 120, 170, 20);
 
-        jPanel1.add(jPanel2);
-        jPanel2.setBounds(20, 30, 1130, 510);
+        jPanel1.add(jpaddstudent);
+        jpaddstudent.setBounds(20, 30, 1130, 510);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fees", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14)))); // NOI18N
+        jpfeespayment.setBackground(new java.awt.Color(255, 255, 255));
+        jpfeespayment.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fees", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14)))); // NOI18N
+        jpfeespayment.setToolTipText("");
+        jpfeespayment.setMinimumSize(new java.awt.Dimension(1130, 510));
+        jpfeespayment.setLayout(null);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel2.setLayout(null);
+
+        jLabel18.setText("Admin/NEMIS :");
+        jPanel2.add(jLabel18);
+        jLabel18.setBounds(10, 10, 100, 14);
+        jPanel2.add(jTextField2);
+        jTextField2.setBounds(130, 10, 130, 20);
+
+        jButton5.setText("Search");
+        jPanel2.add(jButton5);
+        jButton5.setBounds(290, 10, 120, 30);
+
+        jLabel19.setText("Total Amount = 1000");
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(10, 60, 120, 14);
+
+        jLabel20.setText("Paid Amount = 0");
+        jPanel2.add(jLabel20);
+        jLabel20.setBounds(10, 100, 100, 14);
+
+        jLabel21.setText("Fee Balance = 1000");
+        jPanel2.add(jLabel21);
+        jLabel21.setBounds(10, 130, 110, 14);
+
+        jLabel22.setText("PAY AMOUNT :");
+        jPanel2.add(jLabel22);
+        jLabel22.setBounds(190, 60, 90, 14);
+        jPanel2.add(jTextField5);
+        jTextField5.setBounds(290, 60, 120, 20);
+
+        jButton6.setText("ADD PAY");
+        jPanel2.add(jButton6);
+        jButton6.setBounds(230, 120, 180, 30);
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(null);
+
+        jLabel23.setText("Select Class");
+        jPanel3.add(jLabel23);
+        jLabel23.setBounds(19, 25, 70, 14);
+
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jPanel3.add(jComboBox7);
+        jComboBox7.setBounds(130, 20, 130, 20);
+
+        jLabel24.setText("Select Range");
+        jPanel3.add(jLabel24);
+        jLabel24.setBounds(20, 60, 80, 14);
+
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "All Students", "Unpaid", "Paid", "Cleared" }));
+        jComboBox8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox8ActionPerformed(evt);
+            }
+        });
+        jPanel3.add(jComboBox8);
+        jComboBox8.setBounds(130, 60, 130, 20);
+
+        jButton7.setText("View Statement");
+        jPanel3.add(jButton7);
+        jButton7.setBounds(60, 110, 160, 30);
+
+        jButton8.setText("Print");
+        jPanel3.add(jButton8);
+        jButton8.setBounds(403, 123, 140, 30);
+
+        jPanel2.add(jPanel3);
+        jPanel3.setBounds(500, 0, 570, 170);
+
+        jpfeespayment.add(jPanel2);
+        jPanel2.setBounds(31, 35, 1070, 170);
+
+        tblfees.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(tblfees);
+
+        jpfeespayment.add(jScrollPane1);
+        jScrollPane1.setBounds(30, 220, 1070, 270);
+
+        jPanel1.add(jpfeespayment);
+        jpfeespayment.setBounds(20, 30, 1130, 510);
+
+        jpstaffreport.setBackground(new java.awt.Color(255, 255, 255));
+        jpstaffreport.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Staff Account Report", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpstaffreport.setMinimumSize(new java.awt.Dimension(1130, 510));
+
+        javax.swing.GroupLayout jpstaffreportLayout = new javax.swing.GroupLayout(jpstaffreport);
+        jpstaffreport.setLayout(jpstaffreportLayout);
+        jpstaffreportLayout.setHorizontalGroup(
+            jpstaffreportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+        jpstaffreportLayout.setVerticalGroup(
+            jpstaffreportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3);
-        jPanel3.setBounds(810, 60, 100, 100);
+        jPanel1.add(jpstaffreport);
+        jpstaffreport.setBounds(20, 30, 1130, 510);
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Staff Account Report", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpstaffaccount.setBackground(new java.awt.Color(255, 255, 255));
+        jpstaffaccount.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Staff Accounts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpstaffaccount.setMinimumSize(new java.awt.Dimension(1130, 510));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpstaffaccountLayout = new javax.swing.GroupLayout(jpstaffaccount);
+        jpstaffaccount.setLayout(jpstaffaccountLayout);
+        jpstaffaccountLayout.setHorizontalGroup(
+            jpstaffaccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel4);
-        jPanel4.setBounds(870, 190, 100, 100);
-
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Staff Accounts", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14)))); // NOI18N
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 77, Short.MAX_VALUE)
+        jpstaffaccountLayout.setVerticalGroup(
+            jpstaffaccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5);
-        jPanel5.setBounds(950, 60, 100, 100);
+        jPanel1.add(jpstaffaccount);
+        jpstaffaccount.setBounds(20, 30, 1130, 510);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fee Structure", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpfeestructure.setBackground(new java.awt.Color(255, 255, 255));
+        jpfeestructure.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fee Structure", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpfeestructure.setMinimumSize(new java.awt.Dimension(1130, 510));
+        jpfeestructure.setPreferredSize(new java.awt.Dimension(1130, 510));
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+        javax.swing.GroupLayout jpfeestructureLayout = new javax.swing.GroupLayout(jpfeestructure);
+        jpfeestructure.setLayout(jpfeestructureLayout);
+        jpfeestructureLayout.setHorizontalGroup(
+            jpfeestructureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1118, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
+        jpfeestructureLayout.setVerticalGroup(
+            jpfeestructureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 488, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel6);
-        jPanel6.setBounds(970, 310, 100, 100);
+        jPanel1.add(jpfeestructure);
+        jpfeestructure.setBounds(20, 30, 1130, 510);
 
         jMenu1.setText("Students");
 
-        jMenuItem1.setText("Student Management");
-        jMenu1.add(jMenuItem1);
+        jmstudentmanagement.setText("Student Management");
+        jmstudentmanagement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmstudentmanagementActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmstudentmanagement);
 
-        jMenuItem2.setText("Fees");
-        jMenu1.add(jMenuItem2);
+        jmfee.setText("Fees");
+        jmfee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmfeeActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmfee);
 
-        jMenuItem5.setText("Fees Structure");
-        jMenu1.add(jMenuItem5);
+        jmfeestructure.setText("Fees Structure");
+        jmfeestructure.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmfeestructureActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jmfeestructure);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Accounts");
 
-        jMenuItem3.setText("Add Account");
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setText("Accounts Report");
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem6.setText("Logout");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        jmaddaccount.setText("Add Account");
+        jmaddaccount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                jmaddaccountActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        jMenu2.add(jmaddaccount);
+
+        jmaccountreport.setText("Accounts Report");
+        jmaccountreport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmaccountreportActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmaccountreport);
+
+        jmlogout.setText("Logout");
+        jmlogout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmlogoutActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jmlogout);
 
         jMenuBar1.add(jMenu2);
 
@@ -389,32 +551,111 @@ public class StudentDetails extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
+       if(!"".equals(txtadmin.getText())&&!"".equals(txtfname.getText()) && !"".equals(txtmname.getText()) 
+               && !"".equals(txtpgfname1.getText()) && !"".equals(txtpgmname1.getText()) && !"".equals(txtpgcontacts1.getText()) 
+               && !"".equals(jcdate.getDate().toString())){
       try{
+      // get other variable 
+      java.util.Date admindate;
+            java.sql.Date dateofadmin;
+            admindate =  jcdate.getDate();
+            dateofadmin = new java.sql.Date(admindate.getTime());
            
-            
+      
+         int yob = jcyear.getYear();
+          int studyclass =  Integer.parseInt(cmbclass.getSelectedItem().toString());
+          
            con = DriverManager.getConnection(url,username,password);
              st = con.createStatement();
-             String sqllogmessage = "INSERT INTO tblstudentdetails (FNAME,MNAME,LNAME,AGE,CLASS,ADIMN) VALUES"
-                     + " ('"+txtfname.getText()+"','"+txtmname.getText()+"','"+txtlname.getText()+"','"+txtage.getText()+"',"
-                     + "'"+txtclass.getText()+"','"+txtadmin.getText()+"')";
+             String sqllogmessage = "INSERT INTO tblstudentdetails (ADIMN,FNAME,MNAME,LNAME,GENDER,YOB,CLASS,STREAM,COUNTY,SUBCOUNTY,WARD,"
+                     + "PGFNAME,PGMNAME,PGLNAME,PGFCONTACT,PGSFNAME,PGSMNAME,PGSLNAME,PGSCONTACT,ADMINDATE) VALUES"
+                     + " ('"+txtadmin.getText()+"','"+txtfname.getText()+"','"+txtmname.getText()+"','"+txtlname.getText()+"',"
+                     + "'"+cmbgender.getSelectedItem()+"','"+yob+"','"+studyclass+"','"+cmbstream.getSelectedItem()+"','"+cmbcounty.getSelectedItem()+"',"
+                     + "'"+cmbsubcounty.getSelectedItem()+"','"+cmbward.getSelectedItem()+"','"+txtpgfname1.getText()+"','"+txtpgmname1.getText()+"',"
+                     + "'"+txtpglname1.getText()+"','"+txtpgcontacts1.getText()+"','"+txtpgfname2.getText()+"','"+txtpgmname2.getText()+"',"
+                     + "'"+txtpglname2.getText()+"','"+txtpgcontacts2.getText()+"','"+dateofadmin+"')";
              st.execute(sqllogmessage);
-             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Request Sent Succes</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
-       }catch(HeadlessException | SQLException ex){
+             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New Student Registered</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
+       }catch(SQLIntegrityConstraintViolationException e){
+        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Student Already Exists</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);  
+      }
+      catch(HeadlessException | SQLException ex){
    JOptionPane.showMessageDialog(null, "error"+ ex,"School",JOptionPane.INFORMATION_MESSAGE);
 
        }
+      
+       }else{
+           JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill Students details !</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
+       }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cmbwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbwardActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cmbwardActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void jmlogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmlogoutActionPerformed
         // TODO add your handling code here:
         this.dispose();
         new LoginAccounts().setVisible(true);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_jmlogoutActionPerformed
+
+    private void jmfeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmfeeActionPerformed
+        // TODO add your handling code here:
+        
+        jpaddstudent.setVisible(false);
+        jpstaffaccount.setVisible(false);
+        jpstaffreport.setVisible(false);
+        jpfeestructure.setVisible(false);
+        jpfeespayment.setVisible(true);
+    }//GEN-LAST:event_jmfeeActionPerformed
+
+    private void jmstudentmanagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmstudentmanagementActionPerformed
+        // TODO add your handling code here:
+     
+        jpstaffaccount.setVisible(false);
+        jpstaffreport.setVisible(false);
+        jpfeestructure.setVisible(false);
+        jpfeespayment.setVisible(false);
+        jpaddstudent.setVisible(true);
+    }//GEN-LAST:event_jmstudentmanagementActionPerformed
+
+    private void jmfeestructureActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmfeestructureActionPerformed
+        // TODO add your handling code here:
+          jpstaffaccount.setVisible(false);
+        jpstaffreport.setVisible(false);
+        
+        jpfeespayment.setVisible(false);
+        jpaddstudent.setVisible(false);
+        jpfeestructure.setVisible(true);
+    }//GEN-LAST:event_jmfeestructureActionPerformed
+
+    private void jmaddaccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmaddaccountActionPerformed
+        // TODO add your handling code here:
+      
+        jpstaffreport.setVisible(false);
+        jpfeespayment.setVisible(false);
+        jpaddstudent.setVisible(false);
+        jpfeestructure.setVisible(false);
+          jpstaffaccount.setVisible(true);
+    }//GEN-LAST:event_jmaddaccountActionPerformed
+
+    private void jmaccountreportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmaccountreportActionPerformed
+        // TODO add your handling code here:
+        
+        jpfeespayment.setVisible(false);
+        jpaddstudent.setVisible(false);
+        jpfeestructure.setVisible(false);
+          jpstaffaccount.setVisible(false);
+          jpstaffreport.setVisible(true);
+    }//GEN-LAST:event_jmaccountreportActionPerformed
+
+    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox8ActionPerformed
+
+    private void txtfnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfnameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtfnameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -452,17 +693,22 @@ public class StudentDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbclass;
+    private javax.swing.JComboBox<String> cmbcounty;
+    private javax.swing.JComboBox<String> cmbgender;
+    private javax.swing.JComboBox<String> cmbstream;
+    private javax.swing.JComboBox<String> cmbsubcounty;
+    private javax.swing.JComboBox<String> cmbward;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -472,7 +718,14 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -483,31 +736,38 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField5;
+    private com.toedter.calendar.JDateChooser jcdate;
+    private com.toedter.calendar.JYearChooser jcyear;
+    private javax.swing.JMenuItem jmaccountreport;
+    private javax.swing.JMenuItem jmaddaccount;
+    private javax.swing.JMenuItem jmfee;
+    private javax.swing.JMenuItem jmfeestructure;
+    private javax.swing.JMenuItem jmlogout;
+    private javax.swing.JMenuItem jmstudentmanagement;
+    private javax.swing.JPanel jpaddstudent;
+    private javax.swing.JPanel jpfeespayment;
+    private javax.swing.JPanel jpfeestructure;
+    private javax.swing.JPanel jpstaffaccount;
+    private javax.swing.JPanel jpstaffreport;
+    private javax.swing.JTable tblfees;
     private javax.swing.JTextField txtadmin;
     private javax.swing.JTextField txtfname;
-    private javax.swing.JTextField txtfname1;
-    private javax.swing.JTextField txtfname2;
     private javax.swing.JTextField txtlname;
-    private javax.swing.JTextField txtlname1;
-    private javax.swing.JTextField txtlname2;
     private javax.swing.JTextField txtmname;
-    private javax.swing.JTextField txtmname1;
-    private javax.swing.JTextField txtmname2;
+    private javax.swing.JTextField txtpgcontacts1;
+    private javax.swing.JTextField txtpgcontacts2;
+    private javax.swing.JTextField txtpgfname1;
+    private javax.swing.JTextField txtpgfname2;
+    private javax.swing.JTextField txtpglname1;
+    private javax.swing.JTextField txtpglname2;
+    private javax.swing.JTextField txtpgmname1;
+    private javax.swing.JTextField txtpgmname2;
+    private javax.swing.JTextField txtsearchstudent;
     // End of variables declaration//GEN-END:variables
 }
