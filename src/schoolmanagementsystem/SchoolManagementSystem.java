@@ -28,6 +28,9 @@ public class SchoolManagementSystem {
         System.out.println("############ School Management System ##############################");
         System.out.println("##### All ready connected to online sql database xampp             #");
         System.out.println("##### User login and registration interface all ready done         #");
+        System.out.println("##### Student registration form done                               #");
+        System.out.println("##### Student registration form connected to db                    #");
+        System.out.println("##### Student exam entry form done                                 #");
         System.out.println("############     8/31/2020  sms           ##########################");
         System.out.println("********************************************************************");
         }
