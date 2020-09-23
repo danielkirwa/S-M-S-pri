@@ -5,6 +5,12 @@
  */
 package schoolmanagementsystem;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,6 +23,17 @@ public class ExamDepartment extends javax.swing.JFrame {
     /**
      * Creates new form ExamDepartment
      */
+    
+     Statement st;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+    String username = "sql2366456";
+    String password = "jI3%cT2!";
+    String url = "jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2366456";
+    
+    
     public ExamDepartment() {
         initComponents();
         
@@ -80,7 +97,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cmbclass = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
@@ -152,9 +169,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel2.add(jLabel2);
         jLabel2.setBounds(10, 60, 60, 14);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
-        jPanel2.add(jComboBox1);
-        jComboBox1.setBounds(80, 60, 120, 20);
+        cmbclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jPanel2.add(cmbclass);
+        cmbclass.setBounds(80, 60, 120, 20);
 
         jLabel3.setText("Term :");
         jPanel2.add(jLabel3);
@@ -541,6 +558,43 @@ public class ExamDepartment extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"year erro less digits");
     }else{
             JOptionPane.showMessageDialog(null,"correct");
+            
+                 DefaultTableModel stm = new DefaultTableModel();
+    stm.addColumn("FirstName");
+    stm.addColumn("NEMIS");
+    stm.addColumn("MATHS");
+    stm.addColumn("ENGLISH");
+    stm.addColumn("KISWAHILi");
+    stm.addColumn("SCIENCE");
+    stm.addColumn("SOCIAL");
+    tblmarksentry.setModel(stm);
+    // try select specific car  data to populated the table
+        try{
+                con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            String selectecar = "SELECT * FROM tblstudentdetails WHERE CLASS = ? ";
+            pst = con.prepareStatement(selectecar);
+            pst.setString(1, (String) cmbclass.getSelectedItem());
+            rs = pst.executeQuery();
+                  
+            while(rs.next()){
+               String name = rs.getString("FNAME");
+               String admin = rs.getString("ADIMN");
+               String maths = "";
+               String english = "";
+               String kiswahili = "";
+               String science = "";
+               String social = "";
+               
+               //ARRAY DATA TO DISPLAY
+               String tbldata []= {name,admin,maths,english,kiswahili,science,social};
+               DefaultTableModel dtmdata = (DefaultTableModel)tblmarksentry.getModel();
+               dtmdata.addRow(tbldata);
+            }
+        }catch(SQLException ex){
+        JOptionPane.showMessageDialog(null,"Error" + ex,"PRINCE WHEEL",JOptionPane.WARNING_MESSAGE);
+        }
+            
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -580,12 +634,12 @@ public class ExamDepartment extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> cmbclass;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;

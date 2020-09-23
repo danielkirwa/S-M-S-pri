@@ -141,6 +141,41 @@ public class StudentDetails extends javax.swing.JFrame {
         jpstaffreport = new javax.swing.JPanel();
         jpstaffaccount = new javax.swing.JPanel();
         jpfeestructure = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jButton9 = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jLabel27 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel28 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        jTextField6 = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel34 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmstudentmanagement = new javax.swing.JMenuItem();
@@ -461,17 +496,152 @@ public class StudentDetails extends javax.swing.JFrame {
         jpfeestructure.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Fee Structure", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
         jpfeestructure.setMinimumSize(new java.awt.Dimension(1130, 510));
         jpfeestructure.setPreferredSize(new java.awt.Dimension(1130, 510));
+        jpfeestructure.setLayout(null);
 
-        javax.swing.GroupLayout jpfeestructureLayout = new javax.swing.GroupLayout(jpfeestructure);
-        jpfeestructure.setLayout(jpfeestructureLayout);
-        jpfeestructureLayout.setHorizontalGroup(
-            jpfeestructureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1118, Short.MAX_VALUE)
-        );
-        jpfeestructureLayout.setVerticalGroup(
-            jpfeestructureLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 488, Short.MAX_VALUE)
-        );
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(null);
+
+        jLabel39.setText("Caution   KSH.0.00");
+        jPanel4.add(jLabel39);
+        jLabel39.setBounds(200, 330, 140, 14);
+
+        jLabel35.setText("Boarding  KSH.0.00");
+        jPanel4.add(jLabel35);
+        jLabel35.setBounds(200, 160, 140, 14);
+
+        jLabel37.setText("Activity   KSH.0.00");
+        jPanel4.add(jLabel37);
+        jLabel37.setBounds(200, 250, 130, 14);
+
+        jLabel38.setText("Maintainance   KSH.0.00");
+        jPanel4.add(jLabel38);
+        jLabel38.setBounds(200, 290, 140, 14);
+
+        jLabel36.setText("Exams   KSH.0.00");
+        jPanel4.add(jLabel36);
+        jLabel36.setBounds(200, 200, 130, 14);
+
+        jLabel41.setText("Total  Amount    KSH.0.00");
+        jPanel4.add(jLabel41);
+        jLabel41.setBounds(170, 410, 190, 14);
+
+        jLabel40.setText("Medical    KSH.0.00");
+        jPanel4.add(jLabel40);
+        jLabel40.setBounds(200, 370, 150, 14);
+
+        jLabel42.setFont(new java.awt.Font("Wide Latin", 0, 12)); // NOI18N
+        jLabel42.setText("Class   4");
+        jPanel4.add(jLabel42);
+        jLabel42.setBounds(130, 90, 300, 30);
+
+        jLabel43.setFont(new java.awt.Font("Wide Latin", 0, 12)); // NOI18N
+        jLabel43.setText("School Name Post office");
+        jPanel4.add(jLabel43);
+        jLabel43.setBounds(130, 30, 300, 30);
+
+        jLabel44.setFont(new java.awt.Font("Wide Latin", 0, 12)); // NOI18N
+        jLabel44.setText("Year    2020");
+        jPanel4.add(jLabel44);
+        jLabel44.setBounds(130, 60, 300, 30);
+
+        jpfeestructure.add(jPanel4);
+        jPanel4.setBounds(530, 60, 590, 440);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jpfeestructure.add(jComboBox1);
+        jComboBox1.setBounds(690, 10, 140, 30);
+
+        jButton9.setText("Print");
+        jpfeestructure.add(jButton9);
+        jButton9.setBounds(910, 20, 180, 30);
+
+        jLabel25.setText("Select Class :");
+        jpfeestructure.add(jLabel25);
+        jLabel25.setBounds(570, 20, 100, 14);
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel5.setLayout(null);
+
+        jLabel26.setText("Select Year :");
+        jPanel5.add(jLabel26);
+        jLabel26.setBounds(20, 30, 80, 14);
+        jPanel5.add(jYearChooser1);
+        jYearChooser1.setBounds(110, 30, 90, 20);
+
+        jLabel27.setText("Boarding :");
+        jPanel5.add(jLabel27);
+        jLabel27.setBounds(20, 126, 67, 14);
+        jPanel5.add(jTextField1);
+        jTextField1.setBounds(130, 120, 115, 20);
+
+        jLabel28.setText("Exams :");
+        jPanel5.add(jLabel28);
+        jLabel28.setBounds(20, 158, 67, 14);
+        jPanel5.add(jTextField3);
+        jTextField3.setBounds(130, 160, 115, 20);
+
+        jLabel29.setText("Activity :");
+        jPanel5.add(jLabel29);
+        jLabel29.setBounds(20, 203, 67, 14);
+        jPanel5.add(jTextField4);
+        jTextField4.setBounds(130, 200, 115, 20);
+
+        jLabel30.setText("Total  Amount   Ksh. 0.00");
+        jPanel5.add(jLabel30);
+        jLabel30.setBounds(40, 380, 190, 14);
+
+        jLabel31.setText("Class : ");
+        jPanel5.add(jLabel31);
+        jLabel31.setBounds(210, 30, 50, 14);
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jPanel5.add(jComboBox2);
+        jComboBox2.setBounds(280, 30, 80, 20);
+        jPanel5.add(jTextField6);
+        jTextField6.setBounds(130, 320, 115, 20);
+
+        jLabel32.setText("Medical  :");
+        jPanel5.add(jLabel32);
+        jLabel32.setBounds(20, 320, 67, 14);
+
+        jLabel33.setText("Caution :");
+        jPanel5.add(jLabel33);
+        jLabel33.setBounds(20, 280, 67, 14);
+        jPanel5.add(jTextField7);
+        jTextField7.setBounds(130, 280, 115, 20);
+
+        jLabel34.setText("Maintainance :");
+        jPanel5.add(jLabel34);
+        jLabel34.setBounds(20, 240, 100, 14);
+        jPanel5.add(jTextField8);
+        jTextField8.setBounds(130, 240, 115, 20);
+
+        jButton10.setText("Update");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton10);
+        jButton10.setBounds(290, 430, 160, 40);
+
+        jButton11.setText("Approve");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton11);
+        jButton11.setBounds(40, 430, 160, 40);
+
+        jButton12.setText("Create");
+        jPanel5.add(jButton12);
+        jButton12.setBounds(380, 23, 110, 30);
+
+        jpfeestructure.add(jPanel5);
+        jPanel5.setBounds(10, 20, 510, 480);
 
         jPanel1.add(jpfeestructure);
         jpfeestructure.setBounds(20, 30, 1130, 510);
@@ -657,6 +827,14 @@ public class StudentDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfnameActionPerformed
 
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -700,6 +878,9 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbsubcounty;
     private javax.swing.JComboBox<String> cmbward;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -707,6 +888,9 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
@@ -726,8 +910,28 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -739,9 +943,18 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField jTextField8;
+    private com.toedter.calendar.JYearChooser jYearChooser1;
     private com.toedter.calendar.JDateChooser jcdate;
     private com.toedter.calendar.JYearChooser jcyear;
     private javax.swing.JMenuItem jmaccountreport;
