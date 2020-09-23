@@ -5,11 +5,13 @@
  */
 package schoolmanagementsystem;
 
+import java.awt.HeadlessException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -95,13 +97,13 @@ public class ExamDepartment extends javax.swing.JFrame {
         jpnewmarks = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtexamyear = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         cmbclass = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmbexamterm = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbexamseries = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -157,13 +159,13 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel2.add(jLabel1);
         jLabel1.setBounds(11, 21, 70, 14);
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtexamyear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtexamyearActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1);
-        jTextField1.setBounds(80, 20, 120, 20);
+        jPanel2.add(txtexamyear);
+        txtexamyear.setBounds(80, 20, 120, 20);
 
         jLabel2.setText("Class  :");
         jPanel2.add(jLabel2);
@@ -177,22 +179,22 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel2.add(jLabel3);
         jLabel3.setBounds(300, 20, 50, 14);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jPanel2.add(jComboBox2);
-        jComboBox2.setBounds(370, 20, 130, 20);
+        cmbexamterm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        jPanel2.add(cmbexamterm);
+        cmbexamterm.setBounds(370, 20, 130, 20);
 
         jLabel4.setText("Exam Module  :");
         jPanel2.add(jLabel4);
         jLabel4.setBounds(260, 60, 90, 14);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
-        jComboBox3.addActionListener(new java.awt.event.ActionListener() {
+        cmbexamseries.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
+        cmbexamseries.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox3ActionPerformed(evt);
+                cmbexamseriesActionPerformed(evt);
             }
         });
-        jPanel2.add(jComboBox3);
-        jComboBox3.setBounds(370, 60, 130, 20);
+        jPanel2.add(cmbexamseries);
+        cmbexamseries.setBounds(370, 60, 130, 20);
 
         jButton1.setText("Create new Marks Entry");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -204,6 +206,11 @@ public class ExamDepartment extends javax.swing.JFrame {
         jButton1.setBounds(530, 40, 280, 40);
 
         jButton2.setText("Upload New Marks");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel2.add(jButton2);
         jButton2.setBounds(830, 40, 250, 40);
 
@@ -542,19 +549,19 @@ public class ExamDepartment extends javax.swing.JFrame {
         jpnewmarks.setVisible(true);
     }//GEN-LAST:event_jmnewmarksActionPerformed
 
-    private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
+    private void cmbexamseriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbexamseriesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3ActionPerformed
+    }//GEN-LAST:event_cmbexamseriesActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtexamyearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtexamyearActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtexamyearActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(jTextField1.getText().length() > 4){
+        if(txtexamyear.getText().length() > 4){
             JOptionPane.showMessageDialog(null,"year erro more digits");
-        }else if(jTextField1.getText().length() < 4){
+        }else if(txtexamyear.getText().length() < 4){
         JOptionPane.showMessageDialog(null,"year erro less digits");
     }else{
             JOptionPane.showMessageDialog(null,"correct");
@@ -598,6 +605,80 @@ public class ExamDepartment extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        
+             /* if(!"".equals(txtexamyear.getText())){
+      try{
+      
+           con = DriverManager.getConnection(url,username,password);
+             st = con.createStatement();
+             String sqllogmessage = "INSERT INTO tblstudentmarks (YOEXAM,TERM,CLASS,SERIES,FNAME,ADMIN,MATHS,ENGLISH,KISWAHILI,SCIENCE,SOCIAL) VALUES"
+                     + " ('"+txtexamyear.getText()+"','"+cmbexamterm.getSelectedItem()+"','"+cmbclass.getSelectedItem()+"',"
+                     + "'"+cmbexamseries.getSelectedItem()+"','"+tblmarksentry.getColumnName(0)+"','"+tblmarksentry.getColumnName(1)+"',"
+                     + "'"+tblmarksentry.getColumnName(2)+"',"
+                     + "'"+tblmarksentry.getColumnName(3)+"','"+tblmarksentry.getColumnName(4)+"','"+tblmarksentry.getColumnName(5)+"',"
+                     + "'"+tblmarksentry.getColumnName(6)+"')";
+             st.execute(sqllogmessage);
+             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New Student Registered</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
+       }catch(SQLIntegrityConstraintViolationException e){
+        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Student Already Exists</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);  
+      }
+      catch(HeadlessException | SQLException ex){
+   JOptionPane.showMessageDialog(null, "error"+ ex,"School",JOptionPane.INFORMATION_MESSAGE);
+
+       }
+      
+       }else{
+           JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill Students details !</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
+       }
+        */
+             
+                            
+
+
+
+                    try{
+
+                         int rows=tblmarksentry.getRowCount();
+                           
+                           con = DriverManager.getConnection(url,username,password);
+                           st = con.createStatement();
+                           con.setAutoCommit(false);
+
+                     String addnewmarks = "Insert into tblstudentmarks (YOEXAM,TERM,CLASS,SERIES,FNAME,ADMIN,MATHS,ENGLISH,KISWAHILI,SCIENCE,SOCIAL) "
+                             + "values ('"+txtexamyear.getText()+"','"+cmbexamterm.getSelectedItem()+"','"+cmbclass.getSelectedItem()+"',"
+                             + "'"+cmbexamseries.getSelectedItem()+"',?,?,?,?,?,?,?)";
+                           pst = con.prepareStatement(addnewmarks);
+                         for(int row = 0; row<rows; row++)
+                 {
+                              String fname = (String)tblmarksentry.getValueAt(row, 0);
+                              String nemis = (String)tblmarksentry.getValueAt(row, 1);
+                              String maths = (String)tblmarksentry.getValueAt(row, 2);
+                              String english = (String)tblmarksentry.getValueAt(row, 3);
+                              String kiswahili = (String)tblmarksentry.getValueAt(row, 4);
+                              String science = (String)tblmarksentry.getValueAt(row, 5);
+                              String social = (String)tblmarksentry.getValueAt(row, 6);
+                        pst.setString(1, fname);
+                        pst.setString(2, nemis);
+                        pst.setString(3, maths);
+                        pst.setString(4, english);
+                        pst.setString(5, kiswahili);
+                        pst.setString(6, science);
+                        pst.setString(7, social);
+
+                       pst.addBatch();
+                 }
+          pst.executeBatch();
+          con.commit();
+                       JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New Student Registered</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
+
+        }
+          catch(SQLException ex){
+               JOptionPane.showMessageDialog(null, "error"+ ex,"School",JOptionPane.INFORMATION_MESSAGE);
+                   }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -635,13 +716,13 @@ public class ExamDepartment extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> cmbclass;
+    private javax.swing.JComboBox<String> cmbexamseries;
+    private javax.swing.JComboBox<String> cmbexamterm;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox6;
@@ -662,7 +743,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JMenuItem jmclassanalysis;
     private javax.swing.JMenuItem jmlogout;
     private javax.swing.JMenuItem jmnewmarks;
@@ -676,5 +756,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpsubjectanalysis;
     private javax.swing.JTable tblmarksentry;
     private javax.swing.JTable tblresults;
+    private javax.swing.JTextField txtexamyear;
     // End of variables declaration//GEN-END:variables
 }
