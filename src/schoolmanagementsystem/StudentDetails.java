@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -404,7 +404,7 @@ public class StudentDetails extends javax.swing.JFrame {
 
         jLabel23.setText("Select Class");
         jPanel3.add(jLabel23);
-        jLabel23.setBounds(19, 25, 70, 14);
+        jLabel23.setBounds(19, 25, 90, 14);
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
         jPanel3.add(jComboBox7);
