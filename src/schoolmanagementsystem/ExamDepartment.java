@@ -158,6 +158,14 @@ public class ExamDepartment extends javax.swing.JFrame {
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
         jpclassanalysis = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -179,6 +187,16 @@ public class ExamDepartment extends javax.swing.JFrame {
         jpclasschart = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jpsubjectanalysis = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jButton8 = new javax.swing.JButton();
+        jLabel36 = new javax.swing.JLabel();
+        jComboBox11 = new javax.swing.JComboBox<>();
+        jComboBox12 = new javax.swing.JComboBox<>();
+        jLabel37 = new javax.swing.JLabel();
+        jComboBox13 = new javax.swing.JComboBox<>();
+        jLabel38 = new javax.swing.JLabel();
+        jButton9 = new javax.swing.JButton();
+        jpgeneralsubjectgraph = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jmnewmarks = new javax.swing.JMenuItem();
@@ -425,9 +443,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel7.add(jTextField3);
         jTextField3.setBounds(130, 30, 110, 20);
 
-        jLabel18.setText("ADMIN/NEMIS  :");
+        jLabel18.setText("00");
         jPanel7.add(jLabel18);
-        jLabel18.setBounds(20, 30, 90, 14);
+        jLabel18.setBounds(110, 300, 90, 14);
         jPanel7.add(jTextField4);
         jTextField4.setBounds(860, 30, 170, 20);
 
@@ -437,33 +455,75 @@ public class ExamDepartment extends javax.swing.JFrame {
 
         jLabel24.setText("Maths :");
         jPanel7.add(jLabel24);
-        jLabel24.setBounds(90, 90, 50, 14);
+        jLabel24.setBounds(50, 100, 50, 14);
         jPanel7.add(jTextField6);
-        jTextField6.setBounds(160, 90, 60, 20);
+        jTextField6.setBounds(120, 100, 60, 20);
 
         jLabel25.setText("English :");
         jPanel7.add(jLabel25);
-        jLabel25.setBounds(260, 90, 60, 14);
+        jLabel25.setBounds(40, 140, 60, 14);
         jPanel7.add(jTextField7);
-        jTextField7.setBounds(340, 90, 60, 20);
+        jTextField7.setBounds(120, 140, 60, 20);
 
         jLabel26.setText("Kiswahili :");
         jPanel7.add(jLabel26);
-        jLabel26.setBounds(440, 90, 60, 14);
+        jLabel26.setBounds(40, 180, 60, 14);
         jPanel7.add(jTextField8);
-        jTextField8.setBounds(520, 90, 60, 20);
+        jTextField8.setBounds(120, 180, 60, 20);
 
         jLabel27.setText("Science :");
         jPanel7.add(jLabel27);
-        jLabel27.setBounds(620, 90, 60, 14);
+        jLabel27.setBounds(40, 220, 60, 14);
         jPanel7.add(jTextField9);
-        jTextField9.setBounds(690, 90, 60, 20);
+        jTextField9.setBounds(120, 220, 60, 20);
         jPanel7.add(jTextField10);
-        jTextField10.setBounds(860, 90, 60, 20);
+        jTextField10.setBounds(120, 260, 60, 20);
 
         jLabel28.setText("Social :");
         jPanel7.add(jLabel28);
-        jLabel28.setBounds(790, 90, 60, 14);
+        jLabel28.setBounds(40, 260, 60, 14);
+
+        jLabel29.setText("Total Score :");
+        jPanel7.add(jLabel29);
+        jLabel29.setBounds(20, 300, 90, 14);
+
+        jLabel30.setText("ADMIN/NEMIS  :");
+        jPanel7.add(jLabel30);
+        jLabel30.setBounds(20, 30, 90, 14);
+
+        jLabel31.setText("Class Position  : 1");
+        jPanel7.add(jLabel31);
+        jLabel31.setBounds(250, 230, 140, 14);
+
+        jLabel32.setText("Class Avarage :    258");
+        jPanel7.add(jLabel32);
+        jLabel32.setBounds(250, 110, 150, 14);
+
+        jLabel33.setText("Class Entry : 128");
+        jPanel7.add(jLabel33);
+        jLabel33.setBounds(250, 140, 160, 14);
+
+        jLabel34.setText("Stream Entry : 40");
+        jPanel7.add(jLabel34);
+        jLabel34.setBounds(250, 170, 150, 14);
+
+        jLabel35.setText("Overal Position : 2");
+        jPanel7.add(jLabel35);
+        jLabel35.setBounds(250, 200, 160, 14);
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 460, Short.MAX_VALUE)
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 280, Short.MAX_VALUE)
+        );
+
+        jPanel7.add(jPanel8);
+        jPanel8.setBounds(570, 90, 460, 280);
 
         jpstudentmarks.add(jPanel7);
         jPanel7.setBounds(10, 150, 1100, 410);
@@ -587,20 +647,67 @@ public class ExamDepartment extends javax.swing.JFrame {
 
         jpsubjectanalysis.setBackground(new java.awt.Color(255, 255, 255));
         jpsubjectanalysis.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Subject Analysis", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
+        jpsubjectanalysis.setMinimumSize(new java.awt.Dimension(1130, 570));
+        jpsubjectanalysis.setPreferredSize(new java.awt.Dimension(1130, 570));
+        jpsubjectanalysis.setLayout(null);
 
-        javax.swing.GroupLayout jpsubjectanalysisLayout = new javax.swing.GroupLayout(jpsubjectanalysis);
-        jpsubjectanalysis.setLayout(jpsubjectanalysisLayout);
-        jpsubjectanalysisLayout.setHorizontalGroup(
-            jpsubjectanalysisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 958, Short.MAX_VALUE)
-        );
-        jpsubjectanalysisLayout.setVerticalGroup(
-            jpsubjectanalysisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 78, Short.MAX_VALUE)
-        );
+        jPanel9.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel9.setLayout(null);
+
+        jButton8.setText("View Analysis");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jButton8);
+        jButton8.setBounds(650, 20, 150, 30);
+
+        jLabel36.setText("Class :");
+        jPanel9.add(jLabel36);
+        jLabel36.setBounds(10, 20, 60, 14);
+
+        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel9.add(jComboBox11);
+        jComboBox11.setBounds(80, 20, 100, 20);
+
+        jComboBox12.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel9.add(jComboBox12);
+        jComboBox12.setBounds(280, 20, 100, 20);
+
+        jLabel37.setText("Class :");
+        jPanel9.add(jLabel37);
+        jLabel37.setBounds(210, 20, 60, 14);
+
+        jComboBox13.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel9.add(jComboBox13);
+        jComboBox13.setBounds(500, 20, 100, 20);
+
+        jLabel38.setText("Class :");
+        jPanel9.add(jLabel38);
+        jLabel38.setBounds(420, 20, 60, 14);
+
+        jButton9.setText("Print ");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+        jPanel9.add(jButton9);
+        jButton9.setBounds(920, 20, 110, 30);
+
+        jpsubjectanalysis.add(jPanel9);
+        jPanel9.setBounds(20, 30, 1080, 70);
+
+        jpgeneralsubjectgraph.setBackground(new java.awt.Color(255, 255, 255));
+        jpgeneralsubjectgraph.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jpgeneralsubjectgraph.setLayout(new java.awt.BorderLayout());
+        jpsubjectanalysis.add(jpgeneralsubjectgraph);
+        jpgeneralsubjectgraph.setBounds(30, 130, 1060, 160);
 
         jPanel1.add(jpsubjectanalysis);
-        jpsubjectanalysis.setBounds(10, 20, 970, 100);
+        jpsubjectanalysis.setBounds(10, 20, 1130, 570);
 
         jMenu2.setText("Action");
 
@@ -1006,6 +1113,43 @@ public class ExamDepartment extends javax.swing.JFrame {
          
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        
+         DefaultCategoryDataset dcdcalssdata = new  DefaultCategoryDataset();
+   
+          dcdcalssdata.setValue(78, "Subject HighMark","Maths");
+          dcdcalssdata.setValue(50, "Subject Avarage","Maths");
+          dcdcalssdata.setValue(22, "Subject LowMark","Maths");
+          dcdcalssdata.setValue(85, "Subject HighMark","English");
+          dcdcalssdata.setValue(65, "Subject Avarage","English");
+          dcdcalssdata.setValue(38, "Subject LowMark","English");
+          dcdcalssdata.setValue(87, "Subject HighMark","Kiswahili");
+          dcdcalssdata.setValue(67, "Subject Avarage","Kiswahili");
+          dcdcalssdata.setValue(41, "Subject LowMark","Kiswahili");
+          dcdcalssdata.setValue(91, "Subject HighMark","Science");
+          dcdcalssdata.setValue(70, "Subject Avarage","Science");
+          dcdcalssdata.setValue(38, "Subject LowMark","Science");
+          dcdcalssdata.setValue(90, "Subject HighMark","Social");
+          dcdcalssdata.setValue(63, "Subject Avarage","Social");
+          dcdcalssdata.setValue(26, "Subject LowMark","Social");
+          
+          JFreeChart mylargegraph = ChartFactory.createBarChart("Class Subject Analysis", "Category Data", "Total marks", dcdcalssdata, PlotOrientation.VERTICAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
+          
+          CategoryPlot myclassgraph = mylargegraph.getCategoryPlot();
+          myclassgraph.setRangeGridlinePaint(Color.MAGENTA);
+          myclassgraph.setBackgroundPaint(Color.WHITE);
+          
+          ChartPanel classgraph = new ChartPanel(mylargegraph);
+          jpgeneralsubjectgraph.removeAll();
+          jpgeneralsubjectgraph.add(classgraph, BorderLayout.CENTER);
+          jpgeneralsubjectgraph.validate();
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton9ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1052,9 +1196,14 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
+    private javax.swing.JComboBox<String> jComboBox11;
+    private javax.swing.JComboBox<String> jComboBox12;
+    private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
@@ -1084,7 +1233,17 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1101,6 +1260,8 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
@@ -1123,6 +1284,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpanalyticpanel;
     private javax.swing.JPanel jpclassanalysis;
     private javax.swing.JPanel jpclasschart;
+    private javax.swing.JPanel jpgeneralsubjectgraph;
     private javax.swing.JPanel jpnewmarks;
     private javax.swing.JPanel jpresults;
     private javax.swing.JPanel jpstudentmarks;
