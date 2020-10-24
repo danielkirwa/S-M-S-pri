@@ -31,6 +31,7 @@ public class SchoolManagementSystem {
         System.out.println("##### Student registration form done                               #");
         System.out.println("##### Student registration form connected to db                    #");
         System.out.println("##### Student exam entry form done                                 #");
+        System.out.println("##### Fee structure done and payment interface                     #");
         System.out.println("############     8/31/2020  sms           ##########################");
         System.out.println("********************************************************************");
         }

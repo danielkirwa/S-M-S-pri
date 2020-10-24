@@ -31,9 +31,9 @@ public class StudentDetails extends javax.swing.JFrame {
     PreparedStatement pst;
     ResultSet rs;
     
-    String username = "sql2366456";
-    String password = "jI3%cT2!";
-    String url = "jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2366456";
+    String username = "root";
+    String password = "";
+    String url = "jdbc:mysql://localhost:3306/schoolmanagement";
    
     
     
