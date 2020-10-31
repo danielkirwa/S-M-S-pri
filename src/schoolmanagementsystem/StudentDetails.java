@@ -41,6 +41,7 @@ public class StudentDetails extends javax.swing.JFrame {
         initComponents();
         loadstudentsfeetable();
         hidepanels();
+        loadsatfftable();
     }
     
     final public void loadstudentsfeetable(){
@@ -63,6 +64,17 @@ public class StudentDetails extends javax.swing.JFrame {
         jpstaffreport.setVisible(false);
         jpfeestructure.setVisible(false);
         jpfeespayment.setVisible(false);
+    }
+    final public void loadsatfftable (){
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("ID NUMBER");
+        dtm.addColumn("Full Name");
+        dtm.addColumn("PHONE");
+        dtm.addColumn("POSITION");
+        dtm.addColumn("CLASS");
+        tblstaffaccounts.setModel(dtm);
+        tblstaffaccounts.getColumnModel().getColumn(1).setPreferredWidth(200);
+        
     }
 
     /**
@@ -121,55 +133,54 @@ public class StudentDetails extends javax.swing.JFrame {
         jpfeespayment = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtsearchsutentfee = new javax.swing.JTextField();
         jButton5 = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
+        lbtotalamount = new javax.swing.JLabel();
+        lbpaidamount = new javax.swing.JLabel();
+        lbcurrentbalance = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cmbselectedfeeclass = new javax.swing.JComboBox<>();
         jLabel24 = new javax.swing.JLabel();
         jComboBox8 = new javax.swing.JComboBox<>();
-        jButton7 = new javax.swing.JButton();
+        bntviewfeestatement = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        lbstudentfullname = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblfees = new javax.swing.JTable();
         jpstaffreport = new javax.swing.JPanel();
         jpstaffaccount = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
-        jButton14 = new javax.swing.JButton();
-        jButton15 = new javax.swing.JButton();
+        btnaddstaff = new javax.swing.JButton();
+        btnrefresh = new javax.swing.JButton();
         jButton16 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
         jLabel45 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel46 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
+        txtstaffid = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        cmbstafflocation = new javax.swing.JComboBox<>();
         jLabel48 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        cmbstaffgender = new javax.swing.JComboBox<>();
         jLabel49 = new javax.swing.JLabel();
-        jComboBox5 = new javax.swing.JComboBox<>();
-        jTextField11 = new javax.swing.JTextField();
+        cmbstaffposition = new javax.swing.JComboBox<>();
+        txtstaffphone = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
-        jTextField12 = new javax.swing.JTextField();
+        txtstaffemail = new javax.swing.JTextField();
         jLabel51 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cmbstaffaccountcreatable = new javax.swing.JComboBox<>();
         jLabel53 = new javax.swing.JLabel();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        cmballocatedclass = new javax.swing.JComboBox<>();
         jLabel54 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
+        cmballocatedactivity = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblstaffaccounts = new javax.swing.JTable();
         jLabel55 = new javax.swing.JLabel();
-        jComboBox11 = new javax.swing.JComboBox<>();
+        cmballocatedstream = new javax.swing.JComboBox<>();
         jpfeestructure = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
@@ -400,34 +411,34 @@ public class StudentDetails extends javax.swing.JFrame {
         jLabel18.setText("Admin/NEMIS :");
         jPanel2.add(jLabel18);
         jLabel18.setBounds(10, 10, 100, 14);
-        jPanel2.add(jTextField2);
-        jTextField2.setBounds(130, 10, 130, 20);
+        jPanel2.add(txtsearchsutentfee);
+        txtsearchsutentfee.setBounds(130, 10, 130, 20);
 
         jButton5.setText("Search");
         jPanel2.add(jButton5);
         jButton5.setBounds(290, 10, 120, 30);
 
-        jLabel19.setText("Total Amount = 1000");
-        jPanel2.add(jLabel19);
-        jLabel19.setBounds(10, 60, 120, 14);
+        lbtotalamount.setText("Total Amount = 1000");
+        jPanel2.add(lbtotalamount);
+        lbtotalamount.setBounds(10, 60, 160, 14);
 
-        jLabel20.setText("Paid Amount = 0");
-        jPanel2.add(jLabel20);
-        jLabel20.setBounds(10, 100, 100, 14);
+        lbpaidamount.setText("Paid Amount = 0");
+        jPanel2.add(lbpaidamount);
+        lbpaidamount.setBounds(10, 100, 160, 14);
 
-        jLabel21.setText("Fee Balance = 1000");
-        jPanel2.add(jLabel21);
-        jLabel21.setBounds(10, 130, 110, 14);
+        lbcurrentbalance.setText("Fee Balance = 1000");
+        jPanel2.add(lbcurrentbalance);
+        lbcurrentbalance.setBounds(10, 130, 160, 14);
 
         jLabel22.setText("PAY AMOUNT :");
         jPanel2.add(jLabel22);
-        jLabel22.setBounds(190, 60, 90, 14);
+        jLabel22.setBounds(220, 100, 90, 14);
         jPanel2.add(jTextField5);
-        jTextField5.setBounds(290, 60, 120, 20);
+        jTextField5.setBounds(320, 100, 120, 20);
 
         jButton6.setText("ADD PAY");
         jPanel2.add(jButton6);
-        jButton6.setBounds(230, 120, 180, 30);
+        jButton6.setBounds(230, 130, 180, 30);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(null);
@@ -436,9 +447,9 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel3.add(jLabel23);
         jLabel23.setBounds(19, 25, 90, 14);
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
-        jPanel3.add(jComboBox7);
-        jComboBox7.setBounds(130, 20, 130, 20);
+        cmbselectedfeeclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jPanel3.add(cmbselectedfeeclass);
+        cmbselectedfeeclass.setBounds(130, 20, 130, 20);
 
         jLabel24.setText("Select Range");
         jPanel3.add(jLabel24);
@@ -453,9 +464,14 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel3.add(jComboBox8);
         jComboBox8.setBounds(130, 60, 130, 20);
 
-        jButton7.setText("View Statement");
-        jPanel3.add(jButton7);
-        jButton7.setBounds(60, 110, 160, 30);
+        bntviewfeestatement.setText("View Statement");
+        bntviewfeestatement.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntviewfeestatementActionPerformed(evt);
+            }
+        });
+        jPanel3.add(bntviewfeestatement);
+        bntviewfeestatement.setBounds(60, 110, 160, 30);
 
         jButton8.setText("Print");
         jPanel3.add(jButton8);
@@ -463,6 +479,10 @@ public class StudentDetails extends javax.swing.JFrame {
 
         jPanel2.add(jPanel3);
         jPanel3.setBounds(500, 0, 570, 170);
+
+        lbstudentfullname.setText("Student full name");
+        jPanel2.add(lbstudentfullname);
+        lbstudentfullname.setBounds(220, 60, 240, 14);
 
         jpfeespayment.add(jPanel2);
         jPanel2.setBounds(31, 35, 1070, 170);
@@ -478,6 +498,11 @@ public class StudentDetails extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tblfees.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblfeesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblfees);
 
         jpfeespayment.add(jScrollPane1);
@@ -515,13 +540,23 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel6.add(jButton13);
         jButton13.setBounds(20, 300, 190, 50);
 
-        jButton14.setText("Add Staff");
-        jPanel6.add(jButton14);
-        jButton14.setBounds(19, 25, 190, 50);
+        btnaddstaff.setText("Add Staff");
+        btnaddstaff.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddstaffActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnaddstaff);
+        btnaddstaff.setBounds(19, 25, 190, 50);
 
-        jButton15.setText("Refresh");
-        jPanel6.add(jButton15);
-        jButton15.setBounds(20, 90, 190, 50);
+        btnrefresh.setText("Refresh");
+        btnrefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnrefreshActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnrefresh);
+        btnrefresh.setBounds(20, 90, 190, 50);
 
         jButton16.setText("Update");
         jPanel6.add(jButton16);
@@ -537,86 +572,80 @@ public class StudentDetails extends javax.swing.JFrame {
         jLabel45.setText("Staff ID :");
         jpstaffaccount.add(jLabel45);
         jLabel45.setBounds(30, 40, 70, 14);
-        jpstaffaccount.add(jTextField9);
-        jTextField9.setBounds(120, 40, 140, 20);
-
-        jLabel46.setText("National  ID :");
-        jpstaffaccount.add(jLabel46);
-        jLabel46.setBounds(30, 80, 70, 14);
-        jpstaffaccount.add(jTextField10);
-        jTextField10.setBounds(120, 80, 140, 20);
+        jpstaffaccount.add(txtstaffid);
+        txtstaffid.setBounds(120, 40, 140, 20);
 
         jLabel47.setText("Location :");
         jpstaffaccount.add(jLabel47);
-        jLabel47.setBounds(30, 210, 70, 14);
+        jLabel47.setBounds(30, 170, 70, 14);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jpstaffaccount.add(jComboBox3);
-        jComboBox3.setBounds(120, 210, 140, 20);
+        cmbstafflocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jpstaffaccount.add(cmbstafflocation);
+        cmbstafflocation.setBounds(120, 170, 140, 20);
 
         jLabel48.setText("Gender :");
         jpstaffaccount.add(jLabel48);
-        jLabel48.setBounds(30, 260, 70, 14);
+        jLabel48.setBounds(30, 220, 70, 14);
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE" }));
-        jpstaffaccount.add(jComboBox4);
-        jComboBox4.setBounds(120, 260, 140, 20);
+        cmbstaffgender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "MALE", "FEMALE" }));
+        jpstaffaccount.add(cmbstaffgender);
+        cmbstaffgender.setBounds(120, 220, 140, 20);
 
         jLabel49.setText("Possition :");
         jpstaffaccount.add(jLabel49);
-        jLabel49.setBounds(30, 310, 60, 14);
+        jLabel49.setBounds(30, 270, 60, 14);
 
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HEAD OF STAFF", "DEPUTY HEAD", "DOS", "EXAMINNER", "BOARDING MASTER" }));
-        jpstaffaccount.add(jComboBox5);
-        jComboBox5.setBounds(120, 310, 140, 20);
-        jpstaffaccount.add(jTextField11);
-        jTextField11.setBounds(120, 130, 140, 20);
+        cmbstaffposition.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HEAD OF STAFF", "DEPUTY HEAD", "DOS", "EXAMINNER", "BOARDING MASTER", "CLASS TEACHER", "TEACHER" }));
+        jpstaffaccount.add(cmbstaffposition);
+        cmbstaffposition.setBounds(120, 270, 140, 20);
+        jpstaffaccount.add(txtstaffphone);
+        txtstaffphone.setBounds(120, 90, 140, 20);
 
         jLabel50.setText("Phone NO :");
         jpstaffaccount.add(jLabel50);
-        jLabel50.setBounds(30, 130, 70, 14);
-        jpstaffaccount.add(jTextField12);
-        jTextField12.setBounds(120, 170, 140, 20);
+        jLabel50.setBounds(30, 90, 70, 14);
+        jpstaffaccount.add(txtstaffemail);
+        txtstaffemail.setBounds(60, 130, 200, 20);
 
-        jLabel51.setText("Email Ad :");
+        jLabel51.setText("Email  :");
         jpstaffaccount.add(jLabel51);
-        jLabel51.setBounds(30, 170, 70, 14);
+        jLabel51.setBounds(10, 130, 40, 14);
 
         jLabel52.setText("Account Createtable  :");
         jpstaffaccount.add(jLabel52);
-        jLabel52.setBounds(40, 480, 140, 14);
+        jLabel52.setBounds(20, 460, 140, 14);
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EXAMINATION", "CLASS TEACHER", "DOS", "ADMIN", "LIBRAY", "NONE" }));
-        jpstaffaccount.add(jComboBox6);
-        jComboBox6.setBounds(190, 480, 140, 20);
+        cmbstaffaccountcreatable.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EXAMINATION", "CLASS TEACHER", "DOS", "ADMIN", "LIBRAY", "NONE" }));
+        jpstaffaccount.add(cmbstaffaccountcreatable);
+        cmbstaffaccountcreatable.setBounds(170, 460, 140, 20);
 
         jLabel53.setText("Allocated Class :");
         jpstaffaccount.add(jLabel53);
-        jLabel53.setBounds(10, 360, 120, 14);
+        jLabel53.setBounds(10, 320, 120, 14);
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "0" }));
-        jComboBox9.addActionListener(new java.awt.event.ActionListener() {
+        cmballocatedclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "0" }));
+        cmballocatedclass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox9ActionPerformed(evt);
+                cmballocatedclassActionPerformed(evt);
             }
         });
-        jpstaffaccount.add(jComboBox9);
-        jComboBox9.setBounds(150, 360, 110, 20);
+        jpstaffaccount.add(cmballocatedclass);
+        cmballocatedclass.setBounds(150, 320, 110, 20);
 
         jLabel54.setText("Activity :");
         jpstaffaccount.add(jLabel54);
-        jLabel54.setBounds(30, 440, 70, 14);
+        jLabel54.setBounds(30, 400, 70, 14);
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GAMES", "LEARNING ACCESS", "STUDENT AFARES", "NONE" }));
-        jComboBox10.addActionListener(new java.awt.event.ActionListener() {
+        cmballocatedactivity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "GAMES", "LEARNING ACCESS", "STUDENT AFARES", "NONE" }));
+        cmballocatedactivity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox10ActionPerformed(evt);
+                cmballocatedactivityActionPerformed(evt);
             }
         });
-        jpstaffaccount.add(jComboBox10);
-        jComboBox10.setBounds(120, 440, 140, 20);
+        jpstaffaccount.add(cmballocatedactivity);
+        cmballocatedactivity.setBounds(120, 400, 140, 20);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblstaffaccounts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -627,23 +656,28 @@ public class StudentDetails extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable1);
+        tblstaffaccounts.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblstaffaccountsMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tblstaffaccounts);
 
         jpstaffaccount.add(jScrollPane2);
         jScrollPane2.setBounds(290, 40, 580, 340);
 
         jLabel55.setText("Stream :");
         jpstaffaccount.add(jLabel55);
-        jLabel55.setBounds(30, 400, 70, 14);
+        jLabel55.setBounds(30, 360, 70, 14);
 
-        jComboBox11.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EAST", "WEST", "SOUTH", "NORTH", "NONE" }));
-        jComboBox11.addActionListener(new java.awt.event.ActionListener() {
+        cmballocatedstream.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "EAST", "WEST", "SOUTH", "NORTH", "NONE" }));
+        cmballocatedstream.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox11ActionPerformed(evt);
+                cmballocatedstreamActionPerformed(evt);
             }
         });
-        jpstaffaccount.add(jComboBox11);
-        jComboBox11.setBounds(120, 400, 140, 20);
+        jpstaffaccount.add(cmballocatedstream);
+        cmballocatedstream.setBounds(120, 360, 140, 20);
 
         jPanel1.add(jpstaffaccount);
         jpstaffaccount.setBounds(20, 30, 1130, 510);
@@ -890,25 +924,45 @@ public class StudentDetails extends javax.swing.JFrame {
       
          int yob = jcyear.getYear();
           int studyclass =  Integer.parseInt(cmbclass.getSelectedItem().toString());
+          int initialfee = 0;
           
            con = DriverManager.getConnection(url,username,password);
              st = con.createStatement();
-             String sqllogmessage = "INSERT INTO tblstudentdetails (ADIMN,FNAME,MNAME,LNAME,GENDER,YOB,CLASS,STREAM,COUNTY,SUBCOUNTY,WARD,"
-                     + "PGFNAME,PGMNAME,PGLNAME,PGFCONTACT,PGSFNAME,PGSMNAME,PGSLNAME,PGSCONTACT,ADMINDATE) VALUES"
+             // inserting student personal details 
+             String sqlpersonalstdentdetails = "INSERT INTO tblstudentdetails (REGISTRATIONNUMBER,FIRSTNAME,MIDDLENAME,LASTNAME,GENDER,YOB,CLASS,"
+                     + "STREAM,ADMISSIONDATE,COUNTY,SUBCOUNTY,WARD) VALUES"
                      + " ('"+txtadmin.getText()+"','"+txtfname.getText()+"','"+txtmname.getText()+"','"+txtlname.getText()+"',"
-                     + "'"+cmbgender.getSelectedItem()+"','"+yob+"','"+studyclass+"','"+cmbstream.getSelectedItem()+"','"+cmbcounty.getSelectedItem()+"',"
-                     + "'"+cmbsubcounty.getSelectedItem()+"','"+cmbward.getSelectedItem()+"','"+txtpgfname1.getText()+"','"+txtpgmname1.getText()+"',"
+                     + "'"+cmbgender.getSelectedItem()+"','"+yob+"','"+studyclass+"','"+cmbstream.getSelectedItem()+"','"+dateofadmin+"',"
+                     + "'"+cmbcounty.getSelectedItem()+"','"+cmbsubcounty.getSelectedItem()+"','"+cmbward.getSelectedItem()+"')";
+             st.execute(sqlpersonalstdentdetails);
+             
+             // inserting student parent details
+                    String sqlstudentparentdetails = "INSERT INTO tblparents (REGISTRATIONNUMBER,PARENTFIRSTNAME,PARENTMIDDLENAME,"
+                            + "PARENTLASTNAME,PARENTCONTACTS,PARENTFIRSTNAME2,PARENTMIDDLENAME2,PARENTLASTNAME2,PARENTCONTACTS2) VALUES"
+                     + " ('"+txtadmin.getText()+"','"+txtpgfname1.getText()+"','"+txtpgmname1.getText()+"',"
                      + "'"+txtpglname1.getText()+"','"+txtpgcontacts1.getText()+"','"+txtpgfname2.getText()+"','"+txtpgmname2.getText()+"',"
-                     + "'"+txtpglname2.getText()+"','"+txtpgcontacts2.getText()+"','"+dateofadmin+"')";
-             st.execute(sqllogmessage);
+                     + "'"+txtpglname2.getText()+"','"+txtpgcontacts2.getText()+"')";
+             st.execute(sqlstudentparentdetails);
+             // inserting student feepayment
+             
+              String sqlstudentfeepayment = "INSERT INTO tblfeepayment (REGISTRATIONNUMBER,CLASS,FIRSTNAME,MIDDLENAME,LASTNAME,TOTAL,"
+                      + "PAID,BALANCE) VALUES"
+                     + " ('"+txtadmin.getText()+"','"+studyclass+"','"+txtfname.getText()+"','"+txtmname.getText()+"','"+txtlname.getText()+"',"
+                      + "'"+initialfee+"','"+initialfee+"','"+initialfee+"')";
+             st.execute(sqlstudentfeepayment);
+             
+             
              JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New Student Registered</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
        }catch(SQLIntegrityConstraintViolationException e){
-        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Student Already Exists</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);  
+        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Student Already Exists</i></HTML>","School",JOptionPane.WARNING_MESSAGE);  
       }
       catch(HeadlessException | SQLException ex){
    JOptionPane.showMessageDialog(null, "error"+ ex,"School",JOptionPane.INFORMATION_MESSAGE);
 
        }
+      catch(NullPointerException npx){
+        JOptionPane.showMessageDialog(null,"Please select Date !","School",JOptionPane.INFORMATION_MESSAGE);
+        }
       
        }else{
            JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill Students details !</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
@@ -975,10 +1029,6 @@ public class StudentDetails extends javax.swing.JFrame {
           jpstaffreport.setVisible(true);
     }//GEN-LAST:event_jmaccountreportActionPerformed
 
-    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox8ActionPerformed
-
     private void txtfnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfnameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtfnameActionPerformed
@@ -991,17 +1041,223 @@ public class StudentDetails extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton11ActionPerformed
 
-    private void jComboBox10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox10ActionPerformed
+    private void cmballocatedactivityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmballocatedactivityActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox10ActionPerformed
+    }//GEN-LAST:event_cmballocatedactivityActionPerformed
 
-    private void jComboBox11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox11ActionPerformed
+    private void cmballocatedstreamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmballocatedstreamActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox11ActionPerformed
+    }//GEN-LAST:event_cmballocatedstreamActionPerformed
 
-    private void jComboBox9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox9ActionPerformed
+    private void cmballocatedclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmballocatedclassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox9ActionPerformed
+    }//GEN-LAST:event_cmballocatedclassActionPerformed
+
+    private void bntviewfeestatementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntviewfeestatementActionPerformed
+        // TODO add your handling code here:
+
+        DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("NEMIS");
+        dtm.addColumn("FirstName");
+        dtm.addColumn("MiddleName");
+        dtm.addColumn("LastNme");
+        dtm.addColumn("Class");
+        dtm.addColumn("AmountPaid");
+        dtm.addColumn("CurrentBalance");
+        dtm.addColumn("TotalAmount");
+
+        tblfees.setModel(dtm);
+
+        try{
+
+            con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            String selectecar = "SELECT * FROM tblfeepayment WHERE CLASS = ? ";
+            pst = con.prepareStatement(selectecar);
+            pst.setString(1, (String) cmbselectedfeeclass.getSelectedItem());
+            rs = pst.executeQuery();
+
+            while(rs.next()){
+
+                String admin = rs.getString("REGISTRATIONNUMBER");
+                String  studentclass =  rs.getString("CLASS");
+                String  name =  rs.getString("FIRSTNAME");
+                String name2 =  rs.getString("MIDDLENAME");
+                String name3 =  rs.getString("LASTNAME");
+                String total =  rs.getString("TOTAL");
+                String paid =  rs.getString("PAID");
+                String balance =  rs.getString("BALANCE");
+
+                //ARRAY DATA TO DISPLAY
+                String tbldata []= {admin,name,name2,name3,studentclass,total,paid,balance};
+                DefaultTableModel dtmdata = (DefaultTableModel)tblfees.getModel();
+                dtmdata.addRow(tbldata);
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_bntviewfeestatementActionPerformed
+
+    private void jComboBox8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox8ActionPerformed
+
+    private void tblfeesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblfeesMouseClicked
+        // TODO add your handling code here:
+        
+        
+        DefaultTableModel dtm = (DefaultTableModel)tblfees.getModel();
+        int selectedrowindex = tblfees.getSelectedRow();
+        String name = dtm.getValueAt(selectedrowindex, 1).toString();
+        String name2 = dtm.getValueAt(selectedrowindex, 2).toString();
+        String name3 = dtm.getValueAt(selectedrowindex, 3).toString();
+        lbstudentfullname.setText(name + " " + name2 + " " + name3);
+        lbtotalamount.setText(" Total Amount : " + dtm.getValueAt(selectedrowindex, 7).toString());
+        lbpaidamount.setText(" Amount Paid : " + dtm.getValueAt(selectedrowindex, 5).toString());
+        txtsearchsutentfee.setText(dtm.getValueAt(selectedrowindex, 0).toString());
+        lbcurrentbalance.setText(" Current balance : " + dtm.getValueAt(selectedrowindex, 6).toString());
+    }//GEN-LAST:event_tblfeesMouseClicked
+
+    private void btnaddstaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddstaffActionPerformed
+        // TODO add your handling code here:
+        
+        // add new staff 
+        // get staff detail 
+        String staffid,phone,email,location,gender,position,allocatedclass,allocatedstream,allocatedactivity,accountcreatable,name;
+        staffid = txtstaffid.getText().trim();
+        phone = txtstaffphone.getText();
+        email = txtstaffemail.getText();
+        location = cmbstafflocation.getSelectedItem().toString();
+        gender = cmbstaffgender.getSelectedItem().toString();
+        position = cmbstaffposition.getSelectedItem().toString();
+        allocatedclass = cmballocatedclass.getSelectedItem().toString();
+        allocatedstream = cmballocatedstream.getSelectedItem().toString();
+        allocatedactivity = cmballocatedactivity.getSelectedItem().toString();
+        accountcreatable = cmbstaffaccountcreatable.getSelectedItem().toString();
+        name = "";
+        
+        // insert staff data
+        if(!"".equals(staffid)  && !"".equals(phone)){
+        try{
+            con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            
+            String insertstaff = "INSERT into tblteacherdetails (STAFFID,FIRSTNAME,MIDDLENAME,LASTNAME,GENDER,LOCATION,PHONE,EMAIL,"
+                    + "POSITION,ALLOCATEDCLASS,STREAM,ACTIVITY,ACCOUNTCREATABLE) VALUES ('"+staffid+"','"+name+"','"+name+"','"+name+"',"
+                    + "'"+gender+"','"+location+"','"+phone+"',"
+                    + "'"+email+"','"+position+"','"+allocatedclass+"','"+allocatedstream+"','"+allocatedactivity+"','"+accountcreatable+"')";
+            st.execute(insertstaff);
+            JOptionPane.showMessageDialog(null, "New Staff Addr","School",JOptionPane.INFORMATION_MESSAGE);
+        }catch(SQLIntegrityConstraintViolationException e){
+        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Staff Already Exists</i></HTML>","School",JOptionPane.WARNING_MESSAGE);  
+      }catch(HeadlessException | SQLException ex){
+   JOptionPane.showMessageDialog(null, "error"+ ex,"School",JOptionPane.INFORMATION_MESSAGE);
+
+       }
+        }else{
+            JOptionPane.showMessageDialog(null, "Fill all Staff Details","School",JOptionPane.INFORMATION_MESSAGE);
+            
+        }
+        
+    }//GEN-LAST:event_btnaddstaffActionPerformed
+
+    private void btnrefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrefreshActionPerformed
+        // TODO add your handling code here:
+        
+        // selecte staff data
+        
+         DefaultTableModel dtm = new DefaultTableModel();
+        dtm.addColumn("ID NUMBER");
+        dtm.addColumn("Full Name");
+        dtm.addColumn("PHONE");
+        dtm.addColumn("POSITION");
+        dtm.addColumn("CLASS");
+        tblstaffaccounts.setModel(dtm);
+        tblstaffaccounts.getColumnModel().getColumn(1).setPreferredWidth(200);
+        tblstaffaccounts.getColumnModel().getColumn(3).setPreferredWidth(100);
+
+
+        try{
+
+            con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            String selecteacher = "SELECT * FROM tblteacherdetails  ";
+            pst = con.prepareStatement(selecteacher);
+            rs = pst.executeQuery();
+
+            while(rs.next()){
+
+                String id= rs.getString("STAFFID");
+                String  allocatedclass =  rs.getString("ALLOCATEDCLASS");
+                String  phone =  rs.getString("PHONE");
+                String  name =  rs.getString("FIRSTNAME");
+                String name2 =  rs.getString("MIDDLENAME");
+                String name3 =  rs.getString("LASTNAME");
+                String position =  rs.getString("POSITION");
+                
+
+                //ARRAY DATA TO DISPLAY
+                String tbldata []= {id,name+ " " + name2 + " " + name3,phone,position,allocatedclass};
+                DefaultTableModel dtmdata = (DefaultTableModel)tblstaffaccounts.getModel();
+                dtmdata.addRow(tbldata);
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnrefreshActionPerformed
+
+    private void tblstaffaccountsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblstaffaccountsMouseClicked
+        // TODO add your handling code here:
+        
+        DefaultTableModel dtm = (DefaultTableModel)tblstaffaccounts.getModel();
+        int selectedrow = tblstaffaccounts.getSelectedRow();
+         String searchid = (dtm.getValueAt(selectedrow, 0).toString());
+         
+         try{
+
+            con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            String selecteacher = "SELECT * FROM tblteacherdetails WHERE STAFFID = ?";
+            pst = con.prepareStatement(selecteacher);
+            pst.setString(1, (String) searchid);
+            rs = pst.executeQuery();
+
+            if(rs.next()){
+
+                String id= rs.getString("STAFFID");
+                String  allocatedclass =  rs.getString("ALLOCATEDCLASS");
+                String  phone =  rs.getString("PHONE");
+                String  name =  rs.getString("FIRSTNAME");
+                String name2 =  rs.getString("MIDDLENAME");
+                String name3 =  rs.getString("LASTNAME");
+                String gender = rs.getString("GENDER");
+                String position =  rs.getString("POSITION");
+                String email =  rs.getString("EMAIL");
+                String allocatedstream =  rs.getString("STREAM");
+                String activity =  rs.getString("ACTIVITY");
+                String accountcreatable =  rs.getString("ACCOUNTCREATABLE");
+                String location = rs.getString("LOCATION");
+
+                // DATA TO DISPLAY for update
+                
+         txtstaffid.setText(id);
+        txtstaffphone.setText(phone);
+        txtstaffemail.setText(email);
+        cmbstafflocation.setSelectedItem(location);
+        cmbstaffgender.setSelectedItem(gender);
+        cmbstaffposition.setSelectedItem(position);
+        cmballocatedclass.setSelectedItem(allocatedclass);
+        cmballocatedstream.setSelectedItem(allocatedstream);
+        cmballocatedactivity.setSelectedItem(activity);
+        cmbstaffaccountcreatable.setSelectedItem(accountcreatable);
+                
+                
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_tblstaffaccountsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -1039,9 +1295,20 @@ public class StudentDetails extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bntviewfeestatement;
+    private javax.swing.JButton btnaddstaff;
+    private javax.swing.JButton btnrefresh;
+    private javax.swing.JComboBox<String> cmballocatedactivity;
+    private javax.swing.JComboBox<String> cmballocatedclass;
+    private javax.swing.JComboBox<String> cmballocatedstream;
     private javax.swing.JComboBox<String> cmbclass;
     private javax.swing.JComboBox<String> cmbcounty;
     private javax.swing.JComboBox<String> cmbgender;
+    private javax.swing.JComboBox<String> cmbselectedfeeclass;
+    private javax.swing.JComboBox<String> cmbstaffaccountcreatable;
+    private javax.swing.JComboBox<String> cmbstaffgender;
+    private javax.swing.JComboBox<String> cmbstafflocation;
+    private javax.swing.JComboBox<String> cmbstaffposition;
     private javax.swing.JComboBox<String> cmbstream;
     private javax.swing.JComboBox<String> cmbsubcounty;
     private javax.swing.JComboBox<String> cmbward;
@@ -1050,8 +1317,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
-    private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
@@ -1059,20 +1324,11 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox10;
-    private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1083,10 +1339,7 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -1113,7 +1366,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
-    private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel49;
@@ -1139,19 +1391,13 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
     private com.toedter.calendar.JYearChooser jYearChooser1;
     private com.toedter.calendar.JDateChooser jcdate;
     private com.toedter.calendar.JYearChooser jcyear;
@@ -1166,7 +1412,12 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jpfeestructure;
     private javax.swing.JPanel jpstaffaccount;
     private javax.swing.JPanel jpstaffreport;
+    private javax.swing.JLabel lbcurrentbalance;
+    private javax.swing.JLabel lbpaidamount;
+    private javax.swing.JLabel lbstudentfullname;
+    private javax.swing.JLabel lbtotalamount;
     private javax.swing.JTable tblfees;
+    private javax.swing.JTable tblstaffaccounts;
     private javax.swing.JTextField txtadmin;
     private javax.swing.JTextField txtfname;
     private javax.swing.JTextField txtlname;
@@ -1180,5 +1431,9 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JTextField txtpgmname1;
     private javax.swing.JTextField txtpgmname2;
     private javax.swing.JTextField txtsearchstudent;
+    private javax.swing.JTextField txtsearchsutentfee;
+    private javax.swing.JTextField txtstaffemail;
+    private javax.swing.JTextField txtstaffid;
+    private javax.swing.JTextField txtstaffphone;
     // End of variables declaration//GEN-END:variables
 }
