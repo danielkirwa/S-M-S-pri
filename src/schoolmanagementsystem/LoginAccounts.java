@@ -5,6 +5,16 @@
  */
 package schoolmanagementsystem;
 
+import java.awt.HeadlessException;
+import java.awt.event.ItemEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author owner
@@ -14,6 +24,18 @@ public final class LoginAccounts extends javax.swing.JFrame {
     /**
      * Creates new form LoginAccounts
      */
+    
+    
+    Statement st;
+    Connection con;
+    PreparedStatement pst;
+    ResultSet rs;
+    
+    String username = "root";
+    String password = "";
+    String url = "jdbc:mysql://localhost:3306/schoolmanagement";
+    
+    
     public LoginAccounts() {
         initComponents();
         hidepanel();
@@ -34,29 +56,29 @@ public final class LoginAccounts extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jplogin = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
+        txtrequestusername = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        txtrequestpassword = new javax.swing.JPasswordField();
+        btnshowpassword = new javax.swing.JCheckBox();
+        btnforgotpassword = new javax.swing.JButton();
+        btnlogin = new javax.swing.JButton();
         btnlogincreate = new javax.swing.JButton();
         jpcreateaccount = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        txtfirstnamerequest = new javax.swing.JTextField();
+        txtmiddlenamerequest = new javax.swing.JTextField();
+        txtlastnamerequest = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtusernamerequest = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jTextField6 = new javax.swing.JTextField();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jCheckBox2 = new javax.swing.JCheckBox();
+        btnctreataccountrequest = new javax.swing.JButton();
+        txtidnumberrequest = new javax.swing.JTextField();
+        txtregistrationpassword2 = new javax.swing.JPasswordField();
+        txtregistrationpassword1 = new javax.swing.JPasswordField();
+        btnshowregistrationpassword = new javax.swing.JCheckBox();
         jButton1 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -75,8 +97,8 @@ public final class LoginAccounts extends javax.swing.JFrame {
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Account", "Admin", "Exams", "Finance", "Library", "Games" }));
         jplogin.add(jComboBox1);
         jComboBox1.setBounds(80, 40, 220, 20);
-        jplogin.add(jTextField1);
-        jTextField1.setBounds(80, 100, 220, 20);
+        jplogin.add(txtrequestusername);
+        txtrequestusername.setBounds(80, 100, 220, 20);
 
         jLabel1.setText("Usrename");
         jplogin.add(jLabel1);
@@ -85,33 +107,33 @@ public final class LoginAccounts extends javax.swing.JFrame {
         jLabel2.setText("Password");
         jplogin.add(jLabel2);
         jLabel2.setBounds(160, 130, 60, 14);
-        jplogin.add(jPasswordField1);
-        jPasswordField1.setBounds(80, 160, 220, 20);
+        jplogin.add(txtrequestpassword);
+        txtrequestpassword.setBounds(80, 160, 220, 20);
 
-        jCheckBox1.setText("Show Password");
-        jCheckBox1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        btnshowpassword.setText("Show Password");
+        btnshowpassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnshowpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                btnshowpasswordActionPerformed(evt);
             }
         });
-        jplogin.add(jCheckBox1);
-        jCheckBox1.setBounds(120, 190, 140, 23);
+        jplogin.add(btnshowpassword);
+        btnshowpassword.setBounds(120, 190, 140, 23);
 
-        jButton2.setText("Forgot  Password");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnforgotpassword.setText("Forgot  Password");
+        btnforgotpassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnforgotpassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnforgotpasswordActionPerformed(evt);
             }
         });
-        jplogin.add(jButton2);
-        jButton2.setBounds(80, 290, 230, 23);
+        jplogin.add(btnforgotpassword);
+        btnforgotpassword.setBounds(80, 290, 230, 23);
 
-        jButton3.setText("Login");
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jplogin.add(jButton3);
-        jButton3.setBounds(80, 223, 230, 40);
+        btnlogin.setText("Login");
+        btnlogin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jplogin.add(btnlogin);
+        btnlogin.setBounds(80, 223, 230, 40);
 
         jPanel1.add(jplogin);
         jplogin.setBounds(330, 100, 390, 320);
@@ -138,18 +160,18 @@ public final class LoginAccounts extends javax.swing.JFrame {
         jLabel3.setText("Full Name :");
         jpcreateaccount.add(jLabel3);
         jLabel3.setBounds(10, 20, 80, 14);
-        jpcreateaccount.add(jTextField2);
-        jTextField2.setBounds(110, 20, 140, 20);
-        jpcreateaccount.add(jTextField3);
-        jTextField3.setBounds(280, 20, 170, 20);
-        jpcreateaccount.add(jTextField4);
-        jTextField4.setBounds(470, 20, 160, 20);
+        jpcreateaccount.add(txtfirstnamerequest);
+        txtfirstnamerequest.setBounds(110, 20, 140, 20);
+        jpcreateaccount.add(txtmiddlenamerequest);
+        txtmiddlenamerequest.setBounds(280, 20, 170, 20);
+        jpcreateaccount.add(txtlastnamerequest);
+        txtlastnamerequest.setBounds(470, 20, 160, 20);
 
         jLabel4.setText("ID   Number  :");
         jpcreateaccount.add(jLabel4);
         jLabel4.setBounds(170, 60, 90, 14);
-        jpcreateaccount.add(jTextField5);
-        jTextField5.setBounds(280, 90, 170, 20);
+        jpcreateaccount.add(txtusernamerequest);
+        txtusernamerequest.setBounds(280, 90, 170, 20);
 
         jLabel5.setText("Confirm Password :");
         jpcreateaccount.add(jLabel5);
@@ -163,21 +185,31 @@ public final class LoginAccounts extends javax.swing.JFrame {
         jpcreateaccount.add(jLabel7);
         jLabel7.setBounds(180, 140, 80, 14);
 
-        jButton4.setText("Create Account");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpcreateaccount.add(jButton4);
-        jButton4.setBounds(90, 270, 470, 40);
-        jpcreateaccount.add(jTextField6);
-        jTextField6.setBounds(280, 60, 170, 20);
-        jpcreateaccount.add(jPasswordField2);
-        jPasswordField2.setBounds(280, 180, 170, 20);
-        jpcreateaccount.add(jPasswordField3);
-        jPasswordField3.setBounds(280, 140, 170, 20);
+        btnctreataccountrequest.setText("Create Account");
+        btnctreataccountrequest.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnctreataccountrequest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnctreataccountrequestActionPerformed(evt);
+            }
+        });
+        jpcreateaccount.add(btnctreataccountrequest);
+        btnctreataccountrequest.setBounds(90, 270, 470, 40);
+        jpcreateaccount.add(txtidnumberrequest);
+        txtidnumberrequest.setBounds(280, 60, 170, 20);
+        jpcreateaccount.add(txtregistrationpassword2);
+        txtregistrationpassword2.setBounds(280, 180, 170, 20);
+        jpcreateaccount.add(txtregistrationpassword1);
+        txtregistrationpassword1.setBounds(280, 140, 170, 20);
 
-        jCheckBox2.setText("Show Password");
-        jCheckBox2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jpcreateaccount.add(jCheckBox2);
-        jCheckBox2.setBounds(250, 230, 150, 23);
+        btnshowregistrationpassword.setText("Show Password");
+        btnshowregistrationpassword.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnshowregistrationpassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnshowregistrationpasswordActionPerformed(evt);
+            }
+        });
+        jpcreateaccount.add(btnshowregistrationpassword);
+        btnshowregistrationpassword.setBounds(250, 230, 150, 23);
 
         jPanel1.add(jpcreateaccount);
         jpcreateaccount.setBounds(200, 100, 650, 320);
@@ -219,13 +251,25 @@ public final class LoginAccounts extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnforgotpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnforgotpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnforgotpasswordActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void btnshowpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowpasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+        
+        // toggle showpassword 
+        
+         btnshowpassword.addItemListener((ItemEvent e) ->{
+         if(e.getStateChange() == ItemEvent.SELECTED){
+             txtrequestpassword.setEchoChar((char) 0); 
+           
+         }else{
+            txtrequestpassword.setEchoChar('\u25cf'); 
+            
+         }
+        });
+    }//GEN-LAST:event_btnshowpasswordActionPerformed
 
     private void btnlogincreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlogincreateActionPerformed
         // TODO add your handling code here:
@@ -251,6 +295,81 @@ public final class LoginAccounts extends javax.swing.JFrame {
         this.dispose();
        new ExamDepartment().setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void btnshowregistrationpasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnshowregistrationpasswordActionPerformed
+        // TODO add your handling code here:
+        btnshowregistrationpassword.addItemListener((ItemEvent e) -> {
+            if(e.getStateChange() == ItemEvent.SELECTED){
+                txtregistrationpassword1.setEchoChar((char) 0);
+                txtregistrationpassword2.setEchoChar((char) 0);
+                
+            }else{
+                txtregistrationpassword1.setEchoChar('\u25cf');
+                 txtregistrationpassword2.setEchoChar('\u25cf');
+                
+            }
+        });
+    }//GEN-LAST:event_btnshowregistrationpasswordActionPerformed
+
+    private void btnctreataccountrequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnctreataccountrequestActionPerformed
+        // TODO add your handling code here:
+        
+        if(!"".equals(txtfirstnamerequest.getText()) && !"".equals(txtidnumberrequest.getText()) && !"".equals(txtusernamerequest.getText())){
+               if( txtregistrationpassword1.getText().equals(txtregistrationpassword2.getText())) {
+            
+                   try{
+                       con = DriverManager.getConnection(url,username,password);
+                       st = con.createStatement();
+                       String selectstaffid = "SELECT * FROM tblteacherdetails WHERE STAFFID = ?";
+                       pst = con.prepareStatement(selectstaffid);
+                       pst.setString(1, (String) txtidnumberrequest.getText());
+                       rs = pst.executeQuery();
+                       if(rs.next()){
+                           String Accountallowed = rs.getString("ACCOUNTCREATABLE");
+                           
+                            String sqlupdateteacher = "UPDATE tblteacherdetails set FIRSTNAME ='"+txtfirstnamerequest.getText()+"',"
+                                    + "MIDDLENAME='"+txtmiddlenamerequest.getText()+"',"
+                    + "LASTNAME='"+txtlastnamerequest.getText()+"' WHERE STAFFID = ?";
+             pst = con.prepareStatement(sqlupdateteacher);
+            pst.setString(1, txtidnumberrequest.getText());
+            pst.executeUpdate();
+            
+            // insert login credentials
+            
+            
+            
+                           
+               JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Welcoame to the ERP </i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+                 
+               
+                
+            
+            String insertteacheraccount= "INSERT into tblteacheraccount (STAFFID,USERNAME,PASSWORD,FIRSTNAME) VALUES ('"+txtidnumberrequest.getText()+"',"
+                    + "'"+txtusernamerequest.getText()+"','"+txtregistrationpassword1.getText()+"','"+txtfirstnamerequest.getText()+"')";
+            st.execute(insertteacheraccount);
+                   JOptionPane.showConfirmDialog(null, "New " + Accountallowed + " Account created View it ?","School",JOptionPane.YES_NO_OPTION); 
+                     
+                       
+                       }else{
+               JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Not allowed to create account Contact Admin</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+  
+                       }
+                       
+                       
+                   }catch( HeadlessException | SQLException ex){
+               JOptionPane.showMessageDialog(null, ex,"School",JOptionPane.WARNING_MESSAGE); 
+
+                   }
+         }else{
+              JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Password do not match</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+         }
+        
+        }else{
+             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill required details</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+        }
+        
+      
+    }//GEN-LAST:event_btnctreataccountrequestActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,15 +407,15 @@ public final class LoginAccounts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnctreataccountrequest;
+    private javax.swing.JButton btnforgotpassword;
+    private javax.swing.JButton btnlogin;
     private javax.swing.JButton btnlogincreate;
+    private javax.swing.JCheckBox btnshowpassword;
+    private javax.swing.JCheckBox btnshowregistrationpassword;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -306,16 +425,16 @@ public final class LoginAccounts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JPanel jpcreateaccount;
     private javax.swing.JPanel jplogin;
+    private javax.swing.JTextField txtfirstnamerequest;
+    private javax.swing.JTextField txtidnumberrequest;
+    private javax.swing.JTextField txtlastnamerequest;
+    private javax.swing.JTextField txtmiddlenamerequest;
+    private javax.swing.JPasswordField txtregistrationpassword1;
+    private javax.swing.JPasswordField txtregistrationpassword2;
+    private javax.swing.JPasswordField txtrequestpassword;
+    private javax.swing.JTextField txtrequestusername;
+    private javax.swing.JTextField txtusernamerequest;
     // End of variables declaration//GEN-END:variables
 }

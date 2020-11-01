@@ -954,7 +954,7 @@ public class StudentDetails extends javax.swing.JFrame {
              
              JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New Student Registered</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
        }catch(SQLIntegrityConstraintViolationException e){
-        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Student Already Exists</i></HTML>","School",JOptionPane.WARNING_MESSAGE);  
+        JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Student Already Exists</i></HTML>","School",JOptionPane.WARNING_MESSAGE);  
       }
       catch(HeadlessException | SQLException ex){
    JOptionPane.showMessageDialog(null, "error"+ ex,"School",JOptionPane.INFORMATION_MESSAGE);
@@ -1072,8 +1072,8 @@ public class StudentDetails extends javax.swing.JFrame {
 
             con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectecar = "SELECT * FROM tblfeepayment WHERE CLASS = ? ";
-            pst = con.prepareStatement(selectecar);
+            String selectefee = "SELECT * FROM tblfeepayment WHERE CLASS = ? ";
+            pst = con.prepareStatement(selectefee);
             pst.setString(1, (String) cmbselectedfeeclass.getSelectedItem());
             rs = pst.executeQuery();
 
