@@ -157,8 +157,8 @@ public class StudentDetails extends javax.swing.JFrame {
         jButton13 = new javax.swing.JButton();
         btnaddstaff = new javax.swing.JButton();
         btnrefresh = new javax.swing.JButton();
-        jButton16 = new javax.swing.JButton();
-        jButton17 = new javax.swing.JButton();
+        btnupdatestaffreport = new javax.swing.JButton();
+        btndeletestaffaccount = new javax.swing.JButton();
         jLabel45 = new javax.swing.JLabel();
         txtstaffid = new javax.swing.JTextField();
         jLabel47 = new javax.swing.JLabel();
@@ -558,13 +558,23 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel6.add(btnrefresh);
         btnrefresh.setBounds(20, 90, 190, 50);
 
-        jButton16.setText("Update");
-        jPanel6.add(jButton16);
-        jButton16.setBounds(20, 160, 190, 50);
+        btnupdatestaffreport.setText("Update");
+        btnupdatestaffreport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdatestaffreportActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnupdatestaffreport);
+        btnupdatestaffreport.setBounds(20, 160, 190, 50);
 
-        jButton17.setText("Delect Account");
-        jPanel6.add(jButton17);
-        jButton17.setBounds(20, 230, 190, 50);
+        btndeletestaffaccount.setText("Delect Account");
+        btndeletestaffaccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeletestaffaccountActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btndeletestaffaccount);
+        btndeletestaffaccount.setBounds(20, 230, 190, 50);
 
         jpstaffaccount.add(jPanel6);
         jPanel6.setBounds(884, 56, 240, 450);
@@ -1259,6 +1269,54 @@ public class StudentDetails extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tblstaffaccountsMouseClicked
 
+    private void btnupdatestaffreportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdatestaffreportActionPerformed
+        // TODO add your handling code here:
+        
+        // update specific staff data 
+        if(!"".equals(txtstaffid.getText())){
+            try{
+                con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+                
+                String updatestaffinfor = "UPDATE tblteacherdetails set PHONE = '"+txtstaffphone.getText()+"',EMAIL ='"+txtstaffemail.getText()+"',"
+                        + "POSITION = '"+cmbstaffposition.getSelectedItem()+"',ALLOCATEDCLASS = '"+cmballocatedclass.getSelectedItem()+"',"
+                        + "STREAM = '"+cmbstream.getSelectedItem()+"',ACTIVITY = '"+cmballocatedactivity.getSelectedItem()+"',"
+                        + "ACCOUNTCREATABLE = '"+cmbstaffaccountcreatable.getSelectedItem()+"'  WHERE  STAFFID = ?";
+                pst = con.prepareStatement(updatestaffinfor);
+                pst.setString(1 , (String) txtstaffid.getText());
+                pst.executeUpdate();
+                JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Staff Details Updated</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);  
+            }catch(SQLException ex){
+             JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill Staff ID</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btnupdatestaffreportActionPerformed
+
+    private void btndeletestaffaccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeletestaffaccountActionPerformed
+        // TODO add your handling code here:
+        
+        // delete specific staff login creadentials 
+        
+        if(!"".equals(txtstaffid.getText())){
+            try{
+            con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            String deletestaffaccount = "DELETE from tblteacheraccount WHERE  STAFFID = ?";
+            pst = con.prepareStatement(deletestaffaccount);
+            pst.setString(1, (String) txtstaffid.getText());
+            pst.execute();
+             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Staff Deleted</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
+            }catch(SQLException ex){
+                 JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill Staff ID</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
+            
+        }
+    }//GEN-LAST:event_btndeletestaffaccountActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1297,7 +1355,9 @@ public class StudentDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntviewfeestatement;
     private javax.swing.JButton btnaddstaff;
+    private javax.swing.JButton btndeletestaffaccount;
     private javax.swing.JButton btnrefresh;
+    private javax.swing.JButton btnupdatestaffreport;
     private javax.swing.JComboBox<String> cmballocatedactivity;
     private javax.swing.JComboBox<String> cmballocatedclass;
     private javax.swing.JComboBox<String> cmballocatedstream;
@@ -1317,8 +1377,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton16;
-    private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
