@@ -314,6 +314,104 @@ public final class LoginAccounts extends javax.swing.JFrame {
     private void btnctreataccountrequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnctreataccountrequestActionPerformed
         // TODO add your handling code here:
         
+        // check first account aleady exist 
+        
+        try{
+            // check account if it exists in the databasa
+             con = DriverManager.getConnection(url,username,password);
+                       st = con.createStatement();
+                       String selectcheckid = "SELECT * FROM tblteacheraccount WHERE STAFFID = ?";
+                       pst = con.prepareStatement(selectcheckid);
+                       pst.setString(1, (String) txtidnumberrequest.getText());
+                       rs = pst.executeQuery();
+                       if(rs.next()){
+                 
+            
+              String checkid = rs.getString("STAFFID");
+              // now the account exist in the database direct to login page
+                           if(checkid == null ? txtidnumberrequest.getText() == null : checkid.equals(txtidnumberrequest.getText())){
+                               JOptionPane.showMessageDialog(null, "You Already have account Login Instead","School",JOptionPane.WARNING_MESSAGE);
+                               // clear all the field and direct to log in
+                               txtidnumberrequest.setText("");
+                               txtfirstnamerequest.setText("");
+                               txtusernamerequest.setText("");
+                               txtregistrationpassword2.setText("");
+                               txtregistrationpassword1.setText("");
+                               txtmiddlenamerequest.setText("");
+                               txtlastnamerequest.setText("");
+                                jplogin.setVisible(true);
+                                jpcreateaccount.setVisible(false);
+                           }
+                       }else{
+                           // account not found in the database proceed to account creation
+                           
+                           if(!"".equals(txtfirstnamerequest.getText()) && !"".equals(txtidnumberrequest.getText()) && !"".equals(txtusernamerequest.getText())){
+               if( txtregistrationpassword1.getText().equals(txtregistrationpassword2.getText())) {
+            
+                   try{
+                       con = DriverManager.getConnection(url,username,password);
+                       st = con.createStatement();
+                       String selectstaffid = "SELECT * FROM tblteacherdetails WHERE STAFFID = ?";
+                       pst = con.prepareStatement(selectstaffid);
+                       pst.setString(1, (String) txtidnumberrequest.getText());
+                       rs = pst.executeQuery();
+                       if(rs.next()){
+                           String Accountallowed = rs.getString("ACCOUNTCREATABLE");
+                         
+                            String sqlupdateteacher = "UPDATE tblteacherdetails set FIRSTNAME ='"+txtfirstnamerequest.getText()+"',"
+                                    + "MIDDLENAME='"+txtmiddlenamerequest.getText()+"',"
+                    + "LASTNAME='"+txtlastnamerequest.getText()+"' WHERE STAFFID = ?";
+             pst = con.prepareStatement(sqlupdateteacher);
+            pst.setString(1, txtidnumberrequest.getText());
+              pst.executeUpdate();
+            
+            // insert login credentials
+            
+                
+               JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Welcoame to the ERP </i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+   
+            String insertteacheraccount= "INSERT into tblteacheraccount (STAFFID,USERNAME,PASSWORD,FIRSTNAME) VALUES ('"+txtidnumberrequest.getText()+"',"
+                    + "'"+txtusernamerequest.getText()+"','"+txtregistrationpassword1.getText()+"','"+txtfirstnamerequest.getText()+"')";
+           st.execute(insertteacheraccount);
+                   JOptionPane.showConfirmDialog(null, "New " + Accountallowed + " Account created View it ?","School",JOptionPane.YES_NO_OPTION); 
+                     // clear the form and direct to account
+                               txtidnumberrequest.setText("");
+                               txtfirstnamerequest.setText("");
+                               txtusernamerequest.setText("");
+                               txtregistrationpassword2.setText("");
+                               txtregistrationpassword1.setText("");
+                               txtmiddlenamerequest.setText("");
+                               txtlastnamerequest.setText("");
+                               // call respective account 
+                     
+                       
+                       }else{
+               JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Not allowed to create account Contact Admin</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+  
+                       }
+                       
+                       
+                   }catch( HeadlessException | SQLException ex){
+               JOptionPane.showMessageDialog(null, ex,"School",JOptionPane.WARNING_MESSAGE); 
+
+                   }
+         }else{
+              JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Password do not match</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+         }
+        
+        }else{
+             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill required details</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+        }
+                               
+                           }
+            
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,"error " + ex , "School",JOptionPane.WARNING_MESSAGE); 
+        }
+        
+        
+        /*
+        
         if(!"".equals(txtfirstnamerequest.getText()) && !"".equals(txtidnumberrequest.getText()) && !"".equals(txtusernamerequest.getText())){
                if( txtregistrationpassword1.getText().equals(txtregistrationpassword2.getText())) {
             
@@ -326,27 +424,22 @@ public final class LoginAccounts extends javax.swing.JFrame {
                        rs = pst.executeQuery();
                        if(rs.next()){
                            String Accountallowed = rs.getString("ACCOUNTCREATABLE");
-                           
+                         
                             String sqlupdateteacher = "UPDATE tblteacherdetails set FIRSTNAME ='"+txtfirstnamerequest.getText()+"',"
                                     + "MIDDLENAME='"+txtmiddlenamerequest.getText()+"',"
                     + "LASTNAME='"+txtlastnamerequest.getText()+"' WHERE STAFFID = ?";
              pst = con.prepareStatement(sqlupdateteacher);
             pst.setString(1, txtidnumberrequest.getText());
-            pst.executeUpdate();
+            //pst.executeUpdate();
             
             // insert login credentials
             
-            
-            
-                           
-               JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Welcoame to the ERP </i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
-                 
-               
                 
-            
+               JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Welcoame to the ERP </i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
+   
             String insertteacheraccount= "INSERT into tblteacheraccount (STAFFID,USERNAME,PASSWORD,FIRSTNAME) VALUES ('"+txtidnumberrequest.getText()+"',"
                     + "'"+txtusernamerequest.getText()+"','"+txtregistrationpassword1.getText()+"','"+txtfirstnamerequest.getText()+"')";
-            st.execute(insertteacheraccount);
+           // st.execute(insertteacheraccount);
                    JOptionPane.showConfirmDialog(null, "New " + Accountallowed + " Account created View it ?","School",JOptionPane.YES_NO_OPTION); 
                      
                        
@@ -367,7 +460,7 @@ public final class LoginAccounts extends javax.swing.JFrame {
         }else{
              JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Fill required details</i></HTML>","School",JOptionPane.WARNING_MESSAGE); 
         }
-        
+        */
       
     }//GEN-LAST:event_btnctreataccountrequestActionPerformed
 
