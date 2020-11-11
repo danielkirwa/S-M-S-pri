@@ -537,6 +537,11 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel6.setLayout(null);
 
         jButton13.setText("Delect Staff");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton13);
         jButton13.setBounds(20, 300, 190, 50);
 
@@ -1306,8 +1311,16 @@ public class StudentDetails extends javax.swing.JFrame {
             String deletestaffaccount = "DELETE from tblteacheraccount WHERE  STAFFID = ?";
             pst = con.prepareStatement(deletestaffaccount);
             pst.setString(1, (String) txtstaffid.getText());
-            pst.execute();
-             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Staff Deleted</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
+            // confirm deletion of account 
+            int confirmation = JOptionPane.showConfirmDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Confirm staff deletion</i></HTML>" , "School" , JOptionPane.YES_NO_OPTION);
+            if(confirmation == JOptionPane.YES_OPTION){
+                pst.execute();
+                JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Staff Deleted</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
+            }else if(confirmation == JOptionPane.NO_OPTION){
+                JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Delete operation canceled</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+             //JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Staff Deleted</i></HTML>","School",JOptionPane.WARNING_MESSAGE);
             }catch(SQLException ex){
                  JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
             }
@@ -1316,6 +1329,19 @@ public class StudentDetails extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btndeletestaffaccountActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // TODO add your handling code here:
+        if(!"".equals(txtstaffid.getText())){
+            try{
+                con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+                String deletestaff = "";
+            }catch(SQLException ex){
+                JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
