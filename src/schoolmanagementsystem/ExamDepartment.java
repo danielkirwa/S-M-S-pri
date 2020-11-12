@@ -1048,6 +1048,7 @@ public class ExamDepartment extends javax.swing.JFrame {
             int summath = 0 , sumenglish = 0, sumkiswahili = 0, sumscience = 0, sumsocial = 0;
             double avgmath = 0 , avgenglish = 0, avgkiswahili = 0, avgscience = 0, avgsocial = 0;
             int size = 0;
+            int maxmath = 0;
            
             
                 con = DriverManager.getConnection(url,username,password);
@@ -1079,9 +1080,10 @@ public class ExamDepartment extends javax.swing.JFrame {
              // avarage for maths     
       int [] matharray= {maths};
       //Advanced for loop
+  
       for( int num : matharray) {
           summath = (summath+num);
-          avgmath = summath / size;
+          avgmath = summath / size;   
       }
       
                    // avarage for english    
@@ -1137,7 +1139,7 @@ public class ExamDepartment extends javax.swing.JFrame {
       
             
             
-            System.out.println("avarege of maths is :"+avgmath); 
+            System.out.println("avarege of maths is :"+avgmath + "and the high score is :" + maxmath); 
             System.out.println("avarege of english is :"+avgenglish); 
             //System.out.println("avarege of array elements is:"+size);
         }catch(SQLException ex){
@@ -1147,25 +1149,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         
         
         
-        // Subject graph data
-      /*  DefaultCategoryDataset dcd = new DefaultCategoryDataset(); 
-         dcd.setValue(60, "Mean", "Maths");
-         dcd.setValue(56, "Mean", "English");
-         dcd.setValue(62, "Mean", "Kiswahili");
-         dcd.setValue(59, "Mean", "Science");
-         dcd.setValue(64, "Mean", "Social");
-         
-         JFreeChart barGraph = ChartFactory.createBarChart("Subject Mean Score", "Subjects", "Mean Mark", dcd, PlotOrientation.VERTICAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
-         
-         CategoryPlot myPlot =  barGraph.getCategoryPlot();
-         myPlot.setRangeGridlinePaint(Color.BLUE);
-         myPlot.setBackgroundPaint(Color.WHITE);
-         
-         
-         ChartPanel myChart = new ChartPanel(barGraph);
-         jpsubjectgraph.removeAll();
-         jpsubjectgraph.add(myChart, BorderLayout.CENTER);
-         jpsubjectgraph.validate();*/
+     
          
          // Class Treand
          
