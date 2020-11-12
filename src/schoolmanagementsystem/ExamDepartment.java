@@ -112,6 +112,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jcexamyear = new com.toedter.calendar.JYearChooser();
+        jButton4 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblmarksentry = new javax.swing.JTable();
         jpresults = new javax.swing.JPanel();
@@ -173,7 +174,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jYearChooser1 = new com.toedter.calendar.JYearChooser();
         jLabel11 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jButton5 = new javax.swing.JButton();
+        btnviewanalysis = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
@@ -266,7 +267,7 @@ public class ExamDepartment extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton1);
-        jButton1.setBounds(530, 40, 280, 40);
+        jButton1.setBounds(530, 40, 180, 40);
 
         jButton2.setText("Upload New Marks");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -275,9 +276,13 @@ public class ExamDepartment extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(830, 40, 250, 40);
+        jButton2.setBounds(910, 40, 170, 40);
         jPanel2.add(jcexamyear);
         jcexamyear.setBounds(80, 20, 120, 20);
+
+        jButton4.setText("Updte Marks");
+        jPanel2.add(jButton4);
+        jButton4.setBounds(720, 40, 180, 40);
 
         jpnewmarks.add(jPanel2);
         jPanel2.setBounds(6, 16, 1100, 100);
@@ -572,14 +577,14 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel4.add(jComboBox2);
         jComboBox2.setBounds(310, 20, 100, 20);
 
-        jButton5.setText("View Analysis");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        btnviewanalysis.setText("View Analysis");
+        btnviewanalysis.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                btnviewanalysisActionPerformed(evt);
             }
         });
-        jPanel4.add(jButton5);
-        jButton5.setBounds(60, 90, 170, 30);
+        jPanel4.add(btnviewanalysis);
+        btnviewanalysis.setBounds(60, 90, 170, 30);
 
         jButton6.setText("Print Analysis");
         jPanel4.add(jButton6);
@@ -1034,13 +1039,15 @@ public class ExamDepartment extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void btnviewanalysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewanalysisActionPerformed
         // TODO add your handling code here:
         
         // SELECT DATA FOR DISPLAY 
         
         try{
-            
+            int summath = 0 , sumenglish = 0, sumkiswahili = 0, sumscience = 0, sumsocial = 0;
+            double avgmath = 0 , avgenglish = 0, avgkiswahili = 0, avgscience = 0, avgsocial = 0;
+            int size = 0;
            
             
                 con = DriverManager.getConnection(url,username,password);
@@ -1052,19 +1059,87 @@ public class ExamDepartment extends javax.swing.JFrame {
                   
             while(rs.next()){
                
-               String  studentclass =  rs.getString("CLASS");
+               String  studentclass = rs.getString("CLASS");
                String  stream =  rs.getString("SERIES");
-               String maths =  rs.getString("MATHS");
-               String english =  rs.getString("ENGLISH");
-               String kiswahili =  rs.getString("KISWAHILI");
-               String science =  rs.getString("SCIENCE");
-               String social =  rs.getString("SOCIAL");
-               String total =  rs.getString("TOTALMARK");
-               String avarage =  rs.getString("AVARAGE");
+               int maths =  rs.getInt("MATHS");
+               int english =  rs.getInt("ENGLISH");
+               int kiswahili =  rs.getInt("KISWAHILI");
+               int science =  rs.getInt("SCIENCE");
+               int social =  rs.getInt("SOCIAL");
+               int total =  rs.getInt("TOTALMARK");
+               int avarage =  rs.getInt("AVARAGE");
                
                //ARRAY DATA TO DISPLAY LOOP  TO FIND THE AVARAGE
+               
+               String tablemaths []= {studentclass};
+               DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
+               dtmdata.addRow(tablemaths);
+             size = dtmdata.getRowCount();
+               
+             // avarage for maths     
+      int [] matharray= {maths};
+      //Advanced for loop
+      for( int num : matharray) {
+          summath = (summath+num);
+          avgmath = summath / size;
+      }
+      
+                   // avarage for english    
+      int [] englisharray= {english};
+      //Advanced for loop
+      for( int num : englisharray) {
+          sumenglish = (sumenglish+num);
+          avgenglish = sumenglish / size;
+      }
+                   // avarage for kiswahili   
+      int [] kiswahiliarray= {kiswahili};
+      //Advanced for loop
+      for( int num : kiswahiliarray) {
+          sumkiswahili = (sumkiswahili+num);
+          avgkiswahili = sumkiswahili / size;
+      }
+                   // avarage for science    
+      int [] sciencearray= {science};
+      //Advanced for loop
+      for( int num : sciencearray) {
+          sumscience = (sumscience+num);
+          avgscience = sumscience / size;
+      }
+                   // avarage for social    
+      int [] socialarray= {social};
+      //Advanced for loop
+      for( int num : socialarray) {
+          sumsocial = (sumsocial+num);
+          avgsocial = sumsocial / size;
+      }
+      }
             
-            }
+             // Subject graph data
+        DefaultCategoryDataset dcd = new DefaultCategoryDataset(); 
+         dcd.setValue(avgmath, "Mean", "Maths");
+         dcd.setValue(avgenglish, "Mean", "English");
+         dcd.setValue(avgkiswahili, "Mean", "Kiswahili");
+         dcd.setValue(avgscience, "Mean", "Science");
+         dcd.setValue(avgsocial, "Mean", "Social");
+         
+         JFreeChart barGraph = ChartFactory.createBarChart("Subject Mean Score", "Subjects", "Mean Mark", dcd, PlotOrientation.VERTICAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
+         
+         CategoryPlot myPlot =  barGraph.getCategoryPlot();
+         myPlot.setRangeGridlinePaint(Color.BLUE);
+         myPlot.setBackgroundPaint(Color.WHITE);
+         
+         
+         ChartPanel myChart = new ChartPanel(barGraph);
+         jpsubjectgraph.removeAll();
+         jpsubjectgraph.add(myChart, BorderLayout.CENTER);
+         jpsubjectgraph.validate();
+            
+      
+            
+            
+            System.out.println("avarege of maths is :"+avgmath); 
+            System.out.println("avarege of english is :"+avgenglish); 
+            //System.out.println("avarege of array elements is:"+size);
         }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
         }
@@ -1073,7 +1148,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         
         
         // Subject graph data
-        DefaultCategoryDataset dcd = new DefaultCategoryDataset(); 
+      /*  DefaultCategoryDataset dcd = new DefaultCategoryDataset(); 
          dcd.setValue(60, "Mean", "Maths");
          dcd.setValue(56, "Mean", "English");
          dcd.setValue(62, "Mean", "Kiswahili");
@@ -1090,7 +1165,7 @@ public class ExamDepartment extends javax.swing.JFrame {
          ChartPanel myChart = new ChartPanel(barGraph);
          jpsubjectgraph.removeAll();
          jpsubjectgraph.add(myChart, BorderLayout.CENTER);
-         jpsubjectgraph.validate();
+         jpsubjectgraph.validate();*/
          
          // Class Treand
          
@@ -1146,7 +1221,7 @@ public class ExamDepartment extends javax.swing.JFrame {
           jpclasschart.validate();
          
          
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_btnviewanalysisActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
@@ -1334,6 +1409,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnsearchstudentresults;
     private javax.swing.JButton btnselectresults;
+    private javax.swing.JButton btnviewanalysis;
     private javax.swing.JComboBox<String> cmbclass;
     private javax.swing.JComboBox<String> cmbclassresults;
     private javax.swing.JComboBox<String> cmbexamseries;
@@ -1341,7 +1417,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
