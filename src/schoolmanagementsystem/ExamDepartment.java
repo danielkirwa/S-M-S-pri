@@ -159,7 +159,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
-        jPanel8 = new javax.swing.JPanel();
+        jpstudentmarksgraph = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         lbselectedstudentadmi = new javax.swing.JLabel();
         lbselectedstudentfullname = new javax.swing.JLabel();
@@ -497,19 +497,11 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel7.add(jLabel35);
         jLabel35.setBounds(250, 230, 160, 14);
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 280, Short.MAX_VALUE)
-        );
-
-        jPanel7.add(jPanel8);
-        jPanel8.setBounds(570, 90, 460, 280);
+        jpstudentmarksgraph.setBackground(new java.awt.Color(255, 255, 255));
+        jpstudentmarksgraph.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jpstudentmarksgraph.setLayout(new java.awt.BorderLayout());
+        jPanel7.add(jpstudentmarksgraph);
+        jpstudentmarksgraph.setBounds(410, 30, 660, 340);
 
         jLabel39.setText("FULL NAME :");
         jPanel7.add(jLabel39);
@@ -1139,8 +1131,8 @@ public class ExamDepartment extends javax.swing.JFrame {
       
             
             
-            System.out.println("avarege of maths is :"+avgmath + "and the high score is :" + maxmath); 
-            System.out.println("avarege of english is :"+avgenglish); 
+            //System.out.println("avarege of maths is :"+avgmath + "and the high score is :" + maxmath); 
+           // System.out.println("avarege of english is :"+avgenglish); 
             //System.out.println("avarege of array elements is:"+size);
         }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
@@ -1343,9 +1335,36 @@ public class ExamDepartment extends javax.swing.JFrame {
                lbselectedstudentavarage.setText(avarage);
                lbselectedstudentclass.setText("Class  :  " + studentclass); 
                
+               // graph to display data
+               DefaultCategoryDataset dcs = new DefaultCategoryDataset();
+               dcs.setValue(66, "Avarege", "mark");
+               dcs.setValue(555, "Total", "mark");
+               
+               JFreeChart studentbargraph = ChartFactory.createBarChart("Student data", "Category", "Marks", dcs, PlotOrientation.HORIZONTAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
+               
+                CategoryPlot studentbar = studentbargraph.getCategoryPlot();
+          studentbar.setRangeGridlinePaint(Color.MAGENTA);
+          studentbar.setBackgroundPaint(Color.WHITE);
+          
+          ChartPanel studentgraph = new ChartPanel(studentbargraph);
+          jpstudentmarksgraph.removeAll();
+          jpstudentmarksgraph.add(studentgraph, BorderLayout.CENTER);
+          jpstudentmarksgraph.validate();
+               
                
             }else{
                 JOptionPane.showMessageDialog(null,"STUDENT NOT FOUND","School",JOptionPane.INFORMATION_MESSAGE);
+                
+                 lbselectedstudentadmi.setText("");
+               lbselectedstudentfullname.setText("");
+               txtselectedstudentmaths.setText("");
+               txtselectedstudentenglish.setText("");
+               txtselectedstudentkiswahili.setText("");
+               txtselectedstudentscience.setText("");
+               txtselectedstudentsocial.setText("");
+               lbselectedstudenttotalscore.setText("");
+               lbselectedstudentavarage.setText("");
+               lbselectedstudentclass.setText("Class  :  " + "");
             }
         }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
@@ -1463,7 +1482,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1483,6 +1501,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpnewmarks;
     private javax.swing.JPanel jpresults;
     private javax.swing.JPanel jpstudentmarks;
+    private javax.swing.JPanel jpstudentmarksgraph;
     private javax.swing.JPanel jpsubjectanalysis;
     private javax.swing.JPanel jpsubjectgraph;
     private javax.swing.JPanel jptreadgraph;
