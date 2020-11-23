@@ -61,6 +61,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     DefaultTableModel stm = new DefaultTableModel();
     stm.addColumn("NEMIS/ADMI");
     stm.addColumn("Student Name");
+    stm.addColumn("STREAM");
     stm.addColumn("MATHS");
     stm.addColumn("ENGLISH");
     stm.addColumn("KISWAHILi");
@@ -122,7 +123,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         cmbclassresults = new javax.swing.JComboBox<>();
-        jComboBox6 = new javax.swing.JComboBox<>();
+        cmbselectetermmarks = new javax.swing.JComboBox<>();
         jComboBox7 = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         btnselectresults = new javax.swing.JButton();
@@ -335,9 +336,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel3.add(cmbclassresults);
         cmbclassresults.setBounds(100, 60, 170, 20);
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jPanel3.add(jComboBox6);
-        jComboBox6.setBounds(420, 20, 180, 20);
+        cmbselectetermmarks.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        jPanel3.add(cmbselectetermmarks);
+        cmbselectetermmarks.setBounds(420, 20, 180, 20);
 
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
         jPanel3.add(jComboBox7);
@@ -913,6 +914,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     
     stm.addColumn("ADMI/NEMIS");
     stm.addColumn("STUDENT NAME");
+    stm.addColumn("STREAM");
     stm.addColumn("MATHS");
     stm.addColumn("ENGLISH");
     stm.addColumn("KISWAHILI");
@@ -943,6 +945,8 @@ public class ExamDepartment extends javax.swing.JFrame {
                String name = rs.getString("FIRSTNAME");
                String name2 = rs.getString("MIDDLENAME");
                String name3 = rs.getString("LASTNAME");
+               String studentclass = rs.getString("CLASS");
+               String Stream = rs.getString("STREAM");
                String maths = "";
                String english = "";
                String kiswahili = "";
@@ -950,7 +954,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                String social = "";
                
                //ARRAY DATA TO DISPLAY
-               String tbldata []= {admin,name + " " + name2 + " " + name3,maths,english,kiswahili,science,social};
+               String tbldata []= {admin,name + " " + name2 + " " + name3,studentclass + " " +Stream,maths,english,kiswahili,science,social};
                DefaultTableModel dtmdata = (DefaultTableModel)tblmarksentry.getModel();
                dtmdata.addRow(tbldata);
             }
@@ -977,18 +981,19 @@ public class ExamDepartment extends javax.swing.JFrame {
 
                      String addnewmarks = "Insert into tblexams (REGISTRATIONNUMBER,FNAME,CLASS,YEAR,TERM,SERIES,MATHS,ENGLISH,KISWAHILI,"
                              + "SCIENCE,SOCIAL,TOTALMARK,AVARAGE) "
-                             + "values (?,?,'"+cmbclass.getSelectedItem()+"','"+jcexamyear.getYear()+"','"+cmbexamterm.getSelectedItem()+"',"
+                             + "values (?,?,?,'"+jcexamyear.getYear()+"','"+cmbexamterm.getSelectedItem()+"',"
                              + "'"+cmbexamseries.getSelectedItem()+"',?,?,?,?,?,?,?)";
                            pst = con.prepareStatement(addnewmarks);
                          for(int row = 0; row<rows; row++)
                  {
                               String fname = (String)tblmarksentry.getValueAt(row, 0);
                               String nemis = (String)tblmarksentry.getValueAt(row, 1);
-                              String maths = (String)tblmarksentry.getValueAt(row, 2);
-                              String english = (String)tblmarksentry.getValueAt(row, 3);
-                              String kiswahili = (String)tblmarksentry.getValueAt(row, 4);
-                              String science = (String)tblmarksentry.getValueAt(row, 5);
-                              String social = (String)tblmarksentry.getValueAt(row, 6);
+                              String stream = (String)tblmarksentry.getValueAt(row, 2);
+                              String maths = (String)tblmarksentry.getValueAt(row, 3);
+                              String english = (String)tblmarksentry.getValueAt(row, 4);
+                              String kiswahili = (String)tblmarksentry.getValueAt(row, 5);
+                              String science = (String)tblmarksentry.getValueAt(row, 6);
+                              String social = (String)tblmarksentry.getValueAt(row, 7);
                               
                               // COMPUTE MARKS 
                               
@@ -1004,13 +1009,14 @@ public class ExamDepartment extends javax.swing.JFrame {
                               avr = total /5 ;
                         pst.setString(1, fname);
                         pst.setString(2, nemis);
-                        pst.setString(3, maths);
-                        pst.setString(4, english);
-                        pst.setString(5, kiswahili);
-                        pst.setString(6, science);
-                        pst.setString(7, social);
-                        pst.setInt(8, total);
-                        pst.setDouble(9, avr);
+                        pst.setString(3, stream);
+                        pst.setString(4, maths);
+                        pst.setString(5, english);
+                        pst.setString(6, kiswahili);
+                        pst.setString(7, science);
+                        pst.setString(8, social);
+                        pst.setInt(9, total);
+                        pst.setDouble(10, avr);
 
                        pst.addBatch();
                  }
@@ -1264,9 +1270,10 @@ public class ExamDepartment extends javax.swing.JFrame {
             
                 con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? ";
+            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? && TERM = ?";
             pst = con.prepareStatement(selectecar);
             pst.setString(1, (String) cmbclassresults.getSelectedItem());
+            pst.setString(2, (String) cmbselectetermmarks.getSelectedItem());
             rs = pst.executeQuery();
                   
             while(rs.next()){
@@ -1417,6 +1424,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbclassresults;
     private javax.swing.JComboBox<String> cmbexamseries;
     private javax.swing.JComboBox<String> cmbexamterm;
+    private javax.swing.JComboBox<String> cmbselectetermmarks;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1432,7 +1440,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
