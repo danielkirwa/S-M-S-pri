@@ -1295,7 +1295,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                dtmdata.addRow(tbldata);
             }
         }catch(SQLException ex){
-        JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(null,"Error " + ex,"School ",JOptionPane.WARNING_MESSAGE);
         }
         
     }//GEN-LAST:event_btnselectresultsActionPerformed
