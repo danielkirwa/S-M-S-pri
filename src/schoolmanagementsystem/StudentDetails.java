@@ -101,7 +101,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtsearchstudent = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        btnadminserachstudebt = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -134,7 +134,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         txtsearchsutentfee = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
+        btnserachfeestudent = new javax.swing.JButton();
         lbtotalamount = new javax.swing.JLabel();
         lbpaidamount = new javax.swing.JLabel();
         lbcurrentbalance = new javax.swing.JLabel();
@@ -292,9 +292,14 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(txtsearchstudent);
         txtsearchstudent.setBounds(230, 30, 180, 20);
 
-        jButton4.setText("Search");
-        jpaddstudent.add(jButton4);
-        jButton4.setBounds(450, 20, 150, 30);
+        btnadminserachstudebt.setText("Search");
+        btnadminserachstudebt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadminserachstudebtActionPerformed(evt);
+            }
+        });
+        jpaddstudent.add(btnadminserachstudebt);
+        btnadminserachstudebt.setBounds(450, 20, 150, 40);
 
         jLabel6.setText("__________________________________________________________________________________________________________________________________________________________________________");
         jpaddstudent.add(jLabel6);
@@ -414,9 +419,14 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2.add(txtsearchsutentfee);
         txtsearchsutentfee.setBounds(130, 10, 130, 20);
 
-        jButton5.setText("Search");
-        jPanel2.add(jButton5);
-        jButton5.setBounds(290, 10, 120, 30);
+        btnserachfeestudent.setText("Search");
+        btnserachfeestudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnserachfeestudentActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnserachfeestudent);
+        btnserachfeestudent.setBounds(290, 10, 120, 30);
 
         lbtotalamount.setText("Total Amount = 1000");
         jPanel2.add(lbtotalamount);
@@ -1343,6 +1353,99 @@ public class StudentDetails extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton13ActionPerformed
 
+    private void btnadminserachstudebtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadminserachstudebtActionPerformed
+        // TODO add your handling code here:
+        if("".equals(txtsearchstudent.getText())){
+            JOptionPane.showMessageDialog(null,"Enter Student Registration " ,"School",JOptionPane.WARNING_MESSAGE);
+        }else{
+         try{
+             
+             con = DriverManager.getConnection(url,username,password);
+             st = con.createStatement();
+             String selectestudent = "SELECT * FROM tblstudentdetails WHERE REGISTRATIONNUMBER = ?";
+             pst = con.prepareStatement(selectestudent);
+             pst.setString(1, (String ) txtsearchstudent.getText());
+             rs = pst.executeQuery();
+             
+             if(rs.next()){
+                 String regno = rs.getString("REGISTRATIONNUMBER");
+                 String firstname = rs.getString("FIRSTNAME");
+                 String middlename = rs.getString("MIDDLENAME");
+                 String lastname = rs.getString("LASTNAME");
+                 String gender = rs.getString("GENDER");
+                 String yob = rs.getString("YOB");
+                 String studentclass = rs.getString("CLASS");
+                 String stream = rs.getString("STREAM");
+                 String county = rs.getString("COUNTY");
+                 String subcounty = rs.getString("SUBCOUNTY");
+                 String ward = rs.getString("WARD");
+                 
+                 // set date to the textfields
+                 int yearofbirth = Integer.parseInt(yob);
+                 txtsearchstudent.setText(regno);
+                 txtfname.setText(firstname);
+                 txtmname.setText(middlename);
+                 txtlname.setText(lastname);
+                 jcyear.setYear(yearofbirth);
+                 cmbgender.setSelectedItem(gender);
+                 cmbcounty.setSelectedItem(county);
+                 cmbsubcounty.setSelectedItem(subcounty);
+                 cmbward.setSelectedItem(ward);
+                 cmbclass.setSelectedItem(studentclass);
+                 cmbstream.setSelectedItem(stream);
+              
+             }else{
+                 JOptionPane.showMessageDialog(null,"Studenr Not Found" ,"School",JOptionPane.WARNING_MESSAGE);
+             }
+             
+         }catch(SQLException ex){
+             JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+         }
+        }
+        
+    }//GEN-LAST:event_btnadminserachstudebtActionPerformed
+
+    private void btnserachfeestudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnserachfeestudentActionPerformed
+        // TODO add your handling code here:
+        
+        if("".equals(txtsearchsutentfee.getText())){
+            JOptionPane.showMessageDialog(null,"Enter student Registration" ,"School",JOptionPane.WARNING_MESSAGE); 
+        }else{
+            try{
+                 con = DriverManager.getConnection(url,username,password);
+             st = con.createStatement();
+             String selectestudent = "SELECT * FROM tblfeepayment WHERE REGISTRATIONNUMBER = ?";
+             pst = con.prepareStatement(selectestudent);
+             pst.setString(1, (String ) txtsearchsutentfee.getText());
+             rs = pst.executeQuery();
+             
+             if (rs.next()){
+                 String regno = rs.getString("REGISTRATIONNUMBER");
+                 String firstname = rs.getString("FIRSTNAME");
+                 String middlename = rs.getString("MIDDLENAME");
+                 String lastname = rs.getString("LASTNAME");
+                 String total = rs.getString("TOTAL");
+                 String piad = rs.getString("PAID");
+                 String balance = rs.getString("BALANCE");
+                 
+                 // SET DATA  FOR DISPLAY
+                 
+                 txtsearchsutentfee.setText(regno);
+                 lbtotalamount.setText(" Total Amount : " + total);
+                 lbpaidamount.setText(" Amount Paid : " + piad);
+                 lbcurrentbalance.setText(" Current balance : " + balance);
+                 lbstudentfullname.setText(firstname + " " + middlename + " " + lastname);
+                 
+                 
+             }else{
+                 JOptionPane.showMessageDialog(null,"Student Not Found","School",JOptionPane.WARNING_MESSAGE); 
+             }
+            }catch(SQLException ex){
+               JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
+            }
+        }
+    }//GEN-LAST:event_btnserachfeestudentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1381,8 +1484,10 @@ public class StudentDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntviewfeestatement;
     private javax.swing.JButton btnaddstaff;
+    private javax.swing.JButton btnadminserachstudebt;
     private javax.swing.JButton btndeletestaffaccount;
     private javax.swing.JButton btnrefresh;
+    private javax.swing.JButton btnserachfeestudent;
     private javax.swing.JButton btnupdatestaffreport;
     private javax.swing.JComboBox<String> cmballocatedactivity;
     private javax.swing.JComboBox<String> cmballocatedclass;
@@ -1405,8 +1510,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
