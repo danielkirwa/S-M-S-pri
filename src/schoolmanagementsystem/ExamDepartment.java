@@ -61,6 +61,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     DefaultTableModel stm = new DefaultTableModel();
     stm.addColumn("NEMIS/ADMI");
     stm.addColumn("Student Name");
+    stm.addColumn("CLASS");
     stm.addColumn("STREAM");
     stm.addColumn("MATHS");
     stm.addColumn("ENGLISH");
@@ -914,6 +915,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     
     stm.addColumn("ADMI/NEMIS");
     stm.addColumn("STUDENT NAME");
+    stm.addColumn("CLASS");
     stm.addColumn("STREAM");
     stm.addColumn("MATHS");
     stm.addColumn("ENGLISH");
@@ -954,7 +956,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                String social = "";
                
                //ARRAY DATA TO DISPLAY
-               String tbldata []= {admin,name + " " + name2 + " " + name3,studentclass + " " +Stream,maths,english,kiswahili,science,social};
+               String tbldata []= {admin,name + " " + name2 + " " + name3,studentclass,Stream,maths,english,kiswahili,science,social};
                DefaultTableModel dtmdata = (DefaultTableModel)tblmarksentry.getModel();
                dtmdata.addRow(tbldata);
             }
@@ -979,21 +981,22 @@ public class ExamDepartment extends javax.swing.JFrame {
                            st = con.createStatement();
                            con.setAutoCommit(false);
 
-                     String addnewmarks = "Insert into tblexams (REGISTRATIONNUMBER,FNAME,CLASS,YEAR,TERM,SERIES,MATHS,ENGLISH,KISWAHILI,"
+                     String addnewmarks = "Insert into tblexams (REGISTRATIONNUMBER,FNAME,CLASS,STREAM,YEAR,TERM,SERIES,MATHS,ENGLISH,KISWAHILI,"
                              + "SCIENCE,SOCIAL,TOTALMARK,AVARAGE) "
-                             + "values (?,?,?,'"+jcexamyear.getYear()+"','"+cmbexamterm.getSelectedItem()+"',"
+                             + "values (?,?,?,?,'"+jcexamyear.getYear()+"','"+cmbexamterm.getSelectedItem()+"',"
                              + "'"+cmbexamseries.getSelectedItem()+"',?,?,?,?,?,?,?)";
                            pst = con.prepareStatement(addnewmarks);
                          for(int row = 0; row<rows; row++)
                  {
                               String fname = (String)tblmarksentry.getValueAt(row, 0);
                               String nemis = (String)tblmarksentry.getValueAt(row, 1);
-                              String stream = (String)tblmarksentry.getValueAt(row, 2);
-                              String maths = (String)tblmarksentry.getValueAt(row, 3);
-                              String english = (String)tblmarksentry.getValueAt(row, 4);
-                              String kiswahili = (String)tblmarksentry.getValueAt(row, 5);
-                              String science = (String)tblmarksentry.getValueAt(row, 6);
-                              String social = (String)tblmarksentry.getValueAt(row, 7);
+                              String studentclass = (String)tblmarksentry.getValueAt(row, 2);
+                              String stream = (String)tblmarksentry.getValueAt(row, 3);
+                              String maths = (String)tblmarksentry.getValueAt(row, 4);
+                              String english = (String)tblmarksentry.getValueAt(row, 5);
+                              String kiswahili = (String)tblmarksentry.getValueAt(row, 6);
+                              String science = (String)tblmarksentry.getValueAt(row, 7);
+                              String social = (String)tblmarksentry.getValueAt(row, 8);
                               
                               // COMPUTE MARKS 
                               
@@ -1009,14 +1012,15 @@ public class ExamDepartment extends javax.swing.JFrame {
                               avr = total /5 ;
                         pst.setString(1, fname);
                         pst.setString(2, nemis);
-                        pst.setString(3, stream);
-                        pst.setString(4, maths);
-                        pst.setString(5, english);
-                        pst.setString(6, kiswahili);
-                        pst.setString(7, science);
-                        pst.setString(8, social);
-                        pst.setInt(9, total);
-                        pst.setDouble(10, avr);
+                        pst.setString(3, studentclass);
+                        pst.setString(4, stream);
+                        pst.setString(5, maths);
+                        pst.setString(6, english);
+                        pst.setString(7, kiswahili);
+                        pst.setString(8, science);
+                        pst.setString(9, social);
+                        pst.setInt(10, total);
+                        pst.setDouble(11, avr);
 
                        pst.addBatch();
                  }
@@ -1249,6 +1253,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     stm.addColumn("NEMIS/ADMI");
     stm.addColumn("STUDENT NAME");
     stm.addColumn("CLASS");
+    stm.addColumn("STREAM");
     stm.addColumn("SERIES");
     stm.addColumn("MATHS");
     stm.addColumn("ENGLISH");
@@ -1280,6 +1285,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                String name = rs.getString("FNAME");
                String admin = rs.getString("REGISTRATIONNUMBER");
                String  studentclass =  rs.getString("CLASS");
+               String  stream =  rs.getString("STREAM");
                String  series =  rs.getString("SERIES");
                String maths =  rs.getString("MATHS");
                String english =  rs.getString("ENGLISH");
@@ -1290,7 +1296,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                String avarage =  rs.getString("AVARAGE");
                
                //ARRAY DATA TO DISPLAY
-               String tbldata []= {admin,name,studentclass,series,maths,english,kiswahili,science,social,total,avarage,""};
+               String tbldata []= {admin,name,studentclass,stream,series,maths,english,kiswahili,science,social,total,avarage,""};
                DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
                dtmdata.addRow(tbldata);
             }
