@@ -126,10 +126,10 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         cmbclassresults = new javax.swing.JComboBox<>();
         cmbselectetermmarks = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
+        cmbseriesshowresults = new javax.swing.JComboBox<>();
         jButton3 = new javax.swing.JButton();
         btnselectresults = new javax.swing.JButton();
-        jYearChooser2 = new com.toedter.calendar.JYearChooser();
+        jyearshowresults = new com.toedter.calendar.JYearChooser();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblresults = new javax.swing.JTable();
         jpstudentmarks = new javax.swing.JPanel();
@@ -342,9 +342,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel3.add(cmbselectetermmarks);
         cmbselectetermmarks.setBounds(420, 20, 180, 20);
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
-        jPanel3.add(jComboBox7);
-        jComboBox7.setBounds(420, 50, 180, 20);
+        cmbseriesshowresults.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
+        jPanel3.add(cmbseriesshowresults);
+        cmbseriesshowresults.setBounds(420, 50, 180, 20);
 
         jButton3.setText("Print All ");
         jPanel3.add(jButton3);
@@ -358,8 +358,8 @@ public class ExamDepartment extends javax.swing.JFrame {
         });
         jPanel3.add(btnselectresults);
         btnselectresults.setBounds(630, 40, 200, 40);
-        jPanel3.add(jYearChooser2);
-        jYearChooser2.setBounds(100, 20, 170, 20);
+        jPanel3.add(jyearshowresults);
+        jyearshowresults.setBounds(100, 20, 170, 20);
 
         jpresults.add(jPanel3);
         jPanel3.setBounds(10, 20, 1100, 100);
@@ -922,7 +922,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         
         examCode =  examYear + examClass + examTerm + examSeries ;
      
-        System.out.print(examCode);
+        
                  DefaultTableModel stm = new DefaultTableModel();
     
     stm.addColumn("ADMI/NEMIS");
@@ -987,7 +987,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        System.out.print(examCode);
+       
        
                     try{
 
@@ -997,13 +997,14 @@ public class ExamDepartment extends javax.swing.JFrame {
                            st = con.createStatement();
                            con.setAutoCommit(false);
 
-                     String addnewmarks = "Insert into tblexams (REGISTRATIONNUMBER,FNAME,CLASS,STREAM,YEAR,TERM,SERIES,MATHS,ENGLISH,KISWAHILI,"
+                     String addnewmarks = "Insert into tblexams (EXAMCODE,REGISTRATIONNUMBER,FNAME,CLASS,STREAM,YEAR,TERM,SERIES,MATHS,ENGLISH,KISWAHILI,"
                              + "SCIENCE,SOCIAL,TOTALMARK,AVARAGE) "
-                             + "values (?,?,?,?,'"+jcexamyear.getYear()+"','"+cmbexamterm.getSelectedItem()+"',"
+                             + "values (?,?,?,?,?,'"+jcexamyear.getYear()+"','"+cmbexamterm.getSelectedItem()+"',"
                              + "'"+cmbexamseries.getSelectedItem()+"',?,?,?,?,?,?,?)";
                            pst = con.prepareStatement(addnewmarks);
                          for(int row = 0; row<rows; row++)
                  {
+                              String ecode = (String)tblmarksentry.getValueAt(row, 0) + examCode;
                               String fname = (String)tblmarksentry.getValueAt(row, 0);
                               String nemis = (String)tblmarksentry.getValueAt(row, 1);
                               String studentclass = (String)tblmarksentry.getValueAt(row, 2);
@@ -1026,17 +1027,18 @@ public class ExamDepartment extends javax.swing.JFrame {
                               
                               total = math + kis + eng + sci + ss ;
                               avr = total /5 ;
-                        pst.setString(1, fname);
-                        pst.setString(2, nemis);
-                        pst.setString(3, studentclass);
-                        pst.setString(4, stream);
-                        pst.setString(5, maths);
-                        pst.setString(6, english);
-                        pst.setString(7, kiswahili);
-                        pst.setString(8, science);
-                        pst.setString(9, social);
-                        pst.setInt(10, total);
-                        pst.setDouble(11, avr);
+                        pst.setString(1, ecode);
+                        pst.setString(2, fname);
+                        pst.setString(3, nemis);
+                        pst.setString(4, studentclass);
+                        pst.setString(5, stream);
+                        pst.setString(6, maths);
+                        pst.setString(7, english);
+                        pst.setString(8, kiswahili);
+                        pst.setString(9, science);
+                        pst.setString(10, social);
+                        pst.setInt(11, total);
+                        pst.setDouble(12, avr);
 
                        pst.addBatch();
                  }
@@ -1291,10 +1293,12 @@ public class ExamDepartment extends javax.swing.JFrame {
             
                 con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? && TERM = ?";
+            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? && TERM = ? && YEAR = ? && SERIES = ?";
             pst = con.prepareStatement(selectecar);
             pst.setString(1, (String) cmbclassresults.getSelectedItem());
             pst.setString(2, (String) cmbselectetermmarks.getSelectedItem());
+            pst.setString(3, String.valueOf(jyearshowresults.getYear()));
+            pst.setString(4, (String) cmbseriesshowresults.getSelectedItem());
             rs = pst.executeQuery();
                   
             while(rs.next()){
@@ -1447,6 +1451,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbexamseries;
     private javax.swing.JComboBox<String> cmbexamterm;
     private javax.swing.JComboBox<String> cmbselectetermmarks;
+    private javax.swing.JComboBox<String> cmbseriesshowresults;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1462,7 +1467,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
@@ -1515,7 +1519,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private com.toedter.calendar.JYearChooser jYearChooser1;
-    private com.toedter.calendar.JYearChooser jYearChooser2;
     private com.toedter.calendar.JYearChooser jcexamyear;
     private javax.swing.JMenuItem jmclassanalysis;
     private javax.swing.JMenuItem jmlogout;
@@ -1534,6 +1537,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpsubjectanalysis;
     private javax.swing.JPanel jpsubjectgraph;
     private javax.swing.JPanel jptreadgraph;
+    private com.toedter.calendar.JYearChooser jyearshowresults;
     private javax.swing.JLabel lbselectedstudentadmi;
     private javax.swing.JLabel lbselectedstudentavarage;
     private javax.swing.JLabel lbselectedstudentclass;
