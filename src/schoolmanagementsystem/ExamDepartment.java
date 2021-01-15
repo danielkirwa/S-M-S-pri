@@ -41,6 +41,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     String password = "";
     String url = "jdbc:mysql://localhost:3306/schoolmanagement";
     
+     String examCode;
     
     public ExamDepartment() {
         initComponents();
@@ -910,7 +911,18 @@ public class ExamDepartment extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        
+        
+        
+        // CREATE EXAM CODE
+         String examYear = String.valueOf(jcexamyear.getYear()); 
+         String examClass = (String) cmbclass.getSelectedItem();
+         String examTerm = (String) cmbexamterm.getSelectedItem();
+         String examSeries = String.valueOf( cmbexamseries.getSelectedIndex());
+        
+        examCode =  examYear + examClass + examTerm + examSeries ;
      
+        System.out.print(examCode);
                  DefaultTableModel stm = new DefaultTableModel();
     
     stm.addColumn("ADMI/NEMIS");
@@ -959,6 +971,8 @@ public class ExamDepartment extends javax.swing.JFrame {
                String tbldata []= {admin,name + " " + name2 + " " + name3,studentclass,Stream,maths,english,kiswahili,science,social};
                DefaultTableModel dtmdata = (DefaultTableModel)tblmarksentry.getModel();
                dtmdata.addRow(tbldata);
+               
+                
             }
         }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
@@ -972,6 +986,8 @@ public class ExamDepartment extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        
+        System.out.print(examCode);
        
                     try{
 

@@ -98,7 +98,7 @@ public class StudentDetails extends javax.swing.JFrame {
         txtfname = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        btnadmindeletestudent = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtsearchstudent = new javax.swing.JTextField();
         btnadminserachstudebt = new javax.swing.JButton();
@@ -282,9 +282,14 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(jButton2);
         jButton2.setBounds(400, 450, 200, 40);
 
-        jButton3.setText("Delete Student");
-        jpaddstudent.add(jButton3);
-        jButton3.setBounds(730, 450, 250, 40);
+        btnadmindeletestudent.setText("Delete Student");
+        btnadmindeletestudent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnadmindeletestudentActionPerformed(evt);
+            }
+        });
+        jpaddstudent.add(btnadmindeletestudent);
+        btnadmindeletestudent.setBounds(730, 450, 250, 40);
 
         jLabel5.setText("Enter Student NEMIS to search  :");
         jpaddstudent.add(jLabel5);
@@ -1348,6 +1353,7 @@ public class StudentDetails extends javax.swing.JFrame {
                 pst = con.prepareStatement(updatestaffinfor);
                 pst.setString(1 , (String) txtstaffid.getText());
                 pst.executeUpdate();
+                // add validation for update
                 JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Staff Details Updated</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);  
             }catch(SQLException ex){
              JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
@@ -1427,6 +1433,7 @@ public class StudentDetails extends javax.swing.JFrame {
                  String county = rs.getString("COUNTY");
                  String subcounty = rs.getString("SUBCOUNTY");
                  String ward = rs.getString("WARD");
+                 
                  
                  // set date to the textfields
                  int yearofbirth = Integer.parseInt(yob);
@@ -1546,6 +1553,59 @@ public class StudentDetails extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cmbsearchfeestructureActionPerformed
 
+    private void btnadmindeletestudentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnadmindeletestudentActionPerformed
+        // TODO add your handling code here:
+        
+        if("".equals(txtsearchstudent.getText())){
+            JOptionPane.showMessageDialog(null,"Enter Student Admission ","School",JOptionPane.WARNING_MESSAGE); 
+
+        }else{
+            
+            try{
+                con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+               /* String deletestudent = "DELETE from tblstudentdetails WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudent);
+                pst.setString(1, (String) txtsearchstudent.getText());*/
+                
+                // delete parents
+                String deletestudentparents = "DELETE from tblparents WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudentparents);
+                pst.setString(1, (String) txtsearchstudent.getText());
+                
+                // delete feerecords 
+                
+                /*String deletestudentfee = "DELETE from tblfeepayment WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudentfee);
+                pst.setString(1, (String) txtsearchstudent.getText());
+                
+                // delete student exam
+                
+                 String deletestudentexam = "DELETE from tblexams WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudentexam);
+                pst.setString(1, (String) txtsearchstudent.getText());*/
+                
+                int deleteconfirm = JOptionPane.showConfirmDialog(null,"Confirm delete student","School", JOptionPane.YES_NO_OPTION);
+                if(deleteconfirm == JOptionPane.YES_OPTION){
+                   pst.executeUpdate();
+                  int rowAffacted = pst.executeUpdate();
+                   if(rowAffacted == 0){
+                       JOptionPane.showMessageDialog(null , "Student Deleted not","School", JOptionPane.INFORMATION_MESSAGE);
+                   }else{
+                       JOptionPane.showMessageDialog(null , "Student Does NOT exist","School", JOptionPane.WARNING_MESSAGE);
+                   }
+                    
+                }else if(deleteconfirm == JOptionPane.NO_OPTION){
+                    JOptionPane.showConfirmDialog(null , "Deleted oparation cancled","School", JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+            }catch(SQLException ex){
+                  JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
+            }
+        }
+        
+    }//GEN-LAST:event_btnadmindeletestudentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1584,6 +1644,7 @@ public class StudentDetails extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntviewfeestatement;
     private javax.swing.JButton btnaddstaff;
+    private javax.swing.JButton btnadmindeletestudent;
     private javax.swing.JButton btnadminserachstudebt;
     private javax.swing.JButton btnapprovefee;
     private javax.swing.JButton btncreatefeestructure;
@@ -1612,7 +1673,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
