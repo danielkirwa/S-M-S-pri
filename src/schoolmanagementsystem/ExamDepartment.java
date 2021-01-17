@@ -1044,7 +1044,7 @@ public class ExamDepartment extends javax.swing.JFrame {
                  }
           pst.executeBatch();
           con.commit();
-                       JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New marks uploaded</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
+                       JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">New Marks uploaded</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE);
 
         }
           catch(SQLException ex){
