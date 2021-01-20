@@ -510,8 +510,9 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2.add(jPanel3);
         jPanel3.setBounds(500, 0, 570, 170);
 
-        lbstudentfullname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        lbstudentfullname.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lbstudentfullname.setText("Student full name");
+        lbstudentfullname.setToolTipText("Selected student name");
         jPanel2.add(lbstudentfullname);
         lbstudentfullname.setBounds(220, 60, 240, 30);
 
@@ -1528,7 +1529,7 @@ public class StudentDetails extends javax.swing.JFrame {
                  lbtotalamount.setText(total);
                  lbpaidamount.setText( piad);
                  lbcurrentbalance.setText(balance);
-                 lbstudentfullname.setText(firstname + " " + middlename + " " + lastname);
+                 lbstudentfullname.setText(firstname.toUpperCase() + " " + middlename.toUpperCase() + " " + lastname.toUpperCase());
                  
                  
              }else{
