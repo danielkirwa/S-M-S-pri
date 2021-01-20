@@ -139,8 +139,8 @@ public class StudentDetails extends javax.swing.JFrame {
         lbpaidamount = new javax.swing.JLabel();
         lbcurrentbalance = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
+        txtfeeamountpaid = new javax.swing.JTextField();
+        btnaddfeepay = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         cmbselectedfeeclass = new javax.swing.JComboBox<>();
@@ -433,7 +433,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2.add(btnserachfeestudent);
         btnserachfeestudent.setBounds(290, 10, 120, 30);
 
-        lbtotalamount.setText("Total Amount = 1000");
+        lbtotalamount.setText("Total Amount = 0");
         jPanel2.add(lbtotalamount);
         lbtotalamount.setBounds(10, 60, 160, 14);
 
@@ -441,19 +441,24 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2.add(lbpaidamount);
         lbpaidamount.setBounds(10, 100, 160, 14);
 
-        lbcurrentbalance.setText("Fee Balance = 1000");
+        lbcurrentbalance.setText("Fee Balance = 0");
         jPanel2.add(lbcurrentbalance);
         lbcurrentbalance.setBounds(10, 130, 160, 14);
 
         jLabel22.setText("PAY AMOUNT :");
         jPanel2.add(jLabel22);
         jLabel22.setBounds(220, 100, 90, 14);
-        jPanel2.add(jTextField5);
-        jTextField5.setBounds(320, 100, 120, 20);
+        jPanel2.add(txtfeeamountpaid);
+        txtfeeamountpaid.setBounds(320, 100, 120, 20);
 
-        jButton6.setText("ADD PAY");
-        jPanel2.add(jButton6);
-        jButton6.setBounds(230, 130, 180, 30);
+        btnaddfeepay.setText("ADD PAY");
+        btnaddfeepay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnaddfeepayActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnaddfeepay);
+        btnaddfeepay.setBounds(230, 130, 180, 30);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel3.setLayout(null);
@@ -470,7 +475,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel3.add(jLabel24);
         jLabel24.setBounds(20, 60, 80, 14);
 
-        cmbbalancerange.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "All Students", "Unpaid", "Paid", "Cleared", "0" }));
+        cmbbalancerange.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT ALL", "PAIND", "UPAID", "CLEARED" }));
         cmbbalancerange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbbalancerangeActionPerformed(evt);
@@ -965,6 +970,7 @@ public class StudentDetails extends javax.swing.JFrame {
          int yob = jcyear.getYear();
           int studyclass =  Integer.parseInt(cmbclass.getSelectedItem().toString());
           int initialfee = 0;
+          String initialstatus = "UNPAID";
           
            con = DriverManager.getConnection(url,username,password);
              st = con.createStatement();
@@ -986,9 +992,9 @@ public class StudentDetails extends javax.swing.JFrame {
              // inserting student feepayment
              
               String sqlstudentfeepayment = "INSERT INTO tblfeepayment (REGISTRATIONNUMBER,CLASS,FIRSTNAME,MIDDLENAME,LASTNAME,TOTAL,"
-                      + "PAID,BALANCE) VALUES"
+                      + "PAID,BALANCE,STATUS) VALUES"
                      + " ('"+txtadmin.getText()+"','"+studyclass+"','"+txtfname.getText()+"','"+txtmname.getText()+"','"+txtlname.getText()+"',"
-                      + "'"+initialfee+"','"+initialfee+"','"+initialfee+"')";
+                      + "'"+initialfee+"','"+initialfee+"','"+initialfee+"' , '"+initialstatus+"')";
              st.execute(sqlstudentfeepayment);
              
              
@@ -1145,17 +1151,22 @@ public class StudentDetails extends javax.swing.JFrame {
         dtm.addColumn("TotalAmount");
 
         tblfees.setModel(dtm);
+        
+       
 
         try{
 
             con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectefee = "SELECT * FROM tblfeepayment WHERE CLASS = ? && BALANCE >= '"+cmbbalancerange.getSelectedItem()+"' ";
+            String selectefee = "SELECT * FROM tblfeepayment WHERE CLASS = ? && STATUS = ? ";
             pst = con.prepareStatement(selectefee);
             pst.setString(1, (String) cmbselectedfeeclass.getSelectedItem());
+            pst.setString(2, (String) cmbbalancerange.getSelectedItem());
             rs = pst.executeQuery();
+           
 
             while(rs.next()){
+                
 
                 String admin = rs.getString("REGISTRATIONNUMBER");
                 String  studentclass =  rs.getString("CLASS");
@@ -1166,11 +1177,17 @@ public class StudentDetails extends javax.swing.JFrame {
                 String paid =  rs.getString("PAID");
                 String balance =  rs.getString("BALANCE");
 
+                
+                    JOptionPane.showMessageDialog(null,"category not found ","School",JOptionPane.WARNING_MESSAGE);
                 //ARRAY DATA TO DISPLAY
                 String tbldata []= {admin,name,name2,name3,studentclass,total,paid,balance};
                 DefaultTableModel dtmdata = (DefaultTableModel)tblfees.getModel();
                 dtmdata.addRow(tbldata);
             }
+         
+            
+          
+            
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
         }
@@ -1606,6 +1623,24 @@ public class StudentDetails extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btnadmindeletestudentActionPerformed
 
+    private void btnaddfeepayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddfeepayActionPerformed
+        // TODO add your handling code here:
+        try{
+               int regno = Integer.parseInt( txtsearchsutentfee.getText());
+         int amount =  Integer.parseInt( txtfeeamountpaid.getText());
+         
+          if("".equals(txtsearchsutentfee.getText()) && "".equals(txtfeeamountpaid.getText())){
+             JOptionPane.showMessageDialog(null,"Fill in Details","School",JOptionPane.WARNING_MESSAGE);  
+          }else{
+             JOptionPane.showMessageDialog(null,"ready","School",JOptionPane.WARNING_MESSAGE);  
+          }
+        }catch(NumberFormatException nfe){
+           JOptionPane.showMessageDialog(null,"Wrong Reg or Amount","School",JOptionPane.WARNING_MESSAGE); 
+        }
+        
+      
+    }//GEN-LAST:event_btnaddfeepayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1643,6 +1678,7 @@ public class StudentDetails extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntviewfeestatement;
+    private javax.swing.JButton btnaddfeepay;
     private javax.swing.JButton btnaddstaff;
     private javax.swing.JButton btnadmindeletestudent;
     private javax.swing.JButton btnadminserachstudebt;
@@ -1673,7 +1709,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
@@ -1730,7 +1765,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField5;
     private com.toedter.calendar.JDateChooser jcdate;
     private com.toedter.calendar.JYearChooser jcyear;
     private javax.swing.JMenuItem jmaccountreport;
@@ -1764,6 +1798,7 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JTextField txtboardingfee;
     private javax.swing.JTextField txtcautionfee;
     private javax.swing.JTextField txtexamfee;
+    private javax.swing.JTextField txtfeeamountpaid;
     private javax.swing.JTextField txtfname;
     private javax.swing.JTextField txtlname;
     private javax.swing.JTextField txtmaintainancefee;
