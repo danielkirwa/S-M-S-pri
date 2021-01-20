@@ -34,6 +34,8 @@ public class StudentDetails extends javax.swing.JFrame {
     String username = "root";
     String password = "";
     String url = "jdbc:mysql://localhost:3306/schoolmanagement";
+    
+     int classfee, classfeeamount;
    
     
     
@@ -149,6 +151,9 @@ public class StudentDetails extends javax.swing.JFrame {
         bntviewfeestatement = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         lbstudentfullname = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblfees = new javax.swing.JTable();
         jpstaffreport = new javax.swing.JPanel();
@@ -400,6 +405,11 @@ public class StudentDetails extends javax.swing.JFrame {
         cmbgender.setBounds(470, 130, 180, 20);
 
         cmbclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        cmbclass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbclassActionPerformed(evt);
+            }
+        });
         jpaddstudent.add(cmbclass);
         cmbclass.setBounds(120, 380, 170, 20);
         jpaddstudent.add(jcyear);
@@ -433,17 +443,17 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2.add(btnserachfeestudent);
         btnserachfeestudent.setBounds(290, 10, 120, 30);
 
-        lbtotalamount.setText("Total Amount = 0");
+        lbtotalamount.setText("0.0");
         jPanel2.add(lbtotalamount);
-        lbtotalamount.setBounds(10, 60, 160, 14);
+        lbtotalamount.setBounds(140, 60, 60, 14);
 
-        lbpaidamount.setText("Paid Amount = 0");
+        lbpaidamount.setText("0.0");
         jPanel2.add(lbpaidamount);
-        lbpaidamount.setBounds(10, 100, 160, 14);
+        lbpaidamount.setBounds(140, 100, 60, 14);
 
-        lbcurrentbalance.setText("Fee Balance = 0");
+        lbcurrentbalance.setText("0.0");
         jPanel2.add(lbcurrentbalance);
-        lbcurrentbalance.setBounds(10, 130, 160, 14);
+        lbcurrentbalance.setBounds(140, 130, 60, 14);
 
         jLabel22.setText("PAY AMOUNT :");
         jPanel2.add(jLabel22);
@@ -475,7 +485,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel3.add(jLabel24);
         jLabel24.setBounds(20, 60, 80, 14);
 
-        cmbbalancerange.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT ALL", "PAIND", "UPAID", "CLEARED" }));
+        cmbbalancerange.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SELECT ALL", "PAID", "UNPAID", "CLEARED" }));
         cmbbalancerange.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbbalancerangeActionPerformed(evt);
@@ -500,9 +510,22 @@ public class StudentDetails extends javax.swing.JFrame {
         jPanel2.add(jPanel3);
         jPanel3.setBounds(500, 0, 570, 170);
 
+        lbstudentfullname.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbstudentfullname.setText("Student full name");
         jPanel2.add(lbstudentfullname);
-        lbstudentfullname.setBounds(220, 60, 240, 14);
+        lbstudentfullname.setBounds(220, 60, 240, 30);
+
+        jLabel19.setText("TOTAL AMOUNT : ");
+        jPanel2.add(jLabel19);
+        jLabel19.setBounds(10, 60, 110, 14);
+
+        jLabel20.setText("PAID AMOUNT : ");
+        jPanel2.add(jLabel20);
+        jLabel20.setBounds(10, 100, 110, 14);
+
+        jLabel21.setText("FEE BALANCE : ");
+        jPanel2.add(jLabel21);
+        jLabel21.setBounds(10, 130, 110, 14);
 
         jpfeespayment.add(jPanel2);
         jPanel2.setBounds(31, 35, 1070, 170);
@@ -994,7 +1017,7 @@ public class StudentDetails extends javax.swing.JFrame {
               String sqlstudentfeepayment = "INSERT INTO tblfeepayment (REGISTRATIONNUMBER,CLASS,FIRSTNAME,MIDDLENAME,LASTNAME,TOTAL,"
                       + "PAID,BALANCE,STATUS) VALUES"
                      + " ('"+txtadmin.getText()+"','"+studyclass+"','"+txtfname.getText()+"','"+txtmname.getText()+"','"+txtlname.getText()+"',"
-                      + "'"+initialfee+"','"+initialfee+"','"+initialfee+"' , '"+initialstatus+"')";
+                      + "'"+classfeeamount+"','"+initialfee+"','"+initialfee+"' , '"+initialstatus+"')";
              st.execute(sqlstudentfeepayment);
              
              
@@ -1033,6 +1056,8 @@ public class StudentDetails extends javax.swing.JFrame {
         jpstaffreport.setVisible(false);
         jpfeestructure.setVisible(false);
         jpfeespayment.setVisible(true);
+        
+     
     }//GEN-LAST:event_jmfeeActionPerformed
 
     private void jmstudentmanagementActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmstudentmanagementActionPerformed
@@ -1176,11 +1201,8 @@ public class StudentDetails extends javax.swing.JFrame {
                 String total =  rs.getString("TOTAL");
                 String paid =  rs.getString("PAID");
                 String balance =  rs.getString("BALANCE");
-
-                
-                    JOptionPane.showMessageDialog(null,"category not found ","School",JOptionPane.WARNING_MESSAGE);
                 //ARRAY DATA TO DISPLAY
-                String tbldata []= {admin,name,name2,name3,studentclass,total,paid,balance};
+                String tbldata []= {admin,name,name2,name3,studentclass,paid,balance,total};
                 DefaultTableModel dtmdata = (DefaultTableModel)tblfees.getModel();
                 dtmdata.addRow(tbldata);
             }
@@ -1207,10 +1229,10 @@ public class StudentDetails extends javax.swing.JFrame {
         String name2 = dtm.getValueAt(selectedrowindex, 2).toString();
         String name3 = dtm.getValueAt(selectedrowindex, 3).toString();
         lbstudentfullname.setText(name + " " + name2 + " " + name3);
-        lbtotalamount.setText(" Total Amount : " + dtm.getValueAt(selectedrowindex, 7).toString());
-        lbpaidamount.setText(" Amount Paid : " + dtm.getValueAt(selectedrowindex, 5).toString());
+        lbtotalamount.setText( dtm.getValueAt(selectedrowindex, 7).toString());
+        lbpaidamount.setText( dtm.getValueAt(selectedrowindex, 5).toString());
         txtsearchsutentfee.setText(dtm.getValueAt(selectedrowindex, 0).toString());
-        lbcurrentbalance.setText(" Current balance : " + dtm.getValueAt(selectedrowindex, 6).toString());
+        lbcurrentbalance.setText( dtm.getValueAt(selectedrowindex, 6).toString());
     }//GEN-LAST:event_tblfeesMouseClicked
 
     private void btnaddstaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddstaffActionPerformed
@@ -1503,9 +1525,9 @@ public class StudentDetails extends javax.swing.JFrame {
                  // SET DATA  FOR DISPLAY
                  
                  txtsearchsutentfee.setText(regno);
-                 lbtotalamount.setText(" Total Amount : " + total);
-                 lbpaidamount.setText(" Amount Paid : " + piad);
-                 lbcurrentbalance.setText(" Current balance : " + balance);
+                 lbtotalamount.setText(total);
+                 lbpaidamount.setText( piad);
+                 lbcurrentbalance.setText(balance);
                  lbstudentfullname.setText(firstname + " " + middlename + " " + lastname);
                  
                  
@@ -1632,7 +1654,34 @@ public class StudentDetails extends javax.swing.JFrame {
           if("".equals(txtsearchsutentfee.getText()) && "".equals(txtfeeamountpaid.getText())){
              JOptionPane.showMessageDialog(null,"Fill in Details","School",JOptionPane.WARNING_MESSAGE);  
           }else{
-             JOptionPane.showMessageDialog(null,"ready","School",JOptionPane.WARNING_MESSAGE);  
+             // INSERT PAID FEE
+              try{
+                   String newstatus ;
+                  int totalamount,paidamount,balance;
+                   totalamount = Integer.parseInt(lbtotalamount.getText());
+              paidamount = Integer.parseInt(txtfeeamountpaid.getText());
+              balance = totalamount - paidamount ;
+               if(balance <= 0){
+                   newstatus = "CLEARED";
+               }else{
+                  newstatus = "PAID";  
+               }
+              con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            
+           String updatestudentfee = "UPDATE tblfeepayment set PAID = '"+paidamount+"',BALANCE ='"+balance+"',"
+                        + "STATUS = '"+newstatus+"'  WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(updatestudentfee);
+                pst.setString(1 , (String) txtsearchsutentfee.getText());
+                pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Student fee updated</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE); 
+                  
+              }catch(SQLException ex){
+                  
+              }
+             
+             
+           
           }
         }catch(NumberFormatException nfe){
            JOptionPane.showMessageDialog(null,"Wrong Reg or Amount","School",JOptionPane.WARNING_MESSAGE); 
@@ -1640,6 +1689,28 @@ public class StudentDetails extends javax.swing.JFrame {
         
       
     }//GEN-LAST:event_btnaddfeepayActionPerformed
+
+    private void cmbclassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbclassActionPerformed
+        // TODO add your handling code here:
+        
+          try{
+             
+            con = DriverManager.getConnection(url,username,password);
+            st = con.createStatement();
+            String selectefee = "SELECT CLASS ,TOTAL FROM tblfeestructure WHERE CLASS = '"+cmbclass.getSelectedItem()+"' ";
+            pst = con.prepareStatement(selectefee);
+            rs = pst.executeQuery();
+             if(rs.next()){
+                 classfee = Integer.parseInt(rs.getString("CLASS")) ;
+                 classfeeamount = Integer.parseInt (rs.getString("TOTAL"));
+                 
+                 //System.out.println(classfee + " " +classfeeamount);
+                 
+             }
+         }catch(SQLException ex){
+             
+         }
+    }//GEN-LAST:event_cmbclassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1721,7 +1792,10 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
