@@ -7,6 +7,7 @@ package schoolmanagementsystem;
 
 import java.awt.HeadlessException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -247,9 +248,9 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(jLabel1);
         jLabel1.setBounds(50, 380, 50, 14);
 
-        jLabel2.setText("Age :");
+        jLabel2.setText("Date of Birth");
         jpaddstudent.add(jLabel2);
-        jLabel2.setBounds(40, 120, 50, 14);
+        jLabel2.setBounds(10, 120, 80, 14);
         jpaddstudent.add(txtmname);
         txtmname.setBounds(320, 90, 170, 20);
 
@@ -284,6 +285,11 @@ public class StudentDetails extends javax.swing.JFrame {
         jButton1.setBounds(30, 450, 200, 40);
 
         jButton2.setText("Update Student");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jpaddstudent.add(jButton2);
         jButton2.setBounds(400, 450, 200, 40);
 
@@ -361,6 +367,12 @@ public class StudentDetails extends javax.swing.JFrame {
         txtpgmname1.setBounds(340, 240, 170, 20);
         jpaddstudent.add(txtpgfname1);
         txtpgfname1.setBounds(160, 240, 170, 20);
+
+        txtpglname2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpglname2ActionPerformed(evt);
+            }
+        });
         jpaddstudent.add(txtpglname2);
         txtpglname2.setBounds(530, 270, 170, 20);
         jpaddstudent.add(txtpgmname2);
@@ -371,6 +383,12 @@ public class StudentDetails extends javax.swing.JFrame {
         jLabel13.setText("Contacts :");
         jpaddstudent.add(jLabel13);
         jLabel13.setBounds(730, 240, 60, 14);
+
+        txtpgcontacts1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtpgcontacts1ActionPerformed(evt);
+            }
+        });
         jpaddstudent.add(txtpgcontacts1);
         txtpgcontacts1.setBounds(810, 240, 160, 20);
 
@@ -404,7 +422,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(cmbgender);
         cmbgender.setBounds(470, 130, 180, 20);
 
-        cmbclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        cmbclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" }));
         cmbclass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbclassActionPerformed(evt);
@@ -1473,6 +1491,7 @@ public class StudentDetails extends javax.swing.JFrame {
                  String county = rs.getString("COUNTY");
                  String subcounty = rs.getString("SUBCOUNTY");
                  String ward = rs.getString("WARD");
+                 Date admdate = rs.getDate("ADMISSIONDATE");
                  
                  
                  // set date to the textfields
@@ -1488,9 +1507,50 @@ public class StudentDetails extends javax.swing.JFrame {
                  cmbward.setSelectedItem(ward);
                  cmbclass.setSelectedItem(studentclass);
                  cmbstream.setSelectedItem(stream);
+                 jcdate.setDate(admdate);
               
              }else{
                  JOptionPane.showMessageDialog(null,"Studenr Not Found" ,"School",JOptionPane.WARNING_MESSAGE);
+             }
+             
+         }catch(SQLException ex){
+             JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);
+         }
+          // select parent details
+          
+           try{
+             
+             con = DriverManager.getConnection(url,username,password);
+             st = con.createStatement();
+             String selectestudent = "SELECT * FROM tblparents WHERE REGISTRATIONNUMBER = ?";
+             pst = con.prepareStatement(selectestudent);
+             pst.setString(1, (String ) txtsearchstudent.getText());
+             rs = pst.executeQuery();
+             
+             if(rs.next()){
+                 String Pfirstname = rs.getString("PARENTFIRSTNAME");
+                 String Pmiddlename = rs.getString("PARENTMIDDLENAME");
+                 String Plastname = rs.getString("PARENTLASTNAME");
+                 String Pcontact = rs.getString("PARENTCONTACTS");
+                 String Pfirstname2 = rs.getString("PARENTFIRSTNAME2");
+                 String Pmiddlename2 = rs.getString("PARENTMIDDLENAME2");
+                 String Plastname2 = rs.getString("PARENTLASTNAME2");
+                 String Pcontact2 = rs.getString("PARENTCONTACTS2");
+              
+                 // set parent detail to display
+               
+                 txtpgfname1.setText(Pfirstname);
+                 txtpgmname1.setText(Pmiddlename);
+                 txtpglname1.setText(Plastname);
+                 txtpgcontacts1.setText(Pcontact);
+                 txtpgfname2.setText(Pfirstname2);
+                 txtpgmname2.setText(Pmiddlename2);
+                 txtpglname2.setText(Plastname2);
+                 txtpgcontacts2.setText(Pcontact2);
+                 
+              
+             }else{
+                 JOptionPane.showMessageDialog(null,"Parents Not Found" ,"School",JOptionPane.WARNING_MESSAGE);
              }
              
          }catch(SQLException ex){
@@ -1602,46 +1662,64 @@ public class StudentDetails extends javax.swing.JFrame {
         }else{
             
             try{
-                con = DriverManager.getConnection(url,username,password);
-                st = con.createStatement();
-               /* String deletestudent = "DELETE from tblstudentdetails WHERE  REGISTRATIONNUMBER = ?";
-                pst = con.prepareStatement(deletestudent);
-                pst.setString(1, (String) txtsearchstudent.getText());*/
-                
-                // delete parents
-                String deletestudentparents = "DELETE from tblparents WHERE  REGISTRATIONNUMBER = ?";
-                pst = con.prepareStatement(deletestudentparents);
-                pst.setString(1, (String) txtsearchstudent.getText());
-                
-                // delete feerecords 
-                
-                /*String deletestudentfee = "DELETE from tblfeepayment WHERE  REGISTRATIONNUMBER = ?";
-                pst = con.prepareStatement(deletestudentfee);
-                pst.setString(1, (String) txtsearchstudent.getText());
-                
-                // delete student exam
-                
-                 String deletestudentexam = "DELETE from tblexams WHERE  REGISTRATIONNUMBER = ?";
-                pst = con.prepareStatement(deletestudentexam);
-                pst.setString(1, (String) txtsearchstudent.getText());*/
+              
                 
                 int deleteconfirm = JOptionPane.showConfirmDialog(null,"Confirm delete student","School", JOptionPane.YES_NO_OPTION);
                 if(deleteconfirm == JOptionPane.YES_OPTION){
-                   pst.executeUpdate();
-                  int rowAffacted = pst.executeUpdate();
-                   if(rowAffacted == 0){
-                       JOptionPane.showMessageDialog(null , "Student Deleted not","School", JOptionPane.INFORMATION_MESSAGE);
-                   }else{
-                       JOptionPane.showMessageDialog(null , "Student Does NOT exist","School", JOptionPane.WARNING_MESSAGE);
-                   }
+                 
+                     // execute delete
+                     
+                      try{
+                 con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+                  String deletestudentexam = "DELETE from tblexams WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudentexam);
+                pst.setString(1, (String) txtsearchstudent.getText());
+                pst.executeUpdate();
+             }catch(SQLException ex){
+                 JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
+             }
+                        try{
+                con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+                String deletestudent = "DELETE from tblstudentdetails WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudent);
+                pst.setString(1, (String) txtsearchstudent.getText());
+                 pst.executeUpdate();
+             }catch(SQLException ex){
+                 JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
+             }
+             try{
+                  con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+                  String deletestudentparents = "DELETE from tblparents WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudentparents);
+                pst.setString(1, (String) txtsearchstudent.getText());
+                pst.executeUpdate();
+             }catch(SQLException ex){
+                 JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
+             }
+             try{
+                 con = DriverManager.getConnection(url,username,password);
+                st = con.createStatement();
+                 String deletestudentfee = "DELETE from tblfeepayment WHERE  REGISTRATIONNUMBER = ?";
+                pst = con.prepareStatement(deletestudentfee);
+                pst.setString(1, (String) txtsearchstudent.getText());
+                pst.executeUpdate();
+             }catch(SQLException ex){
+                 JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
+             }
+                     
                     
                 }else if(deleteconfirm == JOptionPane.NO_OPTION){
-                    JOptionPane.showConfirmDialog(null , "Deleted oparation cancled","School", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null , "Deleted oparation cancled","School", JOptionPane.INFORMATION_MESSAGE);
                 }
                 
-            }catch(SQLException ex){
+            }catch(Exception ex){
                   JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE); 
             }
+            
+           
         }
         
     }//GEN-LAST:event_btnadmindeletestudentActionPerformed
@@ -1658,9 +1736,10 @@ public class StudentDetails extends javax.swing.JFrame {
              // INSERT PAID FEE
               try{
                    String newstatus ;
-                  int totalamount,paidamount,balance;
+                  int totalamount,paidamount,balance, previouspaid;
                    totalamount = Integer.parseInt(lbtotalamount.getText());
-              paidamount = Integer.parseInt(txtfeeamountpaid.getText());
+                   previouspaid = Integer.parseInt(lbpaidamount.getText());
+              paidamount = Integer.parseInt(txtfeeamountpaid.getText()) + previouspaid;
               balance = totalamount - paidamount ;
                if(balance <= 0){
                    newstatus = "CLEARED";
@@ -1705,13 +1784,25 @@ public class StudentDetails extends javax.swing.JFrame {
                  classfee = Integer.parseInt(rs.getString("CLASS")) ;
                  classfeeamount = Integer.parseInt (rs.getString("TOTAL"));
                  
-                 //System.out.println(classfee + " " +classfeeamount);
+                 System.out.println(classfee + " " +classfeeamount);
                  
              }
          }catch(SQLException ex){
              
          }
     }//GEN-LAST:event_cmbclassActionPerformed
+
+    private void txtpgcontacts1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpgcontacts1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpgcontacts1ActionPerformed
+
+    private void txtpglname2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpglname2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtpglname2ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
