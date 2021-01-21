@@ -1293,7 +1293,7 @@ public class ExamDepartment extends javax.swing.JFrame {
             
                 con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? && TERM = ? && YEAR = ? && SERIES = ?";
+            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? && TERM = ? && YEAR = ? && SERIES = ? ORDER BY TOTALMARK DESC";
             pst = con.prepareStatement(selectecar);
             pst.setString(1, (String) cmbclassresults.getSelectedItem());
             pst.setString(2, (String) cmbselectetermmarks.getSelectedItem());
@@ -1320,6 +1320,25 @@ public class ExamDepartment extends javax.swing.JFrame {
                DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
                dtmdata.addRow(tbldata);
             }
+             // award students posisiton
+             
+            int rowsposition = tblresults.getRowCount()+1;
+            int i;
+             for (i = 1; i < rowsposition; i++) {
+                     System.out.println(i);
+              } 
+             while(rs.next()){
+                 int position;
+                 position = i;
+                 
+                 String s=String.valueOf(position);
+                 
+                 String studentsposition  [] = {s};
+                 DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
+               dtmdata.addRow(studentsposition);
+             }
+            
+            
         }catch(SQLException ex){
         JOptionPane.showMessageDialog(null,"Error " + ex,"School ",JOptionPane.WARNING_MESSAGE);
         }

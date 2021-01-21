@@ -1784,7 +1784,7 @@ public class StudentDetails extends javax.swing.JFrame {
                  classfee = Integer.parseInt(rs.getString("CLASS")) ;
                  classfeeamount = Integer.parseInt (rs.getString("TOTAL"));
                  
-                 System.out.println(classfee + " " +classfeeamount);
+                // System.out.println(classfee + " " +classfeeamount);
                  
              }
          }catch(SQLException ex){
