@@ -1284,6 +1284,7 @@ public class ExamDepartment extends javax.swing.JFrame {
      tblresults.setModel(stm); 
     tblresults.getColumnModel().getColumn(1).setPreferredWidth(200);
     
+    
    
         
         
@@ -1300,8 +1301,9 @@ public class ExamDepartment extends javax.swing.JFrame {
             pst.setString(3, String.valueOf(jyearshowresults.getYear()));
             pst.setString(4, (String) cmbseriesshowresults.getSelectedItem());
             rs = pst.executeQuery();
-                  
+               int count = 0 ;
             while(rs.next()){
+                 
                String name = rs.getString("FNAME");
                String admin = rs.getString("REGISTRATIONNUMBER");
                String  studentclass =  rs.getString("CLASS");
@@ -1314,29 +1316,18 @@ public class ExamDepartment extends javax.swing.JFrame {
                String social =  rs.getString("SOCIAL");
                String total =  rs.getString("TOTALMARK");
                String avarage =  rs.getString("AVARAGE");
+               // position award
+               count ++;
+               String pos = String.valueOf(count);
+               System.out.println(pos);
                
+         
                //ARRAY DATA TO DISPLAY
-               String tbldata []= {admin,name,studentclass,stream,series,maths,english,kiswahili,science,social,total,avarage,""};
+               String tbldata []= {admin,name,studentclass,stream,series,maths,english,kiswahili,science,social,total,avarage,pos};
                DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
                dtmdata.addRow(tbldata);
             }
-             // award students posisiton
-             
-            int rowsposition = tblresults.getRowCount()+1;
-            int i;
-             for (i = 1; i < rowsposition; i++) {
-                     System.out.println(i);
-              } 
-             while(rs.next()){
-                 int position;
-                 position = i;
-                 
-                 String s=String.valueOf(position);
-                 
-                 String studentsposition  [] = {s};
-                 DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
-               dtmdata.addRow(studentsposition);
-             }
+           
             
             
         }catch(SQLException ex){
