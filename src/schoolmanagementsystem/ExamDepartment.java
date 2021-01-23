@@ -285,7 +285,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel2.add(jcexamyear);
         jcexamyear.setBounds(80, 20, 120, 20);
 
-        jButton4.setText("Updte Marks");
+        jButton4.setText("Update Marks");
         jPanel2.add(jButton4);
         jButton4.setBounds(720, 40, 180, 40);
 
@@ -994,8 +994,11 @@ public class ExamDepartment extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        
-       
+         
+                int rowcount = tblmarksentry.getRowCount();
+                if (rowcount >= 1){
+                    
+               
        
                     try{
 
@@ -1061,6 +1064,10 @@ public class ExamDepartment extends javax.swing.JFrame {
                     catch(NumberFormatException nfe){
                JOptionPane.showMessageDialog(null, "error"+ nfe,"School",JOptionPane.WARNING_MESSAGE);
                    }
+                    
+          }else{
+                   JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: red; font-size: 12px;\">Enter Rows to Upload</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE); 
+                }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
@@ -1360,7 +1367,7 @@ public class ExamDepartment extends javax.swing.JFrame {
            
                   examcode = studentreg+""+examyear +""+ classselected+""+term+""+seriesToSelect;
             
-                   System.out.println(examcode);
+                  // System.out.println(examcode);
                 con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
             String selectecar = "SELECT * FROM tblexams WHERE REGISTRATIONNUMBER = ? && EXAMCODE = '"+examcode+"' ";
