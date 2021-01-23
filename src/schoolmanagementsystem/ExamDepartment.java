@@ -137,12 +137,14 @@ public class ExamDepartment extends javax.swing.JFrame {
         txtsearchstudentmarks = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
-        jComboBox8 = new javax.swing.JComboBox<>();
-        jComboBox9 = new javax.swing.JComboBox<>();
+        cmbselectstudentmark = new javax.swing.JComboBox<>();
+        cmbselectstudenttermamrk = new javax.swing.JComboBox<>();
         jLabel22 = new javax.swing.JLabel();
-        jComboBox10 = new javax.swing.JComboBox<>();
+        cmbselectstudentseriesmark = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
         btnsearchstudentresults = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        jyslectestudentmarks = new com.toedter.calendar.JYearChooser();
         jPanel7 = new javax.swing.JPanel();
         lbselectedstudenttotalscore = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
@@ -402,23 +404,23 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel5.add(jLabel21);
         jLabel21.setBounds(242, 10, 50, 14);
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
-        jPanel5.add(jComboBox8);
-        jComboBox8.setBounds(310, 10, 120, 20);
+        cmbselectstudentmark.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8" }));
+        jPanel5.add(cmbselectstudentmark);
+        cmbselectstudentmark.setBounds(310, 10, 120, 20);
 
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jPanel5.add(jComboBox9);
-        jComboBox9.setBounds(520, 10, 120, 20);
+        cmbselectstudenttermamrk.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        jPanel5.add(cmbselectstudenttermamrk);
+        cmbselectstudenttermamrk.setBounds(520, 10, 120, 20);
 
         jLabel22.setText("Term :");
         jPanel5.add(jLabel22);
         jLabel22.setBounds(451, 10, 50, 14);
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
-        jPanel5.add(jComboBox10);
-        jComboBox10.setBounds(740, 10, 120, 20);
+        cmbselectstudentseriesmark.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
+        jPanel5.add(cmbselectstudentseriesmark);
+        cmbselectstudentseriesmark.setBounds(740, 10, 120, 20);
 
-        jLabel23.setText("Module");
+        jLabel23.setText("Module :");
         jPanel5.add(jLabel23);
         jLabel23.setBounds(662, 10, 60, 14);
 
@@ -429,7 +431,13 @@ public class ExamDepartment extends javax.swing.JFrame {
             }
         });
         jPanel5.add(btnsearchstudentresults);
-        btnsearchstudentresults.setBounds(900, 10, 170, 23);
+        btnsearchstudentresults.setBounds(320, 53, 430, 50);
+
+        jLabel16.setText("Year  :");
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(880, 10, 50, 14);
+        jPanel5.add(jyslectestudentmarks);
+        jyslectestudentmarks.setBounds(950, 10, 110, 20);
 
         jpstudentmarks.add(jPanel5);
         jPanel5.setBounds(16, 27, 1090, 110);
@@ -1343,11 +1351,19 @@ public class ExamDepartment extends javax.swing.JFrame {
         
         try{
             
+           String examcode = null;
+           int examyear = jyslectestudentmarks.getYear();
+           int classselected = Integer.parseInt((String) cmbselectstudentmark.getSelectedItem());
+           int term = Integer.parseInt((String) cmbselectstudenttermamrk.getSelectedItem());
+           int seriesToSelect = cmbselectstudentseriesmark.getSelectedIndex();
+           int studentreg = Integer.parseInt( txtsearchstudentmarks.getText());
            
+                  examcode = studentreg+""+examyear +""+ classselected+""+term+""+seriesToSelect;
             
+                   System.out.println(examcode);
                 con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectecar = "SELECT * FROM tblexams WHERE REGISTRATIONNUMBER = ? ";
+            String selectecar = "SELECT * FROM tblexams WHERE REGISTRATIONNUMBER = ? && EXAMCODE = '"+examcode+"' ";
             pst = con.prepareStatement(selectecar);
             pst.setString(1, (String) txtsearchstudentmarks.getText());
             rs = pst.executeQuery();
@@ -1376,14 +1392,31 @@ public class ExamDepartment extends javax.swing.JFrame {
                txtselectedstudentsocial.setText(social);
                lbselectedstudenttotalscore.setText(total);
                lbselectedstudentavarage.setText(avarage);
-               lbselectedstudentclass.setText("Class  :  " + studentclass); 
+               lbselectedstudentclass.setText("Class  :  " + studentclass);
+               
+                // convert string marks to integer
+                
+                int mat = Integer.parseInt(maths);
+                int eng = Integer.parseInt(english);
+                int kis = Integer.parseInt(kiswahili);
+                int sci = Integer.parseInt(science);
+                int soc = Integer.parseInt(social);
+                int tal = Integer.parseInt(total);
+                double avg = Double.parseDouble(avarage);
                
                // graph to display data
                DefaultCategoryDataset dcs = new DefaultCategoryDataset();
-               dcs.setValue(66, "Avarege", "mark");
-               dcs.setValue(555, "Total", "mark");
+               dcs.setValue(tal, "Total", "Total Mrk");
+               dcs.setValue(66, "Class Avarege", "Cal avg");
+               dcs.setValue(avg, "Avarege", "Std Avg");
+               dcs.setValue(mat, "Maths", "Mtahs");
+               dcs.setValue(eng, "English", "English");
+               dcs.setValue(kis, "Kiswahili", "Kiswahili");
+               dcs.setValue(sci, "Science", "Science");
+               dcs.setValue(soc, "Social", "Social");
                
-               JFreeChart studentbargraph = ChartFactory.createBarChart("Student data", "Category", "Marks", dcs, PlotOrientation.HORIZONTAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
+               
+               JFreeChart studentbargraph = ChartFactory.createBarChart("Student data", "Category", "Marks", dcs, PlotOrientation.VERTICAL, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled);
                
                 CategoryPlot studentbar = studentbargraph.getCategoryPlot();
           studentbar.setRangeGridlinePaint(Color.MAGENTA);
@@ -1461,6 +1494,9 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cmbexamseries;
     private javax.swing.JComboBox<String> cmbexamterm;
     private javax.swing.JComboBox<String> cmbselectetermmarks;
+    private javax.swing.JComboBox<String> cmbselectstudentmark;
+    private javax.swing.JComboBox<String> cmbselectstudentseriesmark;
+    private javax.swing.JComboBox<String> cmbselectstudenttermamrk;
     private javax.swing.JComboBox<String> cmbseriesshowresults;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1471,14 +1507,11 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JButton jButton9;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox13;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JComboBox<String> jComboBox9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1486,6 +1519,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1548,6 +1582,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpsubjectgraph;
     private javax.swing.JPanel jptreadgraph;
     private com.toedter.calendar.JYearChooser jyearshowresults;
+    private com.toedter.calendar.JYearChooser jyslectestudentmarks;
     private javax.swing.JLabel lbselectedstudentadmi;
     private javax.swing.JLabel lbselectedstudentavarage;
     private javax.swing.JLabel lbselectedstudentclass;
