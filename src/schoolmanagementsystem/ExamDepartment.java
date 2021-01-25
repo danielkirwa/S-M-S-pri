@@ -182,6 +182,19 @@ public class ExamDepartment extends javax.swing.JFrame {
         btnviewanalysis = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel43 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel44 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
+        jLabel48 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jComboBox3 = new javax.swing.JComboBox<>();
         jpanalyticpanel = new javax.swing.JPanel();
@@ -595,17 +608,89 @@ public class ExamDepartment extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel6.setLayout(null);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 638, Short.MAX_VALUE)
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel17.setText("Class : 1");
+        jPanel6.add(jLabel17);
+        jLabel17.setBounds(10, 10, 100, 17);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel18.setText("Year : 2020");
+        jPanel6.add(jLabel18);
+        jLabel18.setBounds(10, 40, 100, 17);
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setText("Term : 1");
+        jPanel6.add(jLabel19);
+        jLabel19.setBounds(10, 70, 100, 17);
+
+        jLabel40.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel40.setText("Series : 1");
+        jPanel6.add(jLabel40);
+        jLabel40.setBounds(10, 100, 90, 17);
+
+        jPanel8.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 128, Short.MAX_VALUE)
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
         );
+
+        jPanel6.add(jPanel8);
+        jPanel8.setBounds(160, 0, 2, 130);
+
+        jLabel41.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel41.setText("Class Avg");
+        jPanel6.add(jLabel41);
+        jLabel41.setBounds(190, 20, 100, 17);
+
+        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel43.setText("65.5");
+        jPanel6.add(jLabel43);
+        jLabel43.setBounds(200, 60, 80, 40);
+
+        jPanel10.setBackground(new java.awt.Color(0, 0, 0));
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 2, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 130, Short.MAX_VALUE)
+        );
+
+        jPanel6.add(jPanel10);
+        jPanel10.setBounds(350, 0, 2, 130);
+
+        jLabel44.setText("Maths  Name Name   67");
+        jPanel6.add(jLabel44);
+        jLabel44.setBounds(380, 30, 240, 14);
+
+        jLabel45.setText("Maths  Name Name   67");
+        jPanel6.add(jLabel45);
+        jLabel45.setBounds(380, 70, 240, 14);
+
+        jLabel46.setText("Maths  Name Name   67");
+        jPanel6.add(jLabel46);
+        jLabel46.setBounds(380, 50, 240, 14);
+
+        jLabel47.setText("Maths  Name Name   67");
+        jPanel6.add(jLabel47);
+        jLabel47.setBounds(380, 10, 240, 14);
+
+        jLabel48.setText("Maths  Name Name   67");
+        jPanel6.add(jLabel48);
+        jLabel48.setBounds(380, 90, 240, 14);
 
         jPanel4.add(jPanel6);
         jPanel6.setBounds(450, 0, 640, 130);
@@ -1527,6 +1612,9 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -1550,7 +1638,15 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
+    private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1560,12 +1656,14 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
