@@ -1378,7 +1378,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel47">
+                    <Component class="javax.swing.JLabel" name="lbmathshighscore">
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Maths  Name Name   67"/>
                       </Properties>

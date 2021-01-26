@@ -35,7 +35,7 @@ public class ExamDepartment extends javax.swing.JFrame {
      Statement st;
     Connection con;
     PreparedStatement pst;
-    ResultSet rs;
+    ResultSet rs,rs2;
     
     String username = "root";
     String password = "";
@@ -193,7 +193,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
         jLabel46 = new javax.swing.JLabel();
-        jLabel47 = new javax.swing.JLabel();
+        lbmathshighscore = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         classanalysisseries = new javax.swing.JComboBox<>();
@@ -684,9 +684,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel6.add(jLabel46);
         jLabel46.setBounds(380, 50, 240, 14);
 
-        jLabel47.setText("Maths  Name Name   67");
-        jPanel6.add(jLabel47);
-        jLabel47.setBounds(380, 10, 240, 14);
+        lbmathshighscore.setText("Maths  Name Name   67");
+        jPanel6.add(lbmathshighscore);
+        lbmathshighscore.setBounds(380, 10, 240, 14);
 
         jLabel48.setText("Maths  Name Name   67");
         jPanel6.add(jLabel48);
@@ -1274,6 +1274,8 @@ public class ExamDepartment extends javax.swing.JFrame {
          jpsubjectgraph.validate();
             
       
+         
+        
             
             
             //System.out.println("avarege of maths is :"+avgmath + "and the high score is :" + maxmath); 
@@ -1661,7 +1663,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
-    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1705,6 +1706,7 @@ public class ExamDepartment extends javax.swing.JFrame {
     private com.toedter.calendar.JYearChooser jyearshowresults;
     private com.toedter.calendar.JYearChooser jyslectestudentmarks;
     private javax.swing.JLabel lbclassavg;
+    private javax.swing.JLabel lbmathshighscore;
     private javax.swing.JLabel lbselectedstudentadmi;
     private javax.swing.JLabel lbselectedstudentavarage;
     private javax.swing.JLabel lbselectedstudentclass;
