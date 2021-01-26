@@ -176,9 +176,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jYearChooser1 = new com.toedter.calendar.JYearChooser();
+        jyclassanalysisselect = new com.toedter.calendar.JYearChooser();
         jLabel11 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        classanalysisterm = new javax.swing.JComboBox<>();
         btnviewanalysis = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
@@ -188,7 +188,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
-        jLabel43 = new javax.swing.JLabel();
+        lbclassavg = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -196,7 +196,7 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel47 = new javax.swing.JLabel();
         jLabel48 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        classanalysisseries = new javax.swing.JComboBox<>();
         jpanalyticpanel = new javax.swing.JPanel();
         jpsubjectgraph = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
@@ -577,21 +577,21 @@ public class ExamDepartment extends javax.swing.JFrame {
         jLabel10.setText("Year :");
         jPanel4.add(jLabel10);
         jLabel10.setBounds(20, 50, 50, 14);
-        jPanel4.add(jYearChooser1);
-        jYearChooser1.setBounds(120, 50, 110, 20);
+        jPanel4.add(jyclassanalysisselect);
+        jyclassanalysisselect.setBounds(120, 50, 110, 20);
 
         jLabel11.setText("Term :");
         jPanel4.add(jLabel11);
         jLabel11.setBounds(250, 20, 50, 14);
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        classanalysisterm.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3" }));
+        classanalysisterm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                classanalysistermActionPerformed(evt);
             }
         });
-        jPanel4.add(jComboBox2);
-        jComboBox2.setBounds(310, 20, 100, 20);
+        jPanel4.add(classanalysisterm);
+        classanalysisterm.setBounds(310, 20, 100, 20);
 
         btnviewanalysis.setText("View Analysis");
         btnviewanalysis.addActionListener(new java.awt.event.ActionListener() {
@@ -651,10 +651,10 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel6.add(jLabel41);
         jLabel41.setBounds(190, 20, 100, 17);
 
-        jLabel43.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel43.setText("65.5");
-        jPanel6.add(jLabel43);
-        jLabel43.setBounds(200, 60, 80, 40);
+        lbclassavg.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lbclassavg.setText("65.5");
+        jPanel6.add(lbclassavg);
+        lbclassavg.setBounds(200, 60, 80, 40);
 
         jPanel10.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -699,9 +699,9 @@ public class ExamDepartment extends javax.swing.JFrame {
         jPanel4.add(jLabel12);
         jLabel12.setBounds(250, 50, 50, 14);
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
-        jPanel4.add(jComboBox3);
-        jComboBox3.setBounds(310, 50, 100, 20);
+        classanalysisseries.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Series 1", "Series 2", "Series 3", "Series 4" }));
+        jPanel4.add(classanalysisseries);
+        classanalysisseries.setBounds(310, 50, 100, 20);
 
         jpclassanalysis.add(jPanel4);
         jPanel4.setBounds(16, 28, 1090, 130);
@@ -1155,49 +1155,57 @@ public class ExamDepartment extends javax.swing.JFrame {
                 }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void classanalysistermActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classanalysistermActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_classanalysistermActionPerformed
 
     private void btnviewanalysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnviewanalysisActionPerformed
         // TODO add your handling code here:
         
         // SELECT DATA FOR DISPLAY 
-        
-        try{
-            int summath = 0 , sumenglish = 0, sumkiswahili = 0, sumscience = 0, sumsocial = 0;
-            double avgmath = 0 , avgenglish = 0, avgkiswahili = 0, avgscience = 0, avgsocial = 0;
+        jpsubjectgraph.removeAll();
+        jptreadgraph.removeAll();
+        jpclasschart.removeAll();
+         int summath = 0 , sumenglish = 0, sumkiswahili = 0, sumscience = 0, sumsocial = 0;
+            double avgmath = 0 , avgenglish = 0, avgkiswahili = 0, avgscience = 0, avgsocial = 0 , avgclass = 0;
             int size = 0;
             int maxmath = 0;
+             int maths = 0 , english = 0,kiswahili = 0,science = 0,social = 0;
+        
+        try{
+           
            
             
                 con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
-            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? ";
+            String selectecar = "SELECT * FROM tblexams WHERE CLASS = ? && YEAR = ? && TERM = ? && SERIES = ? ";
             pst = con.prepareStatement(selectecar);
             pst.setString(1, (String) cmbclassresults.getSelectedItem());
+            pst.setInt(2, (int) jyclassanalysisselect.getYear());
+            pst.setString(3, (String) classanalysisterm.getSelectedItem());
+            pst.setString(4, (String) classanalysisseries.getSelectedItem());
             rs = pst.executeQuery();
                   
             while(rs.next()){
                
                String  studentclass = rs.getString("CLASS");
                String  stream =  rs.getString("SERIES");
-               int maths =  rs.getInt("MATHS");
-               int english =  rs.getInt("ENGLISH");
-               int kiswahili =  rs.getInt("KISWAHILI");
-               int science =  rs.getInt("SCIENCE");
-               int social =  rs.getInt("SOCIAL");
+                maths =  rs.getInt("MATHS");
+                english =  rs.getInt("ENGLISH");
+                kiswahili =  rs.getInt("KISWAHILI");
+                science =  rs.getInt("SCIENCE");
+                social =  rs.getInt("SOCIAL");
                int total =  rs.getInt("TOTALMARK");
                int avarage =  rs.getInt("AVARAGE");
-               
+                System.out.println(maths);
                //ARRAY DATA TO DISPLAY LOOP  TO FIND THE AVARAGE
                
                String tablemaths []= {studentclass};
                DefaultTableModel dtmdata = (DefaultTableModel)tblresults.getModel();
                dtmdata.addRow(tablemaths);
              size = dtmdata.getRowCount();
-               
-             // avarage for maths     
+             
+                          // avarage for maths     
       int [] matharray= {maths};
       //Advanced for loop
   
@@ -1234,7 +1242,16 @@ public class ExamDepartment extends javax.swing.JFrame {
           sumsocial = (sumsocial+num);
           avgsocial = sumsocial / size;
       }
+               
+            
       }
+            
+
+            
+             // get class avarge 
+           avgclass =   (avgmath + avgenglish + avgkiswahili + avgscience + avgsocial ) / 5;
+           String stringclassavg = String.valueOf(avgclass);
+            lbclassavg.setText( stringclassavg);
             
              // Subject graph data
         DefaultCategoryDataset dcd = new DefaultCategoryDataset(); 
@@ -1299,7 +1316,7 @@ public class ExamDepartment extends javax.swing.JFrame {
           // Class analtysis data
           
           DefaultCategoryDataset dcdcalssdata = new  DefaultCategoryDataset();
-          dcdcalssdata.setValue(55.5, "Class Avarge","Avarage");
+          dcdcalssdata.setValue(avgclass, "Class Avarge","Avarage");
           dcdcalssdata.setValue(78.6, "High mark","Avarage");
           dcdcalssdata.setValue(32.3, "Low Mark","Avarage");
           dcdcalssdata.setValue(78, "Subject HighMark","Maths");
@@ -1581,6 +1598,8 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JButton btnsearchstudentresults;
     private javax.swing.JButton btnselectresults;
     private javax.swing.JButton btnviewanalysis;
+    private javax.swing.JComboBox<String> classanalysisseries;
+    private javax.swing.JComboBox<String> classanalysisterm;
     private javax.swing.JComboBox<String> cmbclass;
     private javax.swing.JComboBox<String> cmbclassresults;
     private javax.swing.JComboBox<String> cmbexamseries;
@@ -1602,8 +1621,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox11;
     private javax.swing.JComboBox<String> jComboBox12;
     private javax.swing.JComboBox<String> jComboBox13;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1641,7 +1658,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel46;
@@ -1667,7 +1683,6 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private com.toedter.calendar.JYearChooser jYearChooser1;
     private com.toedter.calendar.JYearChooser jcexamyear;
     private javax.swing.JMenuItem jmclassanalysis;
     private javax.swing.JMenuItem jmlogout;
@@ -1686,8 +1701,10 @@ public class ExamDepartment extends javax.swing.JFrame {
     private javax.swing.JPanel jpsubjectanalysis;
     private javax.swing.JPanel jpsubjectgraph;
     private javax.swing.JPanel jptreadgraph;
+    private com.toedter.calendar.JYearChooser jyclassanalysisselect;
     private com.toedter.calendar.JYearChooser jyearshowresults;
     private com.toedter.calendar.JYearChooser jyslectestudentmarks;
+    private javax.swing.JLabel lbclassavg;
     private javax.swing.JLabel lbselectedstudentadmi;
     private javax.swing.JLabel lbselectedstudentavarage;
     private javax.swing.JLabel lbselectedstudentclass;
