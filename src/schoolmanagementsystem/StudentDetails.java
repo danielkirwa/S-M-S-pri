@@ -1195,7 +1195,9 @@ public class StudentDetails extends javax.swing.JFrame {
         dtm.addColumn("TotalAmount");
 
         tblfees.setModel(dtm);
+        String feerange = (String) cmbbalancerange.getSelectedItem();
         
+       
        
 
         try{
