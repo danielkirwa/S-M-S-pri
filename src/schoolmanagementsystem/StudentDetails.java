@@ -57,6 +57,7 @@ public class StudentDetails extends javax.swing.JFrame {
         dtm.addColumn("AmountPaid");
         dtm.addColumn("CurrentBalance");
         dtm.addColumn("TotalAmount");
+        dtm.addColumn("Status");
         
        tblfees.setModel(dtm);
         
@@ -700,7 +701,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jpstaffaccount.add(jLabel53);
         jLabel53.setBounds(10, 320, 120, 14);
 
-        cmballocatedclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "0" }));
+        cmballocatedclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "NONE" }));
         cmballocatedclass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmballocatedclassActionPerformed(evt);
@@ -1193,6 +1194,7 @@ public class StudentDetails extends javax.swing.JFrame {
         dtm.addColumn("AmountPaid");
         dtm.addColumn("CurrentBalance");
         dtm.addColumn("TotalAmount");
+        dtm.addColumn("Status");
 
         tblfees.setModel(dtm);
         String feerange = (String) cmbbalancerange.getSelectedItem();
@@ -1201,9 +1203,38 @@ public class StudentDetails extends javax.swing.JFrame {
        
 
         try{
-
             con = DriverManager.getConnection(url,username,password);
             st = con.createStatement();
+             
+             if("SELECT ALL".equals(feerange)){
+             
+                   String selectefee = "SELECT * FROM tblfeepayment WHERE CLASS = ?";
+            pst = con.prepareStatement(selectefee);
+            pst.setString(1, (String) cmbselectedfeeclass.getSelectedItem());
+            rs = pst.executeQuery();
+           
+
+            while(rs.next()){
+                
+
+                String admin = rs.getString("REGISTRATIONNUMBER");
+                String  studentclass =  rs.getString("CLASS");
+                String  name =  rs.getString("FIRSTNAME");
+                String name2 =  rs.getString("MIDDLENAME");
+                String name3 =  rs.getString("LASTNAME");
+                String total =  rs.getString("TOTAL");
+                String paid =  rs.getString("PAID");
+                String balance =  rs.getString("BALANCE");
+                String status = rs.getString("STATUS");
+                //ARRAY DATA TO DISPLAY
+                String tbldata []= {admin,name,name2,name3,studentclass,paid,balance,total,status};
+                DefaultTableModel dtmdata = (DefaultTableModel)tblfees.getModel();
+                dtmdata.addRow(tbldata);
+            }
+                 
+             }else{
+
+            
             String selectefee = "SELECT * FROM tblfeepayment WHERE CLASS = ? && STATUS = ? ";
             pst = con.prepareStatement(selectefee);
             pst.setString(1, (String) cmbselectedfeeclass.getSelectedItem());
@@ -1222,14 +1253,15 @@ public class StudentDetails extends javax.swing.JFrame {
                 String total =  rs.getString("TOTAL");
                 String paid =  rs.getString("PAID");
                 String balance =  rs.getString("BALANCE");
+                String status = rs.getString("STATUS");
                 //ARRAY DATA TO DISPLAY
-                String tbldata []= {admin,name,name2,name3,studentclass,paid,balance,total};
+                String tbldata []= {admin,name,name2,name3,studentclass,paid,balance,total,status};
                 DefaultTableModel dtmdata = (DefaultTableModel)tblfees.getModel();
                 dtmdata.addRow(tbldata);
             }
          
             
-          
+             }
             
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"Error" + ex,"School",JOptionPane.WARNING_MESSAGE);

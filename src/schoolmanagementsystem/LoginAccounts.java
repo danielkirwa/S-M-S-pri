@@ -316,7 +316,7 @@ public final class LoginAccounts extends javax.swing.JFrame {
         
         // check first account aleady exist 
         
-        try{
+       try{
             // check account if it exists in the databasa
              con = DriverManager.getConnection(url,username,password);
                        st = con.createStatement();
@@ -408,9 +408,9 @@ public final class LoginAccounts extends javax.swing.JFrame {
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null,"error " + ex , "School",JOptionPane.WARNING_MESSAGE); 
         }
+       
         
-        
-        /*
+       /*
         
         if(!"".equals(txtfirstnamerequest.getText()) && !"".equals(txtidnumberrequest.getText()) && !"".equals(txtusernamerequest.getText())){
                if( txtregistrationpassword1.getText().equals(txtregistrationpassword2.getText())) {
