@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,7 +38,7 @@ public class StudentDetails extends javax.swing.JFrame {
     String url = "jdbc:mysql://localhost:3306/schoolmanagement";
     
      int classfee, classfeeamount;
-   
+   String todaydate;
     
     
     public StudentDetails() {
@@ -45,6 +46,16 @@ public class StudentDetails extends javax.swing.JFrame {
         loadstudentsfeetable();
         hidepanels();
         loadsatfftable();
+        showdate();
+    }
+    
+    
+     void showdate(){
+    java.util.Date d = new java.util.Date();
+    SimpleDateFormat s = new SimpleDateFormat("yyy-MM-dd");
+    todaydate = (s.format(d));
+    System.out.print(todaydate);
+    
     }
     
     final public void loadstudentsfeetable(){
@@ -114,7 +125,6 @@ public class StudentDetails extends javax.swing.JFrame {
         cmbward = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         txtpglname1 = new javax.swing.JTextField();
         txtpgmname1 = new javax.swing.JTextField();
@@ -126,7 +136,6 @@ public class StudentDetails extends javax.swing.JFrame {
         txtpgcontacts1 = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         txtpgcontacts2 = new javax.swing.JTextField();
-        jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         cmbstream = new javax.swing.JComboBox<>();
         jLabel17 = new javax.swing.JLabel();
@@ -134,6 +143,8 @@ public class StudentDetails extends javax.swing.JFrame {
         cmbgender = new javax.swing.JComboBox<>();
         cmbclass = new javax.swing.JComboBox<>();
         jcyear = new com.toedter.calendar.JYearChooser();
+        jLabel35 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jpfeespayment = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -141,7 +152,7 @@ public class StudentDetails extends javax.swing.JFrame {
         btnserachfeestudent = new javax.swing.JButton();
         lbtotalamount = new javax.swing.JLabel();
         lbpaidamount = new javax.swing.JLabel();
-        lbcurrentbalance = new javax.swing.JLabel();
+        lbcurrentclass = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         txtfeeamountpaid = new javax.swing.JTextField();
         btnaddfeepay = new javax.swing.JButton();
@@ -156,6 +167,8 @@ public class StudentDetails extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        lbcurrentbalance = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblfees = new javax.swing.JTable();
         jpstaffreport = new javax.swing.JPanel();
@@ -245,27 +258,31 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Add Student", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Wide Latin", 0, 14))); // NOI18N
         jpaddstudent.setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel1.setText("Class :");
         jpaddstudent.add(jLabel1);
-        jLabel1.setBounds(50, 380, 50, 14);
+        jLabel1.setBounds(920, 150, 50, 14);
 
+        jLabel2.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel2.setText("Date of Birth");
         jpaddstudent.add(jLabel2);
-        jLabel2.setBounds(10, 120, 80, 14);
+        jLabel2.setBounds(110, 210, 80, 14);
         jpaddstudent.add(txtmname);
-        txtmname.setBounds(320, 90, 170, 20);
+        txtmname.setBounds(70, 150, 170, 20);
 
-        jLabel3.setText("Full Name :");
+        jLabel3.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
+        jLabel3.setText("Studentl Name :");
         jpaddstudent.add(jLabel3);
-        jLabel3.setBounds(20, 90, 80, 14);
+        jLabel3.setBounds(100, 90, 110, 14);
         jpaddstudent.add(txtadmin);
-        txtadmin.setBounds(120, 340, 170, 20);
+        txtadmin.setBounds(860, 120, 170, 20);
 
+        jLabel4.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel4.setText("Admin/NEMIS : ");
         jpaddstudent.add(jLabel4);
-        jLabel4.setBounds(10, 340, 100, 14);
+        jLabel4.setBounds(900, 100, 100, 14);
         jpaddstudent.add(txtlname);
-        txtlname.setBounds(510, 90, 170, 20);
+        txtlname.setBounds(70, 180, 170, 20);
 
         txtfname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,8 +290,9 @@ public class StudentDetails extends javax.swing.JFrame {
             }
         });
         jpaddstudent.add(txtfname);
-        txtfname.setBounds(140, 90, 170, 20);
+        txtfname.setBounds(70, 120, 170, 20);
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Add Student");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -285,6 +303,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(jButton1);
         jButton1.setBounds(30, 450, 200, 40);
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton2.setText("Update Student");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,6 +313,7 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(jButton2);
         jButton2.setBounds(400, 450, 200, 40);
 
+        btnadmindeletestudent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnadmindeletestudent.setText("Delete Student");
         btnadmindeletestudent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -303,12 +323,14 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(btnadmindeletestudent);
         btnadmindeletestudent.setBounds(730, 450, 250, 40);
 
+        jLabel5.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel5.setText("Enter Student NEMIS to search  :");
         jpaddstudent.add(jLabel5);
         jLabel5.setBounds(20, 30, 200, 14);
         jpaddstudent.add(txtsearchstudent);
         txtsearchstudent.setBounds(230, 30, 180, 20);
 
+        btnadminserachstudebt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnadminserachstudebt.setText("Search");
         btnadminserachstudebt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -318,25 +340,27 @@ public class StudentDetails extends javax.swing.JFrame {
         jpaddstudent.add(btnadminserachstudebt);
         btnadminserachstudebt.setBounds(450, 20, 150, 40);
 
-        jLabel6.setText("__________________________________________________________________________________________________________________________________________________________________________");
+        jLabel6.setText("________________________________________________________________________________________________________________________________________________________");
         jpaddstudent.add(jLabel6);
-        jLabel6.setBounds(10, 60, 1100, 14);
+        jLabel6.setBounds(20, 420, 1100, 14);
 
+        jLabel7.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel7.setText("Gender :");
         jpaddstudent.add(jLabel7);
-        jLabel7.setBounds(390, 130, 60, 14);
+        jLabel7.setBounds(120, 260, 60, 14);
 
+        jLabel8.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel8.setText("Location/County  :");
         jpaddstudent.add(jLabel8);
-        jLabel8.setBounds(10, 170, 100, 14);
+        jLabel8.setBounds(360, 90, 150, 14);
 
         cmbcounty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo", "Other" }));
         jpaddstudent.add(cmbcounty);
-        cmbcounty.setBounds(140, 170, 160, 20);
+        cmbcounty.setBounds(540, 90, 180, 20);
 
         cmbsubcounty.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Baringo Central", "Baringo South", "Baringo North", "Eldama Ravine", "Mogotio", "Tiaty", "Other" }));
         jpaddstudent.add(cmbsubcounty);
-        cmbsubcounty.setBounds(470, 170, 180, 20);
+        cmbsubcounty.setBounds(540, 150, 180, 20);
 
         cmbward.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kapropita", "Koibatek", "Emining", "Mogotio", "Lembus Kwen", "Maji Mazuri/Mumberes", "Ravine", "Kabartonjo", "Kisanana", "Ilchamus", "Mukutani", "Marigat", "Mochongoi", "Bartabwa", "Barwesa", "Kabartonjo", "Saimo/Kipsaraman", "Saimo Soi", "Ewalel/ChapChap", "Lembus Perkera", "Kabarnet", "Tenges", "Lembus", "Churo/Amaya", "Kolowa/Loiwat", "Loyamorok", "Ribkwo", "Tirioko", "Tangulbei/Korossi", "Silale", "Other" }));
         cmbward.addActionListener(new java.awt.event.ActionListener() {
@@ -345,29 +369,28 @@ public class StudentDetails extends javax.swing.JFrame {
             }
         });
         jpaddstudent.add(cmbward);
-        cmbward.setBounds(820, 170, 170, 20);
+        cmbward.setBounds(540, 190, 180, 20);
 
+        jLabel9.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel9.setText("Location/Sub-County  :");
         jpaddstudent.add(jLabel9);
-        jLabel9.setBounds(320, 170, 130, 14);
+        jLabel9.setBounds(360, 150, 140, 14);
 
+        jLabel10.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel10.setText("Location/Ward  :");
         jpaddstudent.add(jLabel10);
-        jLabel10.setBounds(700, 170, 110, 14);
+        jLabel10.setBounds(360, 190, 110, 14);
 
-        jLabel11.setText("____________________________________________________________________________________________________________________________________________________________________________");
-        jpaddstudent.add(jLabel11);
-        jLabel11.setBounds(10, 210, 1090, 14);
-
-        jLabel12.setText("Parent/Gaudian Name :  ");
+        jLabel12.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
+        jLabel12.setText("Parent/Gaudian Name : 2 ");
         jpaddstudent.add(jLabel12);
-        jLabel12.setBounds(10, 240, 140, 14);
+        jLabel12.setBounds(560, 240, 180, 14);
         jpaddstudent.add(txtpglname1);
-        txtpglname1.setBounds(530, 240, 170, 20);
+        txtpglname1.setBounds(350, 330, 170, 20);
         jpaddstudent.add(txtpgmname1);
-        txtpgmname1.setBounds(340, 240, 170, 20);
+        txtpgmname1.setBounds(350, 300, 170, 20);
         jpaddstudent.add(txtpgfname1);
-        txtpgfname1.setBounds(160, 240, 170, 20);
+        txtpgfname1.setBounds(350, 270, 170, 20);
 
         txtpglname2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -375,15 +398,16 @@ public class StudentDetails extends javax.swing.JFrame {
             }
         });
         jpaddstudent.add(txtpglname2);
-        txtpglname2.setBounds(530, 270, 170, 20);
+        txtpglname2.setBounds(550, 330, 170, 20);
         jpaddstudent.add(txtpgmname2);
-        txtpgmname2.setBounds(340, 270, 170, 20);
+        txtpgmname2.setBounds(550, 300, 170, 20);
         jpaddstudent.add(txtpgfname2);
-        txtpgfname2.setBounds(160, 270, 170, 20);
+        txtpgfname2.setBounds(550, 270, 170, 20);
 
+        jLabel13.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel13.setText("Contacts :");
         jpaddstudent.add(jLabel13);
-        jLabel13.setBounds(730, 240, 60, 14);
+        jLabel13.setBounds(410, 370, 60, 14);
 
         txtpgcontacts1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -391,37 +415,36 @@ public class StudentDetails extends javax.swing.JFrame {
             }
         });
         jpaddstudent.add(txtpgcontacts1);
-        txtpgcontacts1.setBounds(810, 240, 160, 20);
+        txtpgcontacts1.setBounds(360, 390, 160, 20);
 
+        jLabel14.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel14.setText("Contacts :");
         jpaddstudent.add(jLabel14);
-        jLabel14.setBounds(730, 270, 60, 14);
+        jLabel14.setBounds(600, 370, 60, 14);
         jpaddstudent.add(txtpgcontacts2);
-        txtpgcontacts2.setBounds(810, 270, 160, 20);
+        txtpgcontacts2.setBounds(560, 390, 160, 20);
 
-        jLabel15.setText("______________________________________________________________________________________________________________________________________________________________________________    ");
-        jpaddstudent.add(jLabel15);
-        jLabel15.setBounds(20, 300, 1080, 14);
-
+        jLabel16.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel16.setText("Stream :");
         jpaddstudent.add(jLabel16);
-        jLabel16.setBounds(390, 340, 60, 14);
+        jLabel16.setBounds(910, 200, 60, 14);
 
         cmbstream.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "East", "West", "South", "North" }));
         jpaddstudent.add(cmbstream);
-        cmbstream.setBounds(480, 340, 200, 20);
+        cmbstream.setBounds(860, 220, 180, 20);
 
+        jLabel17.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
         jLabel17.setText("Adminssion   Date :");
         jpaddstudent.add(jLabel17);
-        jLabel17.setBounds(340, 380, 110, 14);
+        jLabel17.setBounds(880, 250, 140, 14);
 
         jcdate.setDateFormatString("dd-MM-yyyy");
         jpaddstudent.add(jcdate);
-        jcdate.setBounds(480, 380, 200, 20);
+        jcdate.setBounds(850, 270, 200, 20);
 
         cmbgender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female", "Other" }));
         jpaddstudent.add(cmbgender);
-        cmbgender.setBounds(470, 130, 180, 20);
+        cmbgender.setBounds(70, 280, 170, 20);
 
         cmbclass.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "0", "1", "2", "3", "4", "5", "6", "7", "8" }));
         cmbclass.addActionListener(new java.awt.event.ActionListener() {
@@ -430,9 +453,18 @@ public class StudentDetails extends javax.swing.JFrame {
             }
         });
         jpaddstudent.add(cmbclass);
-        cmbclass.setBounds(120, 380, 170, 20);
+        cmbclass.setBounds(860, 170, 170, 20);
         jpaddstudent.add(jcyear);
-        jcyear.setBounds(140, 120, 170, 20);
+        jcyear.setBounds(70, 230, 170, 20);
+
+        jLabel35.setFont(new java.awt.Font("Arial Unicode MS", 1, 10)); // NOI18N
+        jLabel35.setText("Parent/Gaudian Name : 1 ");
+        jpaddstudent.add(jLabel35);
+        jLabel35.setBounds(360, 240, 170, 14);
+
+        jLabel11.setText("______________________________________________________________________________________________________________________________________________________");
+        jpaddstudent.add(jLabel11);
+        jLabel11.setBounds(10, 60, 1100, 14);
 
         jPanel1.add(jpaddstudent);
         jpaddstudent.setBounds(20, 30, 1130, 510);
@@ -464,15 +496,15 @@ public class StudentDetails extends javax.swing.JFrame {
 
         lbtotalamount.setText("0.0");
         jPanel2.add(lbtotalamount);
-        lbtotalamount.setBounds(140, 60, 60, 14);
+        lbtotalamount.setBounds(140, 50, 60, 14);
 
         lbpaidamount.setText("0.0");
         jPanel2.add(lbpaidamount);
-        lbpaidamount.setBounds(140, 100, 60, 14);
+        lbpaidamount.setBounds(140, 80, 60, 14);
 
-        lbcurrentbalance.setText("0.0");
-        jPanel2.add(lbcurrentbalance);
-        lbcurrentbalance.setBounds(140, 130, 60, 14);
+        lbcurrentclass.setText("null");
+        jPanel2.add(lbcurrentclass);
+        lbcurrentclass.setBounds(130, 140, 60, 14);
 
         jLabel22.setText("PAY AMOUNT :");
         jPanel2.add(jLabel22);
@@ -533,19 +565,27 @@ public class StudentDetails extends javax.swing.JFrame {
         lbstudentfullname.setText("Student full name");
         lbstudentfullname.setToolTipText("Selected student name");
         jPanel2.add(lbstudentfullname);
-        lbstudentfullname.setBounds(220, 60, 240, 30);
+        lbstudentfullname.setBounds(220, 60, 240, 20);
 
         jLabel19.setText("TOTAL AMOUNT : ");
         jPanel2.add(jLabel19);
-        jLabel19.setBounds(10, 60, 110, 14);
+        jLabel19.setBounds(10, 50, 110, 14);
 
         jLabel20.setText("PAID AMOUNT : ");
         jPanel2.add(jLabel20);
-        jLabel20.setBounds(10, 100, 110, 14);
+        jLabel20.setBounds(10, 80, 110, 14);
 
-        jLabel21.setText("FEE BALANCE : ");
+        jLabel21.setText("CLASS : ");
         jPanel2.add(jLabel21);
-        jLabel21.setBounds(10, 130, 110, 14);
+        jLabel21.setBounds(10, 140, 110, 14);
+
+        jLabel36.setText("FEE BALANCE : ");
+        jPanel2.add(jLabel36);
+        jLabel36.setBounds(10, 110, 110, 14);
+
+        lbcurrentbalance.setText("0.0");
+        jPanel2.add(lbcurrentbalance);
+        lbcurrentbalance.setBounds(140, 110, 60, 14);
 
         jpfeespayment.add(jPanel2);
         jPanel2.setBounds(31, 35, 1070, 170);
@@ -1286,6 +1326,7 @@ public class StudentDetails extends javax.swing.JFrame {
         lbpaidamount.setText( dtm.getValueAt(selectedrowindex, 5).toString());
         txtsearchsutentfee.setText(dtm.getValueAt(selectedrowindex, 0).toString());
         lbcurrentbalance.setText( dtm.getValueAt(selectedrowindex, 6).toString());
+        lbcurrentclass.setText(dtm.getValueAt(selectedrowindex, 4).toString());
     }//GEN-LAST:event_tblfeesMouseClicked
 
     private void btnaddstaffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddstaffActionPerformed
@@ -1622,7 +1663,7 @@ public class StudentDetails extends javax.swing.JFrame {
                  txtsearchsutentfee.setText(regno);
                  lbtotalamount.setText(total);
                  lbpaidamount.setText( piad);
-                 lbcurrentbalance.setText(balance);
+                 lbcurrentclass.setText(balance);
                  lbstudentfullname.setText(firstname.toUpperCase() + " " + middlename.toUpperCase() + " " + lastname.toUpperCase());
                  
                  
@@ -1769,10 +1810,12 @@ public class StudentDetails extends javax.swing.JFrame {
           }else{
              // INSERT PAID FEE
               try{
-                   String newstatus ;
-                  int totalamount,paidamount,balance, previouspaid;
+                   String newstatus, currentclass;
+                   currentclass = lbcurrentclass.getText();
+                  int totalamount,paidamount,balance, previouspaid,newpaidamount;
                    totalamount = Integer.parseInt(lbtotalamount.getText());
                    previouspaid = Integer.parseInt(lbpaidamount.getText());
+                   newpaidamount = Integer.parseInt(txtfeeamountpaid.getText());
               paidamount = Integer.parseInt(txtfeeamountpaid.getText()) + previouspaid;
               balance = totalamount - paidamount ;
                if(balance <= 0){
@@ -1788,10 +1831,18 @@ public class StudentDetails extends javax.swing.JFrame {
                 pst = con.prepareStatement(updatestudentfee);
                 pst.setString(1 , (String) txtsearchsutentfee.getText());
                 pst.executeUpdate();
+               
+                
             JOptionPane.showMessageDialog(null, "<HTML><i style=\"color: green; font-size: 12px;\">Student fee updated</i></HTML>","School",JOptionPane.INFORMATION_MESSAGE); 
                   
+            
+            // ADD PAYMENT RECORD TO RECORDS
+               String writepaymentrecord = "INSERT INTO tblpaymentrecord(REGISTRATIONNUMBER,CLASS,AMOUNT,DATE,TOTALPAYMENT,TOTALBALANCE) VALUES"
+                        + " ('"+txtsearchsutentfee.getText()+"','"+currentclass+"','"+newpaidamount+"','"+todaydate+"' "
+                        + ",'"+paidamount+"','"+balance+"') ";
+                st.execute(writepaymentrecord);
               }catch(SQLException ex){
-                  
+                JOptionPane.showMessageDialog(null,ex,"School",JOptionPane.WARNING_MESSAGE);   
               }
              
              
@@ -1914,7 +1965,6 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -1936,6 +1986,8 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
@@ -1984,6 +2036,7 @@ public class StudentDetails extends javax.swing.JFrame {
     private javax.swing.JLabel lbcautionfee;
     private javax.swing.JLabel lbclassfee;
     private javax.swing.JLabel lbcurrentbalance;
+    private javax.swing.JLabel lbcurrentclass;
     private javax.swing.JLabel lbexamfee;
     private javax.swing.JLabel lbmaintainacefee;
     private javax.swing.JLabel lbmedicalfee;
